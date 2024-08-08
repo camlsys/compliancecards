@@ -5,24 +5,27 @@ from enum import Enum
 
 # Create some variables we will use throughout our analysis
 
-# Type of AI project (AI system vs GPAI model)
-ai_system = False
-gpai_model = False
-high_risk_ai_system = False
-gpai_model_systematic_risk = False
-
-# Role and location of AI project operator
-provider = False
-deployer = False
-importer = False
-distributor = False
-product_manufacturer = False
-eu_located = False 
-
-#EU market status
-placed_on_market = False
-put_into_service = False 
-output_used = False
+project_variables = {
+    "ai_project_type": {
+        "ai_system": False,
+        "gpai_model": False,
+        "high_risk_ai_system": False,
+        "gpai_model_systematic_risk": False
+    },
+    "operator_role": {
+        "provider": False,
+        "deployer": False,
+        "importer": False,
+        "distributor": False,
+        "product_manufacturer": False,
+        "eu_located": False
+    },
+    "eu_market_status": {
+        "placed_on_market": False,
+        "put_into_service": False,
+        "output_used": False
+    }
+}
 
 #Define a function that creates a list of all the files in a provided folder. We will use this list for different things.
 def create_list_of_files(folder_path):
@@ -61,8 +64,8 @@ def run_compliance_analysis(folder_path):
         project_cc_yaml = yaml.safe_load(file)
 
     # Determine project type (AI system vs. GPAI model) as well as operator type. We will use these for different things.
-    set_type(project_cc_yaml)
-    set_operator_role_and_location(project_cc_yaml)
+    set_type(project_variables, project_cc_yaml)
+    set_operator_role_and_location(project_variables, project_cc_yaml)
     set_eu_market_status(project_cc_yaml)
 
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
@@ -222,10 +225,12 @@ def run_compliance_analysis(folder_path):
                     if not value:
                         sys.exit(f"Because of the model represented by {filename}, this GPAI model with systematic risk fails the transparency requirements under Article 55.")
 
-def set_type(project_cc_yaml):
+def set_type(project_variables, project_cc_yaml):
+    ai_system = project_variables['ai_project_type']['ai_system']
+    gpai_model = project_variables['ai_project_type']['gpai_model']
     if project_cc_yaml['ai_system']['ai_system']['value']:
         ai_system = True
-    if project_cc_yaml['gpai_model']['ai_system']['value']:
+    if project_cc_yaml['gpai_model']['gpai_model']['value']:
         gpai_model = True
     if ai_system and gpai_model:
         sys.exit("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
@@ -237,25 +242,25 @@ def set_type(project_cc_yaml):
         if project_cc_yaml['gpai_model_systematic_risk']['evaluation'] or project_cc_yaml['gpai_model_systematic_risk']['flops']:
             gpai_model_systematic_risk == True
 
-def set_operator_role_and_location(project_cc):
-    if project_cc_yaml['operator_role']['eu_located']['value']:
-        eu_located = True
-    if project_cc_yaml['operator_role']['provider']['value']:
-        provider = True
-    if project_cc_yaml['operator_role']['deployer']['value']:
-        deployer = True
-    if project_cc_yaml['operator_role']['importer']['value']:
-        importer = True
-    if project_cc_yaml['operator_role']['distributor']['value']:
-        distributor = True
-    if project_cc_yaml['operator_role']['product_manufacturer']['value']:
-        product_manufacturer = True
+def set_operator_role_and_location(project_variables, project_cc_yaml):
+    operators = 0
+    
+    ai_system = project_variables['ai_project_type']['ai_system']
+    gpai_model = project_variables['ai_project_type']['gpai_model']
+    
+    for var in project_variables['operator_role']:
+        if project_cc_yaml['operator_role'][f'{var}']['value']:
+            project_variables['operator_role'][f'{var}'] = True
+            operators += 1 
+        
     if ai_system and gpai_model:
         sys.exit("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
-    if sum(map(bool, [provider,deployer,importer,distributor, product_manufacturer])) != 1:
+    if operators != 1:
         sys.exit("Please specify exactly one operator role.")
+    
+    return project_variables
 
-def set_eu_market_status(project_cc):
+def set_eu_market_status(project_cc_yaml):
     if project_cc_yaml['eu_market']['placed_on_market']['value']:
         placed_on_market = True
     if project_cc_yaml['eu_market']['put_into_service']['value']: 
@@ -278,13 +283,13 @@ def check_within_scope(project_cc):
     else:
         return False
 
-def check_excepted(project_cc):
+def check_excepted(project_cc_yaml):
     if project_cc_yaml['excepted']['scientific'] or project_cc_yaml['excepted']['pre_market'] or (ai_system and project_cc_yaml['excepted']['open_source_ai_system']) or (gpai_model and project_cc_yaml['excepted']['open_source_gpai_system']):
         return True
     else:
         return False 
 
-def check_prohibited (project_cc):
+def check_prohibited (project_cc_yaml):
     if ai_system:
         for key in project_cc_yaml['prohibited_practice']['ai_system']:
             if key[value]: 
@@ -322,7 +327,7 @@ def check_all_true(file_path):
 
 def main():
     # Prompt the user to enter a filename
-    file_path = input("Please enter a file path to the folder containing all your AI project's Compliance Cards: ")
+    file_path = "./" # input("Please enter a file path to the folder containing all your AI project's Compliance Cards: ")
 
     # Call the function with the entered filename
     check_for_project_cc(file_path)

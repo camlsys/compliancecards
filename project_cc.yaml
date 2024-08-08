@@ -22,7 +22,7 @@ operator_role:
     value: !!bool false 
   eu_located: # Art. 2
     verbose: 'AI project operator has its place of establishment or location within the Union'
-    value: !!bool false  
+    value: !!bool True  
   output_used: # Art. 2
     verbose: 'The output produced by the AI system is used in the Union'
     value: !!bool false 
