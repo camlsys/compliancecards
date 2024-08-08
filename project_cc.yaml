@@ -15,7 +15,7 @@ operator_role:
     verbose: 'The owner of this AI project is a natural or legal person, public authority, agency or other body that develops an AI system or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark, whether for payment or free of charge'
     value: !!bool false 
   on_market: # Art 2 
-    verbose: "AI project is placed on the market or put into service in the Union"
+    verbose: 'AI project is placed on the market or put into service in the Union'
     value: !!bool false  
   deployer: # Art. 2
     verbose: 'AI project operator is a natural or legal person, public authority, agency or other body using an AI system under its authority except where the AI system is used in the course of a personal non-professional activity'

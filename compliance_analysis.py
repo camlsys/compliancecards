@@ -221,7 +221,7 @@ def run_compliance_analysis(folder_path):
                     if not value:
                         sys.exit(f"Because of the model represented by {filename}, this GPAI model with systematic risk fails the transparency requirements under Article 55.")
 
-def set_type(project_cc):
+def set_type(project_cc_yaml):
     if project_cc_yaml['ai_system']['ai_system']['value']:
         ai_system = True
     if project_cc_yaml['gpai_model']['ai_system']['value']:
