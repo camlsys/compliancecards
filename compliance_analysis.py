@@ -1,4 +1,5 @@
 import os
+import sys
 import yaml
 from enum import Enum
 
@@ -8,7 +9,7 @@ from enum import Enum
 ai_system = False
 gpai_model = False
 high_risk_ai_system = False
-gpai_model_systematic_risk == False
+gpai_model_systematic_risk = False
 
 # Role and location of AI project operator
 provider = False
@@ -61,7 +62,7 @@ def run_compliance_analysis(folder_path):
 
     # Determine project type (AI system vs. GPAI model) as well as operator type. We will use these for different things.
     set_type(project_cc_yaml)
-    set_operator_role_and_location(projec_cc_yaml)
+    set_operator_role_and_location(project_cc_yaml)
     set_eu_market_status(project_cc_yaml)
 
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
@@ -208,7 +209,7 @@ def run_compliance_analysis(folder_path):
 
     # Do this by examining any and all Model CCs too
 
-       for filename in os.listdir(folder_path):
+        for filename in os.listdir(folder_path):
             # Check if the search word is in the filename
             if "model_cc.md" in filename.lower():
 
@@ -274,7 +275,7 @@ def check_within_scope(project_cc):
             return True
         if product_manufacturer and ai_system and (placed_on_market or put_into_service): # Article 2.1(e)
             return True
-    else   
+    else:
         return False
 
 def check_excepted(project_cc):
@@ -304,10 +305,10 @@ def check_prohibited (project_cc):
 
 
 def check_all_true(file_path):
-        # Load the YAML file
-    with open(project_cc, 'r') as file:
+    # Load the YAML file
+    with open("./project_cc.yaml", 'r') as file:
         data = yaml.safe_load(file)
-    
+
     # Iterate through top-level keys
     for top_key, top_value in data.items():
         if isinstance(top_value, dict):

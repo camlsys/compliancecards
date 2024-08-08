@@ -163,7 +163,7 @@ risk_management_system:
     verbose: 'Risk management system for AI system includes the identification and analysis of any known or reasonably foreseeable risks that the AI system might pose to health, safety or fundamental rights when used in accordance with its intended purpose'
     value: !!bool false 
   risk_estimation_foreseeable: # Art. 9(2)(b)
-    verbose: 'Risk management system for AI system includes the estimation and evaluation of the risks that may emerge when the high-risk AI system is used in accordance with its intended purpose, and under conditions of reasonably foreseeable misuse;
+    verbose: 'Risk management system for AI system includes the estimation and evaluation of the risks that may emerge when the high-risk AI system is used in accordance with its intended purpose, and under conditions of reasonably foreseeable misuse'
     value: !!bool false 
   risk_post_market: # Art. 9(2)(c)
     verbose: 'Risk management system for AI system includes the evaluation of other risks possibly arising, based on the analysis of data gathered from the post-market monitoring system'
@@ -190,7 +190,7 @@ technical_documentation:
     value: !!bool false 
   interaction: # Art. 11(1); Annex IV(1)(b)
     verbose: 'The Technical Documentation includes a general description of the AI system that covers how the AI system interacts with, or can be used to interact with, hardware or software, including with other AI systems, that are not part of the AI system itself, where applicable'
-   value: !!bool false 
+    value: !!bool false 
   versions: # Art. 11(1); Annex IV(1)(c)
     verbose: 'Technical Documentation includes a general description of the AI system that covers the versions of relevant software or firmware, and any requirements related to version updates'
     value: !!bool false 
