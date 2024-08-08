@@ -66,7 +66,7 @@ def run_compliance_analysis(folder_path):
     # Determine project type (AI system vs. GPAI model) as well as operator type. We will use these for different things.
     set_type(project_variables, project_cc_yaml)
     set_operator_role_and_location(project_variables, project_cc_yaml)
-    set_eu_market_status(project_cc_yaml)
+    set_eu_market_status(project_variables, project_cc_yaml)
 
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
     if check_within_scope(project_cc_yaml):
@@ -260,13 +260,17 @@ def set_operator_role_and_location(project_variables, project_cc_yaml):
     
     return project_variables
 
-def set_eu_market_status(project_cc_yaml):
-    if project_cc_yaml['eu_market']['placed_on_market']['value']:
-        placed_on_market = True
-    if project_cc_yaml['eu_market']['put_into_service']['value']: 
-        put_into_service = True
+def set_eu_market_status(project_variables, project_cc_yaml):
+    
+    if project_cc_yaml['eu_market_status']['placed_on_market']['value']:
+        project_variables['eu_market_status']["placed_on_market"] = True
+    if project_cc_yaml['eu_market_status']['put_into_service']['value']:
+        project_variables['eu_market_status']["put_into_service"] = True
+        
     if project_cc_yaml['operator_role']['output_used']['value']:
-        output_used == True
+        project_variables['operator_role']["output_used"] = True
+        
+    return project_variables
 
 def check_within_scope(project_cc):
     if not check_excepted(project_cc):
@@ -304,10 +308,6 @@ def check_prohibited (project_cc_yaml):
     else: 
         print("You are not engaged in any prohibited practices.")
         return False
-
-
-
-
 
 def check_all_true(file_path):
     # Load the YAML file

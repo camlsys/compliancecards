@@ -3,12 +3,13 @@ smb:
     verbose: 'AI project is operated by a small or medium-sized enterprise' 
     value: !!bool false
 
-eu_market:
+eu_market_status:
   placed_on_market: # Art. 3(9)
     verbose: 'AI project is being made available on the Union market for the first time'
     value: !!bool false 
   put_into_service: #Art. 3(11)
     verbose: 'AI project is supplied for first use directly to the deployer or for own use in the Union for its intended purpose;'
+    value: !!bool false 
 
 operator_role:
   provider: # Art. 2
