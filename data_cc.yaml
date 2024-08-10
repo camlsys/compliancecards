@@ -68,13 +68,13 @@ data_and_data_governance:
   personal_data_deletion: # Art. 10(5)(e)
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the special categories of personal data were deleted once the bias was corrected or the personal data reached the end of its retention period (whichever came first)'
     value: !!bool false
-  personal_data_necessary: # Art. 10(5)(f)
+  personal_data_necessary_105f: # Art. 10(5)(f)
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the records of processing activities pursuant to Regulations (EU) 2016/679 and (EU) 2018/1725 and Directive (EU) 2016/680 include the reasons why the processing of special categories of personal data was strictly necessary to detect and correct biases, and why that objective could not be achieved by processing other data'
     value: !!bool false
 
 technical_documentation:
   general_description: # Art. 11; Annex IV(2)(d)
-    verbose: 'Dataset carries technical documention, such as a dataseet, including a general description of the dataset." 
+    verbose: 'Dataset carries technical documention, such as a dataseet, including a general description of the dataset.'
     value: !!bool false
   provenance: # Art. 11; Annex IV(2)(d)
     verbose: 'Dataset carries technical documention, such as a dataseet, including information about its provenance' 

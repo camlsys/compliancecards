@@ -76,45 +76,39 @@ def run_compliance_analysis_on_project(project_cc_yaml):
     return msg
 
 def run_compliance_analysis_on_data(data_cc_yaml):
-    # Do this by examining any and all Data CCs too
-    data_cc_yaml = yaml.safe_load(data_cc_yaml)
-    filename = data_cc_yaml
     
     for key, value in data_cc_yaml['data_and_data_governance']:
         if not value:
-            msg = (f"Because of the dataset represented by {filename}, this high-risk AI system fails the data and data governance requirements under Article 10.")
+            msg = (f"Because of the dataset represented by , this high-risk AI system fails the data and data governance requirements under Article 10.")
     for key, value in data_cc_yaml['technical_documentation']:
         if not value:
-            msg = (f"Because of the dataset represented by {filename}, this high-risk AI system fails the technical documentation requirements under Article 11.")
+            msg = (f"Because of the dataset represented by , this high-risk AI system fails the technical documentation requirements under Article 11.")
     for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
         if not value:
-            msg = (f"Because of the dataset represented by {filename}, this high-risk  AI system fails the transparency requirements under Article 13.")
+            msg = (f"Because of the dataset represented by , this high-risk  AI system fails the transparency requirements under Article 13.")
     for key, value in data_cc_yaml['quality_management_system']:
         if not value:
-            msg = (f"Because of the dataset represented by {filename}, this high-risk  AI system fails the quality management requirements under Article 17.")
+            msg = (f"Because of the dataset represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
 
     return msg
     
-def run_compliance_analysis_on_data(model_cc_yaml):
-    
-    model_cc_yaml = yaml.safe_load(model_cc_yaml)
-    filename - model_cc_yaml
+def run_compliance_analysis_on_model(model_cc_yaml):
     
     for key, value in model_cc_yaml['risk_management_system']:
         if not value:
-            msg = (f"Because of the model represented by {filename}, this high-risk AI system fails the risk management requirements under Article 9.")
+            msg = (f"Because of the model represented by , this high-risk AI system fails the risk management requirements under Article 9.")
     for key, value in data_cc_yaml['technical_documentation']:
         if not value:
-            msg = (f"Because of the model represented by {filename}, this high-risk AI system fails the technical documentation requirements under Article 11.")
+            msg = (f"Because of the model represented by , this high-risk AI system fails the technical documentation requirements under Article 11.")
     for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
         if not value:
-            msg = (f"Because of the model represented by {filename}, this high-risk  AI system fails the transparency requirements under Article 13.")
+            msg = (f"Because of the model represented by , this high-risk  AI system fails the transparency requirements under Article 13.")
     for key, value in data_cc_yaml['accuracy_robustness_cybersecurity']:
         if not value:
-            msg = (f"Because of the model represented by {filename}, this high-risk  AI system fails the quality management requirements under Article 15.")
+            msg = (f"Because of the model represented by , this high-risk  AI system fails the quality management requirements under Article 15.")
     for key, value in data_cc_yaml['quality_management_system']:
         if not value:
-            msg = (f"Because of the model represented by {filename}, this high-risk  AI system fails the quality management requirements under Article 17.")
+            msg = (f"Because of the model represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
    
     return msg
 

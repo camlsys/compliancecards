@@ -13,7 +13,7 @@ risk_management_system:
     value: !!bool false
   testing_compliance: # Art. 9(6)
     verbose: 'Testing to ensure model complies with Act'
-   value: !!bool false
+    value: !!bool false
   testing_benchmark: # Art. 9(8)
     verbose: 'Testing against prior defined metrics appropriate to intended purpose'
     value: !!bool false
@@ -87,7 +87,7 @@ accuracy_robustness_cybersecurity:
     verbose: 'Model is designed and developed to achieve appropriate level of accuracy'
     value: !!bool false
   robustiness: # Art. 15(1)
-    verbose 'Model is designed and developed to achieve appropriate level of robustness'
+    verbose: 'Model is designed and developed to achieve appropriate level of robustness'
     value: !!bool false
   cybersecurity:  # Art. 15(1)
     verbose: 'Model is designed and developed to achieve appropriate level of cybersecurity'
