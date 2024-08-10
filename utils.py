@@ -76,21 +76,24 @@ def check_excepted(project_cc_yaml):
     else:
         return False 
 
-# def check_prohibited (project_cc_yaml):
-#     if ai_system:
-#         for key in project_cc_yaml['prohibited_practice']['ai_system']:
-#             if key[value]: 
-#                 print("You are engaged in a prohibited practice and thus the project is non-compliant.")
-#                 return True
-#     if project_cc_yaml['prohibited_practice']['biometric']['categorization']:
-#         print("You are engaged in a prohibited practice and thus the project is non-compliant.")
-#         return True
-#     if project_cc_yaml['prohibited_practice']['biometric']['real_time'] and sum(map(bool, [project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_victim'],project_cc['prohibited_practice']['biometric']['real_time_exception_threat'], project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_investigation']])) == 0:
-#         print("You are engaged in a prohibited practice and thus the project is non-compliant.")
-#         return True
-#     else: 
-#         print("You are not engaged in any prohibited practices.")
-#         return False
+def check_prohibited (project_variables, project_cc_yaml):
+
+    ai_system = project_variables['ai_project_type']['ai_system'] 
+    
+    if ai_system:
+        for key in project_cc_yaml['prohibited_practice']['ai_system']:
+            if key[value]: 
+                print("You are engaged in a prohibited practice and thus the project is non-compliant.")
+                return True
+    if project_cc_yaml['prohibited_practice']['biometric']['categorization']:
+        print("You are engaged in a prohibited practice and thus the project is non-compliant.")
+        return True
+    if project_cc_yaml['prohibited_practice']['biometric']['real_time'] and sum(map(bool, [project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_victim'],project_cc['prohibited_practice']['biometric']['real_time_exception_threat'], project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_investigation']])) == 0:
+        print("You are engaged in a prohibited practice and thus the project is non-compliant.")
+        return True
+    else: 
+        print("You are not engaged in any prohibited practices.")
+        return False
 
 # def check_all_true(file_path):
 #     data = yaml.safe_load(file_path)
