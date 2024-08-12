@@ -1,18 +1,18 @@
 
-# Information related to high-level characteristics of AI project, including its market status, operator, and type of AI
+# Information related to high-level characteristics of AI project, including the role of the operator, market status, and type of AI
 
 operator_role:
   provider: # Art. 2
-    verbose: 'The operator of this AI project is a natural or legal person, public authority, agency or other body that develops an AI system or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark, whether for payment or free of charge'
+    verbose: 'The operator of this AI project is a natural or legal person, public authority, agency or other body that develops an AI project or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark, whether for payment or free of charge'
     value: !!bool false 
   deployer: # Art. 2
-    verbose: 'AI project operator is a natural or legal person, public authority, agency or other body using an AI system under its authority except where the AI system is used in the course of a personal non-professional activity'
+    verbose: 'AI project operator is a natural or legal person, public authority, agency or other body using an AI project under its authority except where the AI system is used in the course of a personal non-professional activity'
     value: !!bool false 
   eu_located: # Art. 2
     verbose: 'AI project operator has its place of establishment or location within the Union'
     value: !!bool True  
   output_used: # Art. 2
-    verbose: 'The output produced by the AI system is used in the Union'
+    verbose: 'The output produced by the AI project is used in the Union'
     value: !!bool false 
   importer: # Art. 2 
     verbose: 'AI project operator is a natural or legal person located or established in the Union that places on the market an AI system that bears the name or trademark of a natural or legal person established in a third country'
@@ -51,6 +51,30 @@ gpai_model_systematic_risk:
     value: !!bool false 
   flops: # Art. 51(2)
     verbose: 'The cumulative amount of computation used for the training of the AI project, as measured in floating point operations (FLOPs), has been greater than 10^25'
+    value: !!bool false 
+
+transparency_related: 
+  direct_user_interaction: 
+    verbose: 'The AI project is intended to interact directly with natural persons'
+    value: !!bool false 
+  exception_obvious:
+    verbose: 'When interacting with the AI project, it would be obvious from the point of view of a natural person who is reasonably well-informed, observant and circumspect, taking into account the circumstances and the context of use that they are interacting with AI'
+  exception_law: 
+    verbose: 'The AI project is authorised by law to detect, prevent, investigate or prosecute criminal offences, subject to appropriate safeguards for the rights and freedoms of third parties, and is not available for the public to report a criminal offence'
+  synthetic content: # Art. 50(2)
+    verbose: 'The AI project generates synthetic audio, image, video or text content' 
+    value: !!bool false 
+  exception_assistive:
+    verbose: 'The AI project performs an assistive function for standard editing'
+    value: !!bool false 
+  exception_inubstantial: 
+    verbose: 'The AI project does not substantially alter the input data provided by the deployer or the semantics thereof, or where authorised by law to detect, prevent, investigate or prosecute criminal offences.'
+    value: !!bool false 
+  emotion_reconition: 
+    verbose: 'The AI project is an emotion recognition system'
+    value: !!bool false 
+  biometric_categorization: 
+    verbose: 'The AI project is a biometric categorisation system'
     value: !!bool false 
 
 # Information related to the Act's exceptions for scientific research, open-source AI, and more
@@ -114,13 +138,13 @@ high_risk_ai_system:
     verbose: 'AI project is intended to be used as a safety component of a product'
     value: !!bool false 
   product_covered_by_machinery_regulation: # Art. 6(1)(b); Annex I
-    verbose: 'AI project is itself a product, covered by Directive 2006/42/EC of the European Parliament and of the Council of 17 May 2006 on machinery, and amending Directive 95/16/EC (OJ L 157, 9.6.2006, p. 24) [as repealed by the Machinery Regulation]'
+    verbose: 'AI project is itself a product that is covered by Directive 2006/42/EC of the European Parliament and of the Council of 17 May 2006 on machinery, and amending Directive 95/16/EC (OJ L 157, 9.6.2006, p. 24) [as repealed by the Machinery Regulation]'
     value: !!bool false 
   product_covered_by_toy_safety_regulation: # Art. 6(1)(b); Annex I
-    verbose: 'AI project is itself a product, covered by Directive 2009/48/EC of the European Parliament and of the Council of 18 June 2009 on the safety of toys (OJ L 170, 30.6.2009, p. 1)'
+    verbose: 'AI project is itself a product that is covered by Directive 2009/48/EC of the European Parliament and of the Council of 18 June 2009 on the safety of toys (OJ L 170, 30.6.2009, p. 1)'
     value: !!bool false 
   product_covered_by_watercraft_regulation: # Art. 6(1)(b); Annex I
-    verbose: 'AI project is itself a product, covered by Directive 2013/53/EU of the European Parliament and of the Council of 20 November 2013 on recreational craft and personal watercraft and repealing Directive 94/25/EC (OJ L 354, 28.12.2013, p. 90)'
+    verbose: 'AI project is itself a product that is covered by Directive 2013/53/EU of the European Parliament and of the Council of 20 November 2013 on recreational craft and personal watercraft and repealing Directive 94/25/EC (OJ L 354, 28.12.2013, p. 90)'
     value: !!bool false 
   biometric_categorization: # Art. 6(2); Annex III(1)(b)
     verbose: 'AI project is intended to be used for biometric categorisation, according to sensitive or protected attributes or characteristics based on the inference of those attributes or characteristics'
@@ -129,7 +153,7 @@ high_risk_ai_system:
     verbose: 'AI project is intended to be used for emotion recognition'
     value: !!bool false 
   critical_infrastructure: # Art. 6(2); Annex III(2)
-    verbose: 'AI project is intended to be used as safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'
+    verbose: 'AI project is intended to be used as a safety component in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'
     value: !!bool false 
   educational: # Art. 6(2); Annex III(3)(a)
     verbose: 'AI project is intended to be used to determine access or admission or to assign natural persons to educational and vocational training institutions at all levels'
@@ -159,65 +183,65 @@ high_risk_ai_system:
     verbose: 'the AI project is intended to improve the result of a previously completed human activity'
     value: !!bool false
   filter_exception_deviation: # Art. 6(3)(c)
-    verbose: 'the AI system is intended to detect decision-making patterns or deviations from prior decision-making patterns and is not meant to replace or influence the previously completed human assessment, without proper human review'
+    verbose: 'the AI project is intended to detect decision-making patterns or deviations from prior decision-making patterns and is not meant to replace or influence the previously completed human assessment, without proper human review'
     value: !!bool false
   filter_exception_prep: # Art. 6(3)(d)
-    verbose: 'the AI system is intended to perform a preparatory task to an assessment relevant for the purposes of the use cases listed in Annex III.'
+    verbose: 'the AI project is intended to perform a preparatory task to an assessment relevant for the purposes of the use cases listed in Annex III.'
     value: !!bool false 
 
 risk_management_system:
   established: # Article 9
-    verbose: 'Risk management system has been established, implemented, documented and maintained for AI project'
+    verbose: 'A risk management system has been established, implemented, documented and maintained for the AI project'
     value: !!bool false 
   lifecycle: # Art. 9(2)
-    verbose: 'Risk management system (high-risk AI system) has been planned, run, reviewed, and updated, throughout the entire lifecycle of AI system'
+    verbose: 'A risk management system has been planned, run, reviewed, and updated throughout the entire lifecycle of the AI project'
     value: !!bool false 
   risk_analysis_intended: # Art. 9(2)(a)
-    verbose: 'Risk management system for AI system includes the identification and analysis of any known or reasonably foreseeable risks that the AI system might pose to health, safety or fundamental rights when used in accordance with its intended purpose'
+    verbose: 'The risk management system for the AI project includes the identification and analysis of any known or reasonably foreseeable risks that the AI project might pose to health, safety or fundamental rights when used in accordance with its intended purpose'
     value: !!bool false 
   risk_estimation_foreseeable: # Art. 9(2)(b)
-    verbose: 'Risk management system for AI system includes the estimation and evaluation of the risks that may emerge when the high-risk AI system is used in accordance with its intended purpose, and under conditions of reasonably foreseeable misuse'
+    verbose: 'The risk management system for the AI project includes the estimation and evaluation of the risks that may emerge when the AI project is used in accordance with its intended purpose, and under conditions of reasonably foreseeable misuse'
     value: !!bool false 
   risk_post_market: # Art. 9(2)(c)
-    verbose: 'Risk management system for AI system includes the evaluation of other risks possibly arising, based on the analysis of data gathered from the post-market monitoring system'
+    verbose: 'The risk management system for the AI project includes the evaluation of other risks possibly arising, based on the analysis of data gathered from the post-market monitoring system'
     value: !!bool false   
   risk_management_measures: # Art. 9(2)(d)
-    verbose: 'Where risk that the AI system might pose to health, safety or fundamental rights when used in accordance with its intended purpose have been identified, appropriate and targeted risk management measures designed to address the risks have been adopted'
+    verbose: 'Where any risks that the AI project might pose to health, safety or fundamental rights when used in accordance with its intended purpose have been identified, appropriate and targeted risk management measures designed to address those risks have been adopted'
     value: !!bool false 
   documentation: # Art. 9(5)
-    verbose: 'Where risk that the AI system might pose to health, safety or fundamental rights when used in accordance with its intended purpose have been identified, these risks have been documented and communicated to deployers and either eliminated, if feasible, or mitigated such that any residual risk is judged to be acceptable'
+    verbose: 'Where any risks that the AI project might pose to health, safety or fundamental rights when used in accordance with its intended purpose have been identified, these risks have been documented and communicated to deployers and either eliminated, if feasible, or mitigated such that any residual risk is judged to be acceptable'
     value: !!bool false 
   tested: # Art. 9(6)
-    verbose: 'To determine the right mitigations, and to show the high-risk AI system performs consistently its intended purpose and is in compliance with the risk management requirements, the AI system has been tested'
+    verbose: 'To determine the right mitigations, and to show the AI project performs consistently its intended purpose and is in compliance with the risk management requirements, the AI project has been tested'
     value: !!bool false 
   testing_threshold: # Art. 9(8)
-    verbose: 'Testing has or will be performed before the AI system is placed on the market and has or will be carried out against prior defined metrics and probabilistic thresholds that are appropriate to the intended purpose'
+    verbose: 'Testing has or will be performed before the AI project is placed on the market and has or will be carried out against prior defined metrics and probabilistic thresholds that are appropriate to the intended purpose'
     value: !!bool false 
 
 technical_documentation:
   drawn_up: # Art. 11(1)
-    verbose: 'Technical documentation for the high-risk AI system has been drawn up before the system has been placed on the market or put into service and will be kept up-to date'
+    verbose: 'Technical documentation for the high-risk AI project has been drawn up before the system has been placed on the market or put into service and will be kept up-to date'
     value: !!bool false 
   intended_purpose: # Art. 11(1); Annex IV(1)(a)
-    verbose: 'The Technical Documentation includes a general description of the AI system that covers its intended purpose, the name of the provider and the version of the system reflecting its relation to previous versions'
+    verbose: 'The Technical Documentation includes a general description of the AI project that covers its intended purpose, the name of the provider and the version of the system reflecting its relation to previous versions'
     value: !!bool false 
   interaction: # Art. 11(1); Annex IV(1)(b)
-    verbose: 'The Technical Documentation includes a general description of the AI system that covers how the AI system interacts with, or can be used to interact with, hardware or software, including with other AI systems, that are not part of the AI system itself, where applicable'
+    verbose: 'The Technical Documentation includes a general description of the AI project that covers how the AI project interacts with, or can be used to interact with, hardware or software, including with separate AI systems, that are not part of the AI project itself, where applicable'
     value: !!bool false 
   versions: # Art. 11(1); Annex IV(1)(c)
-    verbose: 'Technical Documentation includes a general description of the AI system that covers the versions of relevant software or firmware, and any requirements related to version updates'
+    verbose: 'Technical Documentation includes a general description of the AI project that covers the versions of relevant software or firmware, and any requirements related to version updates'
     value: !!bool false 
   packages: # Art. 11(1); Annex IV(1)(d)
-    verbose: 'Technical Documentation includes a general description of the AI system that covers the description of all the forms in which the AI system is placed on the market or put into service, such as software packages embedded into hardware, downloads, or APIs'
+    verbose: 'Technical Documentation includes a general description of the AI project that covers the description of all the forms in which the AI project is placed on the market or put into service, such as software packages embedded into hardware, downloads, or APIs'
     value: !!bool false 
   hardware: # Art. 11(1); Annex IV(1)(e)
-    verbose: 'Technical Documentation includes a general description of the AI system that covers the description of the hardware on which the AI system is intended to run'
+    verbose: 'Technical Documentation includes a general description of the AI project that covers the description of the hardware on which the AI project is intended to run'
     value: !!bool false 
   development_steps: # Art. 11(1); Annex IV(2)(a)
-    verbose: 'Technical Documentation includes a detailed description of the elements of the AI system and of the process for its development, covering the methods and steps performed for the development of the AI system, including, where relevant, recourse to pre-trained systems or tools provided by third parties and how those were used, integrated or modified by the provider'
+    verbose: 'Technical Documentation includes a detailed description of the elements of the AI project and of the process for its development, covering the methods and steps performed for the development of the AI project, including, where relevant, recourse to pre-trained systems or tools provided by third parties and how those were used, integrated or modified by the provider'
     value: !!bool false 
   design_specs: # Art. 11(1); Annex IV(2)(b)
-    verbose: 'Technical Documentation includes a detailed description of the elements of the AI system and of the process for its development, covering the design specifications of the system, namely the general logic of the AI system and of the algorithms; the key design choices including the rationale and assumptions made, including with regard to persons or groups of persons in respect of who, the system is intended to be used; the main classification choices; what the system is designed to optimise for, and the relevance of the different parameters; the description of the expected output and output quality of the system; the decisions about any possible trade-off made regarding the technical solutions adopted to comply with the requirements set out in Chapter III, Section 2'
+    verbose: 'Technical Documentation includes a detailed description of the elements of the AI project and of the process for its development, covering the design specifications of the system, namely the general logic of the AI project and of the algorithms; the key design choices including the rationale and assumptions made, including with regard to persons or groups of persons in respect of who, the system is intended to be used; the main classification choices; what the system is designed to optimise for, and the relevance of the different parameters; the description of the expected output and output quality of the system; the decisions about any possible trade-off made regarding the technical solutions adopted to comply with the requirements set out in Chapter III, Section 2'
     value: !!bool false 
   risk_management: # Art. 11(1); Annex IV(5)
     verbose: 'Technical Documentation includes a detailed description of the risk management system in accordance with Article 9'
@@ -229,27 +253,27 @@ technical_documentation:
     verbose: 'Technical Documentation includes a copy of the EU declaration of conformity referred to in Article 47'
     value: !!bool false 
   post_market: # Art. 11(1); Annex IV(9)
-    verbose: 'Technical Documentation includes a detailed description of the system in place to evaluate the AI system performance in the post-market phase in accordance with Article 72, including the post-market monitoring plan referred to in Article 72(3)'
+    verbose: 'Technical Documentation includes a detailed description of the system in place to evaluate the AI project performance in the post-market phase in accordance with Article 72, including the post-market monitoring plan referred to in Article 72(3)'
     value: !!bool false 
   product: # Art. 11(2)
-    verbose: 'High-risk AI system is either not related to a product covered by the Union harmonisation legislation listed in Section A of Annex I and placed on the market or put into service or, if it is, a single set of technical documentation has been drawn up containing all the information set out in paragraph 1, as well as the information required under those legal acts'
+    verbose: 'The AI project is either not related to a product covered by the Union harmonisation legislation listed in Section A of Annex I and placed on the market or put into service or, if it is, a single set of technical documentation has been drawn up containing all the information set out in paragraph 1, as well as the information required under those legal acts'
     value: !!bool false 
 
 record_keeping:
   logging_generally: # Article 12(1)
-    verbose: 'The AI system technically allows for the automatic recording of events (logs) over the lifetime of the system'
+    verbose: 'The AI project technically allows for the automatic recording of events (logs) over the lifetime of the system'
     value: !!bool false 
   logging_risk: # Art. 12(1)(a)
-    verbose: 'The AI system technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for identifying situations that may result in the high-risk AI system presenting a risk within the meaning of Article 79(1) or in a substantial modification'
+    verbose: 'The AI project technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for identifying situations that may result in the AI projectpresenting a risk within the meaning of Article 79(1) or in a substantial modification'
     value: !!bool false 
   logging_post_market: # Art. 12(1)(b)
-    verbose: 'The AI system technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for facilitating the post-market monitoring referred to in Article 72'
+    verbose: 'The AI project technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for facilitating the post-market monitoring referred to in Article 72'
     value: !!bool false 
   monitoring: # Art. 12(1)(c)
-    verbose: 'The AI system technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for monitoring the operation of high-risk AI systems referred to in Article 26(5)'
+    verbose: 'The AI project technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for monitoring the operation of AI projects referred to in Article 26(5)'
     value: !!bool false 
   recording_use: # Art. 12(2)(a)
-    verbose: 'For the remote biometric identification systems high-risk AI systems referred to in point 1 (a), of Annex III, the logging capabilities shall provide, at a minimum, the recording of the period of each use of the system (start date and time and end date and time of each use)'
+    verbose: 'For the remote biometric identification systems AI projects referred to in point 1 (a), of Annex III, the logging capabilities shall provide, at a minimum, the recording of the period of each use of the system (start date and time and end date and time of each use)'
     value: !!bool false 
   reference_db: # Art. 12(2)(b)
     verbose: 'For the remote biometric identification systems high-risk AI systems referred to in point 1 (a), of Annex III, the logging capabilities shall provide, at a minimum, the reference database against which input data has been checked by the system'
@@ -263,19 +287,19 @@ record_keeping:
 
 transparency_and_provision_of_information_to_deployers:
   interpretability: # Art. 13(1)
-    verbose: 'AI system is designed and developed to ensure operation is sufficiently transparent for deployers to interpret output and use appropriately'
+    verbose: 'AI project is designed and developed to ensure operation is sufficiently transparent for deployers to interpret output and use appropriately'
     value: !!bool false 
   compliance: # Art. 13(1)
-    verbose: 'AI system is designed and developed with transparency to ensure compliance with provider and deployer obligations in Section 3'
+    verbose: 'AI project is designed and developed with transparency to ensure compliance with provider and deployer obligations in Section 3'
     value: !!bool false 
   instructions: # Art. 13(2)
-    verbose: 'AI system is accompanied by instructions for use in appropriate digital format or otherwise, with concise, complete, correct, clear, relevant, accessible, and comprehensible information for deployers'
+    verbose: 'AI project is accompanied by instructions for use in appropriate digital format or otherwise, with concise, complete, correct, clear, relevant, accessible, and comprehensible information for deployers'
     value: !!bool false 
   contact_details:  # Art. 13(3)(a)
     verbose: 'Instructions include provider identity and contact details, and if applicable, authorized representative details'
     value: !!bool false
   characteristics: # Art. 13(3)(b)(i)
-    verbose: 'Instructions include AI system characteristics, capabilities, performance limitations, and intended purpose'
+    verbose: 'Instructions include the characteristics, capabilities, performance limitations, and intended purpose of the AI project'
     value: !!bool false 
   metrics: # Art. 13(3)(b)(ii)
     verbose: 'Instructions include accuracy metrics, robustness, cybersecurity, and potential impacts on these'
@@ -293,10 +317,10 @@ transparency_and_provision_of_information_to_deployers:
     verbose: 'Instructions include input data specifications and relevant training, validation, and testing dataset information'
     value: !!bool false 
   deployers:  # Art. 13(3)(b)(vii)
-    verbose: 'Instructions include information to enable deployers to interpret and appropriately use AI system output'
+    verbose: 'Instructions include information to enable potential deployers to interpret and appropriately use the output of the AI project'
     value: !!bool false 
   changes: # Art. 13(3)(c)
-    verbose: 'Instructions include predetermined changes to AI system and its performance since initial conformity assessment'
+    verbose: 'Instructions include predetermined changes to AI project and its performance since initial conformity assessment'
     value: !!bool false 
   oversight_measures: # Art. 13(3)(d)
     verbose: 'Instructions include human oversight measures and technical measures for output interpretation' 
@@ -310,28 +334,28 @@ transparency_and_provision_of_information_to_deployers:
 
 human_oversight:
   designed: # Art. 14(1)
-    verbose: 'AI system is designed and developed to be effectively overseen by natural persons during use, including appropriate human-machine interface tools'
+    verbose: 'AI project is designed and developed so as to be effectively overseen by natural persons during use, including through the use of appropriate human-machine interface tools'
     value: !!bool false 
   minimize_risks:  # Art. 14(2)
-    verbose: 'Human oversight aims to prevent or minimize risks to health, safety, or fundamental rights during intended use or foreseeable misuse'
+    verbose: 'Human oversight measure of the AI project aim to prevent or minimize risks to health, safety, or fundamental rights during intended use or foreseeable misuse'
     value: !!bool false 
   commensurate: # Art. 14(3)
-    verbose: 'Oversight measures are commensurate with risks, autonomy level, and use context, ensured through provider-built measures and/or deployer-implemented measures'
+    verbose: 'The human oversight measures of the AI project are commensurate with risks, autonomy level, and use context, ensured through provider-built measures and/or deployer-implemented measures'
     value: !!bool false 
   understandable: # Art. 14(4)
-    verbose: 'AI system enables assigned persons to understand its capacities and limitations, monitor operation, and detect anomalies'
+    verbose: 'AI project enables assigned persons to understand its capacities and limitations, monitor operation, and detect anomalies'
     value: !!bool false 
   automation_bias: # Art. 14(4)(a)
-    verbose: 'AI system enables assigned persons to be aware of potential automation bias'
+    verbose: 'AI project enables assigned persons to be aware of potential automation bias'
     value: !!bool false 
   interpretabilty: # Art. 14(4)(c)
-    verbose: 'AI system enables assigned persons to correctly interpret its output'
+    verbose: 'AI project enables assigned persons to correctly interpret its output'
     value: !!bool false 
   override: # Art. 14(4)(d)
-    verbose: 'AI system enables assigned persons to decide not to use it or override its output'
+    verbose: 'AI project enables assigned persons to decide not to use it or override its output'
     value: !!bool false 
   stop_button: # Art. 14(4)(e)
-    verbose: 'AI system enables assigned persons to intervene or halt the system through a stop button or similar procedure'
+    verbose: 'AI project enables assigned persons to intervene or halt the system through a stop button or similar procedure'
     value: !!bool false 
   verification: # Art. 14(5)
     verbose: 'For Annex III point 1(a) systems, actions or decisions require verification by at least two competent persons, with exceptions for law enforcement, migration, border control, or asylum'
@@ -339,47 +363,47 @@ human_oversight:
 
 accuracy_robustness_cybersecurity:
   design: # Art. 15(1)
-    verbose: 'AI system is designed and developed to achieve appropriate levels of accuracy, robustness, and cybersecurity, performing consistently throughout its lifecycle'
+    verbose: 'The AI project is designed and developed to achieve appropriate levels of accuracy, robustness, and cybersecurity, performing consistently throughout its lifecycle'
     value: !!bool false 
   metrics_in_instructions: # Art. 15(3)
-    verbose: 'Accuracy levels and relevant metrics are declared in accompanying instructions of use'
+    verbose: 'Accuracy levels and relevant metrics are declared in instructions of use that accompany the AI project'
     value: !!bool false 
   error_resiliance: # Art. 15(4)
-    verbose: 'AI system is resilient against errors, faults, or inconsistencies, with technical and organizational measures implemented'
+    verbose: 'The AI project is resilient against errors, faults, or inconsistencies, with technical and organizational measures implemented'
     value: !!bool false 
   bias: # Art. 15(4)
-    verbose: 'AI system that continues learning after deployment is designed to eliminate or reduce risk of biased outputs influencing future operations'
+    verbose: 'The AI project, if it continues learning after deployment, is designed to eliminate or reduce risk of biased outputs influencing future operations'
     value: !!bool false 
   unauthorized_use: # Art. 15(5)
-    verbose: 'AI system is resilient against unauthorized third-party attempts to alter use, outputs, or performance'
+    verbose: 'The AI project is resilient against unauthorized third-party attempts to alter use, outputs, or performance'
     value: !!bool false 
   cybersecurity_solutions: # Art. 15(5)
-    verbose: 'Cybersecurity solutions are appropriate to relevant circumstances and risks'
+    verbose: 'The AI project includes cybersecurity solutions that are appropriate to the relevant circumstances and risks'
     value: !!bool false 
   ai_vulnerabilities: # Art. 15(5)
-    verbose: 'Technical solutions address AI-specific vulnerabilities, including measures against data poisoning, model poisoning, adversarial examples, and confidentiality attacks'
+    verbose: 'The AI project includes technical solutions that address AI-specific vulnerabilities, including measures against data poisoning, model poisoning, adversarial examples, and confidentiality attacks'
     value: !!bool false 
 
 quality_management_system:
   quality_management_system: # Art. 17(1)(a)
-    verbose: 'Initiative is subject to a quality management system with strategy for regulatory compliance'
+    verbose: 'The AI project is subject to a quality management system with strategy for regulatory compliance'
     value: !!bool false 
   design: # Art. 17(1)(b)
-    verbose: 'System includes techniques, procedures, and actions for design, control, and verification of high-risk AI system'
+    verbose: 'The quality management system that the AI project was subject to includes techniques, procedures, and actions for design, control, and verification of the AI project'
     value: !!bool false 
   quality_control: # Art. 17(1)(c)
-    verbose: 'System includes techniques, procedures, and actions for development, quality control, and quality assurance'
+    verbose: 'The quality management system that the AI project was subject to includes techniques, procedures, and actions for development, quality control, and quality assurance'
     value: !!bool false 
   testing: # Art. 17(1)(d)
-    verbose: 'System includes examination, test, and validation procedures before, during, and after development'
+    verbose: 'The quality management system that the AI project was subject to includes examination, test, and validation procedures before, during, and after development'
     value: !!bool false 
 
 fundamental_rights_assessment:
   process: # Art. 27(1)(a)
-    verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the deployer’s processes in which the high-risk AI system will be used in line with its intended purpose'
+    verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the deployer’s processes in which the AI project will be used in line with its intended purpose'
     value: !!bool false 
   time_period: # Art. 27(1)(b)
-    value: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the period of time within which, and the frequency with which, each high-risk AI system is intended to be used'
+    value: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the period of time within which, and the frequency with which, each high-risk AI project is intended to be used'
     value: !!bool false 
   persons_affected: # Art. 27(1)(c)
     verbose: 'AI project has been subject to a fundamental rights impact assessment that describes the categories of natural persons and groups likely to be affected by its use in the specific context'
@@ -397,11 +421,13 @@ fundamental_rights_assessment:
 # Information related to the Act's requirements for all AI systems
 
 transparency_obligations:
+  synthetic_content: # Art. 50(1)
+    verbose: 'The AI project designed and developed in such a way that the natural persons concerned are informed that they are interacting with AI'
   synthetic_content: # Art. 50(2)
-    verbose: 'Providers of AI systems generating synthetic content ensure outputs are marked and detectable as artificially generated'
+    verbose: 'The outputs of the AI project are marked in a machine-readable format and detectable as artificially generated or manipulated'
     value: !!bool false 
   marking_solutions: # Art. 50(2)
-    verbose: 'Technical solutions for marking are effective, interoperable, robust, and reliable'
+    verbose: 'The outputs of the AI project are marked using technical solutions are effective, interoperable, robust and reliable as far as this is technically feasible, taking into account the specificities and limitations of various types of content, the costs of implementation and the generally acknowledged state of the art, as may be reflected in relevant technical standards'
     value: !!bool false 
 
 # Information related to the Act's requirements for GPAI models
@@ -436,13 +462,19 @@ gpai_model_provider_obligations:
 
 obligations_for_gpai_models_with_systemic_risk:
   evaluation: # Art. 55(1)(a)
-    verbose: 'Perform model evaluation using standardized protocols and conduct adversarial testing'
+    verbose: 'The AI project was subject to a model evaluation using standardized protocols'
+    value: !!bool false 
+  adversarial: # Art. 55(1)(a)
+    verbose: 'The AI project was subject to adversarial testing'
+    value: !!bool false 
+  assessment: # Art. 55(1)(b)
+    verbose: 'Any possible systemic risks at Union level that the AI project poses were assessed'
     value: !!bool false 
   mitigation: # Art. 55(1)(b)
-    verbose: 'Assess and mitigate possible systemic risks at Union level'
+    verbose: 'Any possible systemic risks at Union level that the AI project poses were mitigated'
     value: !!bool false 
   cybersecurity: # Art. 55(1)(d)
-    verbose: 'Ensure adequate cybersecurity protection for the model and infrastructure'
+    verbose: 'Adequate cybersecurity protection for any models and infrastructures in the AI project was ensured'
     value: !!bool false 
 
 
