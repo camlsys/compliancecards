@@ -1,28 +1,16 @@
-smb:
-  smb: # Art. 11(1) 
-    verbose: 'AI project is operated by a small or medium-sized enterprise' 
-    value: !!bool false
 
-eu_market:
-  placed_on_market: # Art. 3(9)
-    verbose: 'AI project is being made available on the Union market for the first time'
-    value: !!bool false 
-  put_into_service: #Art. 3(11)
-    verbose: 'AI project is supplied for first use directly to the deployer or for own use in the Union for its intended purpose;'
+# Information related to high-level characteristics of AI project, including its market status, operator, and type of AI
 
 operator_role:
   provider: # Art. 2
-    verbose: 'The owner of this AI project is a natural or legal person, public authority, agency or other body that develops an AI system or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark, whether for payment or free of charge'
+    verbose: 'The operator of this AI project is a natural or legal person, public authority, agency or other body that develops an AI system or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark, whether for payment or free of charge'
     value: !!bool false 
-  on_market: # Art 2 
-    verbose: 'AI project is placed on the market or put into service in the Union'
-    value: !!bool false  
   deployer: # Art. 2
     verbose: 'AI project operator is a natural or legal person, public authority, agency or other body using an AI system under its authority except where the AI system is used in the course of a personal non-professional activity'
     value: !!bool false 
   eu_located: # Art. 2
     verbose: 'AI project operator has its place of establishment or location within the Union'
-    value: !!bool false  
+    value: !!bool True  
   output_used: # Art. 2
     verbose: 'The output produced by the AI system is used in the Union'
     value: !!bool false 
@@ -36,6 +24,14 @@ operator_role:
     verbose: 'AI project operator is a product manufacturer'
     value: !!bool false # Art. 2
 
+eu_market_status:
+  placed_on_market: # Art. 3(9)
+    verbose: 'AI project is being made available on the EU market (i.e., supplied for distribution or use in the course of a commercial activity, whether in return for payment or free of charge) for the first time'
+    value: !!bool false 
+  put_into_service: #Art. 3(11)
+    verbose: 'AI project is being used for its intended purpose for the first time in the EU, either by the operator or by a deployer to whom it is directly supplied'
+    value: !!bool false 
+
 ai_system:
   ai_system: # Art. 3(1)
     verbose: 'AI project is a machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments'
@@ -45,6 +41,19 @@ gpai_model:
   gpai_model: # Art. 3(63)
     verbose: 'AI project is an AI model, including where such an AI model is trained with a large amount of data using self-supervision at scale, that displays significant generality and is capable of competently performing a wide range of distinct tasks regardless of the way the model is placed on the market and that can be integrated into a variety of downstream systems or applications, except AI models that are used for research, development or prototyping activities before they are placed on the market'
     value: !!bool false  
+
+gpai_model_systematic_risk:
+  evaluation:  # Art. 51 (1)(a)
+    verbose: 'The AI project has high impact capabilities based on an evaluation using appropriate technical tools and methodologies, including indicators and benchmarks'
+    value: !!bool false 
+  committee:  # Art. 51 (1)(b)
+    verbose: 'The AI project has capabilities or an impact equivalent to high impact capabilities based on a decision of the Commission, ex officio or following a qualified alert from the scientific panel'
+    value: !!bool false 
+  flops: # Art. 51(2)
+    verbose: 'The cumulative amount of computation used for the training of the AI project, as measured in floating point operations (FLOPs), has been greater than 10^25'
+    value: !!bool false 
+
+# Information related to the Act's exceptions for scientific research, open-source AI, and more
 
 excepted:
   scientific: # Art. 2(6) 
@@ -59,6 +68,8 @@ excepted:
   open_source_gpai_model: # Art. 53(2)
     verbose: 'AI project involves AI models that are released under a free and open-source licence that allows for the access, usage, modification, and distribution of the model, and whose parameters, including the weights, the information on the model architecture, and the information on model usage, are made publicly available. This exception shall not apply to general purpose AI models with systemic risks'
     value: !!bool false  
+
+# Information related to practices prohibited by the Act
 
 prohibited_practice:
   ai_system:
@@ -95,6 +106,8 @@ prohibited_practice:
     real_time_exception_investigation:
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
       value: !!bool false 
+
+# Requirements for those projects which involve high-risk AI systems
 
 high_risk_ai_system:
   safety_component: # Art. 6(1)(a)
@@ -163,7 +176,7 @@ risk_management_system:
     verbose: 'Risk management system for AI system includes the identification and analysis of any known or reasonably foreseeable risks that the AI system might pose to health, safety or fundamental rights when used in accordance with its intended purpose'
     value: !!bool false 
   risk_estimation_foreseeable: # Art. 9(2)(b)
-    verbose: 'Risk management system for AI system includes the estimation and evaluation of the risks that may emerge when the high-risk AI system is used in accordance with its intended purpose, and under conditions of reasonably foreseeable misuse;
+    verbose: 'Risk management system for AI system includes the estimation and evaluation of the risks that may emerge when the high-risk AI system is used in accordance with its intended purpose, and under conditions of reasonably foreseeable misuse'
     value: !!bool false 
   risk_post_market: # Art. 9(2)(c)
     verbose: 'Risk management system for AI system includes the evaluation of other risks possibly arising, based on the analysis of data gathered from the post-market monitoring system'
@@ -190,7 +203,7 @@ technical_documentation:
     value: !!bool false 
   interaction: # Art. 11(1); Annex IV(1)(b)
     verbose: 'The Technical Documentation includes a general description of the AI system that covers how the AI system interacts with, or can be used to interact with, hardware or software, including with other AI systems, that are not part of the AI system itself, where applicable'
-   value: !!bool false 
+    value: !!bool false 
   versions: # Art. 11(1); Annex IV(1)(c)
     verbose: 'Technical Documentation includes a general description of the AI system that covers the versions of relevant software or firmware, and any requirements related to version updates'
     value: !!bool false 
@@ -361,6 +374,28 @@ quality_management_system:
     verbose: 'System includes examination, test, and validation procedures before, during, and after development'
     value: !!bool false 
 
+fundamental_rights_assessment:
+  process: # Art. 27(1)(a)
+    verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the deployer’s processes in which the high-risk AI system will be used in line with its intended purpose'
+    value: !!bool false 
+  time_period: # Art. 27(1)(b)
+    value: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the period of time within which, and the frequency with which, each high-risk AI system is intended to be used'
+    value: !!bool false 
+  persons_affected: # Art. 27(1)(c)
+    verbose: 'AI project has been subject to a fundamental rights impact assessment that describes the categories of natural persons and groups likely to be affected by its use in the specific context'
+    value: !!bool false 
+  likely_harms: # Art. 27(1)(d)
+    verbose: 'AI project has been subject to a fundamental rights impact assessment that describes the specific risks of harm likely to have an impact on the categories of natural persons and groups likely to be affected by its use in the specific context'
+    value: !!bool false 
+  human_oversight: # Art. 27(1)(e)
+    verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the implementation of human oversight measures, according to the instructions for use'
+    value: !!bool false 
+  risk_mitigation: # Art. 27(1)(f)
+    verbose: 'AI project has been subject to a fundamental rights impact assessment that describes the measures to be taken in the case of the materialisation of risks of harm likely to have an impact on the categories of natural persons and groups likely to be affected by its use in the specific context, including the arrangements for internal governance and complaint mechanisms'
+    value: !!bool false 
+
+# Information related to the Act's requirements for all AI systems
+
 transparency_obligations:
   synthetic_content: # Art. 50(2)
     verbose: 'Providers of AI systems generating synthetic content ensure outputs are marked and detectable as artificially generated'
@@ -369,13 +404,7 @@ transparency_obligations:
     verbose: 'Technical solutions for marking are effective, interoperable, robust, and reliable'
     value: !!bool false 
 
-gpai_model_systematic_risk:
-  evaluation:  # Art. 51
-    verbose: 'Model impact capabilities were evaluated using appropriate technical tools and methodologies'
-    value: !!bool false 
-  flops: # Art. 51(2)
-    verbose: 'Cumulative compute for training measured in floating point operations (FLOPs)'
-    value: !!bool false 
+# Information related to the Act's requirements for GPAI models
 
 gpai_model_provider_obligations:
   intended_uses: # Art. 53(1)(a); Annex XI(1)(1)(a-c)
@@ -403,7 +432,9 @@ gpai_model_provider_obligations:
     verbose: 'To downstream providers, describe model elements, development process, and integration requirements'
     value: !!bool false 
 
-gpai_obligations_for_systemic_risk_models:
+# Information related to the Act's requirements for GPAI models with systematic risk 
+
+obligations_for_gpai_models_with_systemic_risk:
   evaluation: # Art. 55(1)(a)
     verbose: 'Perform model evaluation using standardized protocols and conduct adversarial testing'
     value: !!bool false 
@@ -413,4 +444,6 @@ gpai_obligations_for_systemic_risk_models:
   cybersecurity: # Art. 55(1)(d)
     verbose: 'Ensure adequate cybersecurity protection for the model and infrastructure'
     value: !!bool false 
+
+
 
