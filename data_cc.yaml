@@ -1,30 +1,30 @@
 data_and_data_governance:
   data_governance: # Art. 10(1)-(2)
-    verbose: 'Data sets has been subject to data governance and management practices appropriate for the intended purpose of the system'
+    verbose: 'The dataset has been subject to data governance and management practices'
     value: !!bool false
   design_choices:  # Art. 10(2)(a)
-    verbose: 'Data governance and management practices have been applied to the relevant design choices'
+    verbose: 'The dataset has been subject to data governance and management practices as regards its relevant design choices'
     value: !!bool false
   data_origin: # Art. 10(2)(b)
-    verbose: 'Data governance and management practices have been applied to data collection processes and the origin of data, and in the case of personal data, the original purpose of the data collection'
+    verbose: 'The dataset has been subject to data governance and management practices as regards its data collection processes and the origin of data, and in the case of personal data, the original purpose of the data collection'
     value: !!bool false
   data_preparation: # Art. 10(2)(c)
-    verbose: 'Data governance and management practices have been applied to relevant data-preparation processing operations, such as annotation, labelling, cleaning, updating, enrichment and aggregation' 
+    verbose: 'The dataset has been subject to data governance and management practices as regards its data-preparation processing operations, such as annotation, labelling, cleaning, updating, enrichment and aggregation' 
     value: !!bool false
   data_assumptions: # Art. 10(2)(d)
-    verbose: 'Data governance and management practices have been applied to the formulation of assumptions, in particular with respect to the information that the data are supposed to measure and represent'
+    verbose: 'The dataset has been subject to data governance and management practices as regards its formulation of assumptions, in particular with respect to the information that the data are supposed to measure and represent'
     value: !!bool false
   data_quantity: # Art. 10(2)(e)
-    verbose: 'Data governance and management practices included an assessment of the availability, quantity and suitability of the data sets that are needed'
+    verbose: 'The dataset has been subject to data governance and management practices that include an assessment of the availability, quantity and suitability of the data sets that are needed'
     value: !!bool false
   data_bias_examination: # Art. 10(2)(f)
-    verbose: 'Data governance and management practices have included an examination of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations' 
+    verbose: 'The dataset has been subject to data governance and management practices that include an examination of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations' 
     value: !!bool false
   data_bias_mitigation: # Art. 10(2)(g)
-    verbose: 'Data governance and management practices included appropriate measures to detect, prevent and mitigate possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations'
+    verbose: 'The dataset has been subject to data governance and management practices that include appropriate measures to detect, prevent and mitigate possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations'
     value: !!bool false
   data_compliance: # Art. 10(2)(h)
-    verbose: 'Data governance and management practices have included the identification of relevant data gaps or shortcomings that prevent compliance with this Regulation, and how those gaps and shortcomings can be addressed'
+    verbose: 'The dataset has been subject to data governance and management practices that include identification of relevant data gaps or shortcomings that prevent compliance with this Regulation, and how those gaps and shortcomings can be addressed'
     value: !!bool false
   data_relevance: # Art. 10(3); Rec. 67
     verbose: 'Training data is relevant' 
