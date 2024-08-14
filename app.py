@@ -180,8 +180,16 @@ if uploaded_files:
             for section, items in data.items():
                 st.header(section.replace('_', ' ').title())  # section header
                 for key, details in items.items():
-                    details['value'] = st.checkbox(details['verbose'], value=details['value'])
-
+                    if 'verbose' in details and 'value' in details:
+                        st.subheader(key.replace('_', ' ').title())  # section header
+                        details['value'] = st.checkbox(details['verbose'], value=details['value'])
+                    if 'verbose' not in details and 'value' not in details:
+                        st.subheader(key.replace('_', ' ').title())  # section header
+                        for key, details in details.items():
+                            st.subheader(key.replace('_', ' ').title())  # section header
+                            details['value'] = st.checkbox(details['verbose'], value=details['value'])
+                        st.divider()
+                st.divider()
             # st.write("Updated Data:", data)
             
             yaml_data = yaml.dump(data)

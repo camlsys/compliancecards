@@ -58,8 +58,10 @@ transparency_related:
     value: !!bool false 
   exception_obvious:
     verbose: 'When interacting with the AI project, it would be obvious from the point of view of a natural person who is reasonably well-informed, observant and circumspect, taking into account the circumstances and the context of use that they are interacting with AI'
+    value: !!bool false
   exception_law: 
     verbose: 'The AI project is authorised by law to detect, prevent, investigate or prosecute criminal offences, subject to appropriate safeguards for the rights and freedoms of third parties, and is not available for the public to report a criminal offence'
+    value: !!bool false
   synthetic content: # Art. 50(2)
     verbose: 'The AI project generates synthetic audio, image, video or text content' 
     value: !!bool false 
@@ -126,6 +128,7 @@ prohibited_practice:
       value: !!bool false 
     real_time_exception_threat: 
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the prevention of a specific, substantial and imminent threat to the life or physical safety of natural persons or a genuine and present or genuine and foreseeable threat of a terrorist attack'
+      value: !!bool false 
     real_time_exception_investigation:
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
       value: !!bool false 
@@ -422,6 +425,7 @@ fundamental_rights_assessment:
 transparency_obligations:
   synthetic_content: # Art. 50(1)
     verbose: 'The AI project designed and developed in such a way that the natural persons concerned are informed that they are interacting with AI'
+    value: !!bool false 
   synthetic_content2: # Art. 50(2)
     verbose: 'The outputs of the AI project are marked in a machine-readable format and detectable as artificially generated or manipulated'
     value: !!bool false 

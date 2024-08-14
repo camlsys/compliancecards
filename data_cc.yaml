@@ -105,23 +105,23 @@ quality_management_system: # Art. 17(1)(f)
     verbose: 'Systems and procedures for data management, including data acquisition, data collection, data analysis, data labelling, data storage, data filtration, data mining, data aggregation, data retention and any other operation regarding the data that is performed before and for the purposes of the placing on the market or putting into service of high-risk AI systems'
     value: !!bool false
 
-# gpai_requirements: # Art. 53(1); Annex XI(2)(c)
-#   gpai_requirements: 
-#     data_type: 
-#       verbose: 'Documentation for the dataset is available that contains the type of data'
-#       value: !!bool false
-#     data_provenance: 
-#       verbose: 'Documentation for the dataset is available that contains the provenance of data'
-#       value: !!bool false 
-#     data_curation:
-#       verbose: 'Documentation for the dataset is available that contains the curation methodologies (e.g. cleaning, filtering, etc.)'
-#       value: !!bool false 
-#     data_number:
-#       verbose: 'Documentation for the dataset is available that contains the number of data points'
-#       value: !!bool false 
-#     data_scope:
-#       verbose: 'Documentation for the dataset is available that contains the number of data scope and main characteristics'
-#       value: !!bool false 
-#     data_origin:
-#       verbose: 'Documentation for the dataset is available that contains information on how the data was obtained and selected as well as all other measures to detect the unsuitability of data sources and methods to detect identifiable biases'
-#       value: !!bool false
+gpai_requirements: # Art. 53(1); Annex XI(2)(c)
+  gpai_requirements: 
+    data_type: 
+      verbose: 'Documentation for the dataset is available that contains the type of data'
+      value: !!bool false
+    data_provenance: 
+      verbose: 'Documentation for the dataset is available that contains the provenance of data'
+      value: !!bool false 
+    data_curation:
+      verbose: 'Documentation for the dataset is available that contains the curation methodologies (e.g. cleaning, filtering, etc.)'
+      value: !!bool false 
+    data_number:
+      verbose: 'Documentation for the dataset is available that contains the number of data points'
+      value: !!bool false 
+    data_scope:
+      verbose: 'Documentation for the dataset is available that contains the number of data scope and main characteristics'
+      value: !!bool false 
+    data_origin:
+      verbose: 'Documentation for the dataset is available that contains information on how the data was obtained and selected as well as all other measures to detect the unsuitability of data sources and methods to detect identifiable biases'
+      value: !!bool false 
