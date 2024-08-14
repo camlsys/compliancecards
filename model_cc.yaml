@@ -140,7 +140,7 @@ obligations_for_providers_of_gpai_models:
     verbose: 'The architecture and number of parameters'
     value: !!bool false
   input_output_modality: # Art. 53; Annex XI(1)(1)(e)
-    verbos: 'Modality (e.g. text, image) and format of inputs and outputs'
+    verbose: 'Modality (e.g. text, image) and format of inputs and outputs'
     value: !!bool false
   license: # Art. 53; Annex XI(1)(1)(f)
     verbose: 'The license'

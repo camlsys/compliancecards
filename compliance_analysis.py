@@ -1,5 +1,5 @@
 import yaml
-from utils import set_type, set_operator_role_and_location, set_eu_market_status, check_within_scope
+from utils import set_type, set_operator_role_and_location, set_eu_market_status, check_within_scope, check_prohibited
 
 # Create some variables we will use throughout our analysis
 
@@ -33,17 +33,16 @@ def run_compliance_analysis_on_project(project_cc_yaml):
     set_eu_market_status(project_variables, project_cc_yaml)
 
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
-    if check_within_scope(project_cc_yaml):
+    if check_within_scope(project_variables, project_cc_yaml):
         msg = ("Project is within the scope of Act. Let's continue...") 
     else: 
         msg = ("Project is not within the scope of what is regulated by the Act.")
-
-    # # Check for prohibited practices. If any exist, the analysis is over.
-    # if check_prohibited(project_cc_yaml) == True: 
-    #     print("Project contains prohibited practices and is therefore non-compliant.")
-    #     msg = ("Project is non-compliant due to a prohibited practice.")
-    # else: 
-    #     print("Project does not contain prohibited practies. Let's continue...")
+        return msg
+    
+    # Check for prohibited practices. If any exist, the analysis is over.
+    if check_prohibited(project_variables, project_cc_yaml) == True:
+        msg = ("Project is non-compliant due to a prohibited practice.")
+        return msg
 
     # If project is high-risk AI system, check that is has met all the requirements for such systems: 
 

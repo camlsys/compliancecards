@@ -55,7 +55,10 @@ def set_eu_market_status(project_variables, project_cc_yaml):
     return project_variables
 
 
-def check_within_scope(project_cc_yaml):
+def check_within_scope(project_variables, project_cc_yaml):
+    
+    ai_system = project_variables['ai_project_type']['ai_system']
+    
     if not check_excepted(project_cc_yaml):
         if provider and ((ai_system and (placed_on_market or put_into_service)) or (gpai_model and placed_on_market)):   # Article 2.1(a)
             return True
@@ -76,7 +79,7 @@ def check_excepted(project_cc_yaml):
     else:
         return False 
 
-def check_prohibited (project_variables, project_cc_yaml):
+def check_prohibited(project_variables, project_cc_yaml):
 
     ai_system = project_variables['ai_project_type']['ai_system'] 
     
@@ -94,17 +97,3 @@ def check_prohibited (project_variables, project_cc_yaml):
     else: 
         print("You are not engaged in any prohibited practices.")
         return False
-
-# def check_all_true(file_path):
-#     data = yaml.safe_load(file_path)
-
-#     # Iterate through top-level keys
-#     for top_key, top_value in data.items():
-#         if isinstance(top_value, dict):
-#             # Iterate through second-level keys
-#             for second_key, second_value in top_value.items():
-#                 if not second_value:
-#                     print("You are non-compliant with the Act")
-#                     break
-#             else:
-#                 print("No problems here")
