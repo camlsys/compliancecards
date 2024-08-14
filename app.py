@@ -113,21 +113,21 @@ def process_files(data):
     results.append(msg)            
     return results
 
-def extract_properties(data):
+# def extract_properties(data):
         
-    flattened_data = []
+#     flattened_data = []
 
-    for category, items in data.items():
-        for item, attributes in items.items():
-            flattened_data.append({
-                "Category": category,
-                "Item": item,
-                "Verbose": attributes["verbose"],
-                "Value": attributes["value"]
-            })
-    df = pd.DataFrame(flattened_data)
+#     for category, items in data.items():
+#         for item, attributes in items.items():
+#             flattened_data.append({
+#                 "Category": category,
+#                 "Item": item,
+#                 "Verbose": attributes["verbose"],
+#                 "Value": attributes["value"]
+#             })
+#     df = pd.DataFrame(flattened_data)
     
-    return df
+#     return df
 
 def sentence_builder(keys):
     return f"Selected options: {', '.join(keys)}"
