@@ -1,15 +1,4 @@
-smb:
-  smb: # Art. 11(1) 
-    verbose: 'AI project is operated by a small or medium-sized enterprise' 
-    value: true
-
-eu_market_status:
-  placed_on_market: # Art. 3(9)
-    verbose: 'AI project is being made available on the Union market for the first time'
-    value: false 
-  put_into_service: #Art. 3(11)
-    verbose: 'AI project is supplied for first use directly to the deployer or for own use in the Union for its intended purpose;'
-    value: false 
+# Information related to high-level characteristics of AI project, including the role of the operator, market status, and type of AI
 
 operator_role:
   provider: # Art. 2
@@ -103,41 +92,43 @@ excepted:
     verbose: 'AI project involves AI models that are released under a free and open-source licence that allows for the access, usage, modification, and distribution of the model, and whose parameters, including the weights, the information on the model architecture, and the information on model usage, are made publicly available. This exception shall not apply to general purpose AI models with systemic risks'
     value: !!bool false  
 
-# prohibited_practice:
-#   ai_system:
-#     manipulative: # Art. 5(1)(a)
-#       verbose: 'The AI project deploys subliminal or purposefully manipulative or deceptive techniques, with the objective or effect of materially distorting the behavior of people by appreciably impairing their ability to make an informed decision, thereby causing them to take a decision that they would not have otherwise taken in a manner that causes or is reasonably likely to cause significant harm'
-#       value: !!bool false 
-#     exploit_vulnerable: # Art. 5(1)(b)
-#       verbose: 'The AI project exploits the vulnerabilities of natural people due to their age, disability or a specific social or economic situation, with the objective or effect of materially distorting their behaviour in a manner that causes or is reasonably likely to cause significant harm'
-#       value: !!bool false 
-#     social_score: # Art. 5(1)(c)
-#       verbose: 'The AI project is for the evaluation or classification of natural people over a certain period of time based on their social behaviour or known, inferred or predicted personal or personality characteristics, with the social score leading to at least one of the following: (i) detrimental or unfavourable treatment of certain natural people in social contexts that are unrelated to the contexts in which the data was originally generated or collected; (ii) detrimental or unfavourable treatment of certain natural people that is unjustified or disproportionate to their social behaviour or its gravity'
-#       value: !!bool false 
-#     crime_prediction:  # Art. 5(1)(d)
-#       verbose: 'This AI project makes risk assessments of natural persons in order to assess or predict the risk of them committing a criminal offence, based solely on the profiling of the natural person or on assessing their personality traits and characteristics (and does not support the human assessment of the involvement of a person in a criminal activity, which is already based on objective and verifiable facts directly linked to a criminal activity)'
-#       value: !!bool false
-#     untarged_face: # Art. 5(1)(e)
-#       verbose: 'This AI project creates or expand facial recognition databases through the untargeted scraping of facial images from the internet or CCTV footage'
-#       value: !!bool false 
-#     emotion_prediction: # Art. 5(1)(f)
-#       verbose: 'The AI project infers emotions of a natural person in the areas of workplace and education institutions and is not intended to be put in place or into the market for medical or safety reasons'
-#       value: !!bool false 
-#   biometric:
-#     categorization: # Art. 5(1)(g)
-#       verbose: 'The AI project involves the use of biometric categorisation systems that categorise individually natural persons based on their biometric data to deduce or infer their race, political opinions, trade union membership, religious or philosophical beliefs, sex life or sexual orientation; this prohibition does not cover any labelling or filtering of lawfully acquired biometric datasets, such as images, based on biometric data or categorizing of biometric data in the area of law enforcement'
-#       value: !!bool false 
-#     real_time:  # Art. 5(1)(h)
-#       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement'
-#       value: !!bool false 
-#     real_time_exception_victim: # Art. 5(1)(h)
-#       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the targeted search for specific victims of abduction, trafficking in human beings or sexual exploitation of human beings, or the search for missing persons'
-#       value: !!bool false 
-#     real_time_exception_threat: 
-#       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the prevention of a specific, substantial and imminent threat to the life or physical safety of natural persons or a genuine and present or genuine and foreseeable threat of a terrorist attack'
-#     real_time_exception_investigation:
-#       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
-#       value: !!bool false 
+# Information related to practices prohibited by the Act
+
+prohibited_practice:
+  ai_system:
+    manipulative: # Art. 5(1)(a)
+      verbose: 'The AI project deploys subliminal or purposefully manipulative or deceptive techniques, with the objective or effect of materially distorting the behavior of people by appreciably impairing their ability to make an informed decision, thereby causing them to take a decision that they would not have otherwise taken in a manner that causes or is reasonably likely to cause significant harm'
+      value: !!bool false 
+    exploit_vulnerable: # Art. 5(1)(b)
+      verbose: 'The AI project exploits the vulnerabilities of natural people due to their age, disability or a specific social or economic situation, with the objective or effect of materially distorting their behaviour in a manner that causes or is reasonably likely to cause significant harm'
+      value: !!bool false 
+    social_score: # Art. 5(1)(c)
+      verbose: 'The AI project is for the evaluation or classification of natural people over a certain period of time based on their social behaviour or known, inferred or predicted personal or personality characteristics, with the social score leading to at least one of the following: (i) detrimental or unfavourable treatment of certain natural people in social contexts that are unrelated to the contexts in which the data was originally generated or collected; (ii) detrimental or unfavourable treatment of certain natural people that is unjustified or disproportionate to their social behaviour or its gravity'
+      value: !!bool false 
+    crime_prediction:  # Art. 5(1)(d)
+      verbose: 'This AI project makes risk assessments of natural persons in order to assess or predict the risk of them committing a criminal offence, based solely on the profiling of the natural person or on assessing their personality traits and characteristics (and does not support the human assessment of the involvement of a person in a criminal activity, which is already based on objective and verifiable facts directly linked to a criminal activity)'
+      value: !!bool false
+    untarged_face: # Art. 5(1)(e)
+      verbose: 'This AI project creates or expand facial recognition databases through the untargeted scraping of facial images from the internet or CCTV footage'
+      value: !!bool false 
+    emotion_prediction: # Art. 5(1)(f)
+      verbose: 'The AI project infers emotions of a natural person in the areas of workplace and education institutions and is not intended to be put in place or into the market for medical or safety reasons'
+      value: !!bool false 
+  biometric:
+    categorization: # Art. 5(1)(g)
+      verbose: 'The AI project involves the use of biometric categorisation systems that categorise individually natural persons based on their biometric data to deduce or infer their race, political opinions, trade union membership, religious or philosophical beliefs, sex life or sexual orientation; this prohibition does not cover any labelling or filtering of lawfully acquired biometric datasets, such as images, based on biometric data or categorizing of biometric data in the area of law enforcement'
+      value: !!bool false 
+    real_time:  # Art. 5(1)(h)
+      verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement'
+      value: !!bool false 
+    real_time_exception_victim: # Art. 5(1)(h)
+      verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the targeted search for specific victims of abduction, trafficking in human beings or sexual exploitation of human beings, or the search for missing persons'
+      value: !!bool false 
+    real_time_exception_threat: 
+      verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the prevention of a specific, substantial and imminent threat to the life or physical safety of natural persons or a genuine and present or genuine and foreseeable threat of a terrorist attack'
+    real_time_exception_investigation:
+      verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
+      value: !!bool false 
 
 # Requirements for those projects which involve high-risk AI systems
 
@@ -411,7 +402,7 @@ fundamental_rights_assessment:
     verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the deployer’s processes in which the AI project will be used in line with its intended purpose'
     value: !!bool false 
   time_period: # Art. 27(1)(b)
-    value: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the period of time within which, and the frequency with which, each high-risk AI project is intended to be used'
+    verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the period of time within which, and the frequency with which, each high-risk AI project is intended to be used'
     value: !!bool false 
   persons_affected: # Art. 27(1)(c)
     verbose: 'AI project has been subject to a fundamental rights impact assessment that describes the categories of natural persons and groups likely to be affected by its use in the specific context'
@@ -431,7 +422,7 @@ fundamental_rights_assessment:
 transparency_obligations:
   synthetic_content: # Art. 50(1)
     verbose: 'The AI project designed and developed in such a way that the natural persons concerned are informed that they are interacting with AI'
-  synthetic_content: # Art. 50(2)
+  synthetic_content2: # Art. 50(2)
     verbose: 'The outputs of the AI project are marked in a machine-readable format and detectable as artificially generated or manipulated'
     value: !!bool false 
   marking_solutions: # Art. 50(2)
@@ -484,6 +475,3 @@ obligations_for_gpai_models_with_systemic_risk:
   cybersecurity: # Art. 55(1)(d)
     verbose: 'Adequate cybersecurity protection for any models and infrastructures in the AI project was ensured'
     value: !!bool false 
-
-
-
