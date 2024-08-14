@@ -1,3 +1,44 @@
+intended_purpose:
+  safety_component: # Art. 6(1)(a)
+    verbose: 'This model is appropriate to use for AI projects involving product safety components'
+    value: !!bool false 
+  product_regulated_machinery: # Art. 6(1)(b); Annex I
+    verbose: 'This model is appropriate to use for AI projects involving products covered by Directive 2006/42/EC of the European Parliament and of the Council of 17 May 2006 on machinery, and amending Directive 95/16/EC (OJ L 157, 9.6.2006, p. 24) [as repealed by the Machinery Regulation]'
+    value: !!bool false 
+  product_regulated_toy: # Art. 6(1)(b); Annex I
+    verbose: 'This model is appropriate to use for AI projects involving products covered by Directive 2009/48/EC of the European Parliament and of the Council of 18 June 2009 on the safety of toys (OJ L 170, 30.6.2009, p. 1)'
+    value: !!bool false 
+  product_regulated_watercraft: # Art. 6(1)(b); Annex I
+    verbose: 'This model is appropriate to use for AI projects involving products covered by Directive 2013/53/EU of the European Parliament and of the Council of 20 November 2013 on recreational craft and personal watercraft and repealing Directive 94/25/EC (OJ L 354, 28.12.2013, p. 90)'
+    value: !!bool false 
+  biometric_categorization: # Art. 6(2); Annex III(1)(b)
+    verbose: 'This model is appropriate to use for AI projects involving biometric categorisation, according to sensitive or protected attributes or characteristics based on the inference of those attributes or characteristics'
+    value: !!bool false 
+  emotion_recognition: # Art. 6(2); Annex III(1)(c)
+    verbose: 'This model is appropriate to use for AI projects involving emotion recognition'
+    value: !!bool false 
+  critical_infrastructure: # Art. 6(2); Annex III(2)
+    verbose: 'This model is appropriate to use for AI projects involving safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'
+    value: !!bool false 
+  admission: # Art. 6(2); Annex III(3)(a)
+    verbose: 'This model is appropriate to use for AI projects involving the determination of access or admission or to assigning natural persons to educational and vocational training institutions at all levels'
+    value: !!bool false 
+  recruitment: # Art. 6(2); Annex III(4)(a)
+    verbose: 'This model is appropriate to use for AI projects involving the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates'
+    value: !!bool false 
+  public_assistance: # Art. 6(2); Annex III(5)(a)
+    verbose: 'This model is appropriate to use for AI projects intended to be used by public authorities or on behalf of public authorities to evaluate the eligibility of natural persons for essential public assistance benefits and services, including healthcare services, as well as to grant, reduce, revoke, or reclaim such benefits and services'
+    value: !!bool false 
+  victim_assessment: # Art. 6(2); Annex III(6)(a)
+    verbose: 'This model is appropriate to use for AI projects intended to be used by or on behalf of law enforcement authorities, or by Union institutions, bodies, offices or agencies in support of law enforcement authorities or on their behalf to assess the risk of a natural person becoming the victim of criminal offences'
+    value: !!bool false 
+  polygraph: # Art. 6(2); Annex III(7)(a)
+    verbose: 'This model is appropriate to use for AI projects intended to be used by or on behalf of competent public authorities or by Union institutions, bodies, offices or agencies as polygraphs or similar tools'
+    value: !!bool false 
+  judicial: # Art. 6(2); Annex III(8)(a)
+    verbose: 'This model is appropriate to use for AI projects intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
+    value: !!bool false 
+
 risk_management_system:
   foreseeable_risks: # Art. 9(2)(a)
     verbose: 'Known or reasonably foreseeable risks the model can pose to health or safety when used for intended purpose'
@@ -140,7 +181,7 @@ obligations_for_providers_of_gpai_models:
     verbose: 'The architecture and number of parameters'
     value: !!bool false
   input_output_modality: # Art. 53; Annex XI(1)(1)(e)
-    verbose: 'Modality (e.g. text, image) and format of inputs and outputs'
+    verbos: 'Modality (e.g. text, image) and format of inputs and outputs'
     value: !!bool false
   license: # Art. 53; Annex XI(1)(1)(f)
     verbose: 'The license'
