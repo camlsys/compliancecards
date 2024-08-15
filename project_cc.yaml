@@ -36,6 +36,64 @@ ai_system:
     verbose: 'AI project is a machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments'
     value: !!bool false 
 
+# Information to help determine if the AI project is a high-risk AI system
+
+high_risk_ai_system:
+  safety_component: # Art. 6(1)(a)
+    verbose: 'AI project is intended to be used as a safety component of a product'
+    value: !!bool false 
+  product_regulated_machinery: # Art. 6(1)(b); Annex I
+    verbose: 'AI project is itself a product that is covered by Directive 2006/42/EC of the European Parliament and of the Council of 17 May 2006 on machinery, and amending Directive 95/16/EC (OJ L 157, 9.6.2006, p. 24) [as repealed by the Machinery Regulation]'
+    value: !!bool false 
+  product_regulated_toy: # Art. 6(1)(b); Annex I
+    verbose: 'AI project is itself a product that is covered by Directive 2009/48/EC of the European Parliament and of the Council of 18 June 2009 on the safety of toys (OJ L 170, 30.6.2009, p. 1)'
+    value: !!bool false 
+  product_regulated_watercraft: # Art. 6(1)(b); Annex I
+    verbose: 'AI project is itself a product that is covered by Directive 2013/53/EU of the European Parliament and of the Council of 20 November 2013 on recreational craft and personal watercraft and repealing Directive 94/25/EC (OJ L 354, 28.12.2013, p. 90)'
+    value: !!bool false 
+  biometric_categorization: # Art. 6(2); Annex III(1)(b)
+    verbose: 'AI project is intended to be used for biometric categorisation, according to sensitive or protected attributes or characteristics based on the inference of those attributes or characteristics'
+    value: !!bool false 
+  emotion_recognition: # Art. 6(2); Annex III(1)(c)
+    verbose: 'AI project is intended to be used for emotion recognition'
+    value: !!bool false 
+  critical_infrastructure: # Art. 6(2); Annex III(2)
+    verbose: 'AI project is intended to be used as a safety component in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'
+    value: !!bool false 
+  admission: # Art. 6(2); Annex III(3)(a)
+    verbose: 'AI project is intended to be used to determine access or admission or to assign natural persons to educational and vocational training institutions at all levels'
+    value: !!bool false 
+  recruitment: # Art. 6(2); Annex III(4)(a)
+    verbose: 'AI project is intended to be used for the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates'
+    value: !!bool false 
+  public_assistance: # Art. 6(2); Annex III(5)(a)
+    verbose: 'AI project is intended to be used by public authorities or on behalf of public authorities to evaluate the eligibility of natural persons for essential public assistance benefits and services, including healthcare services, as well as to grant, reduce, revoke, or reclaim such benefits and services'
+    value: !!bool false 
+  victim_assessment: # Art. 6(2); Annex III(6)(a)
+    verbose: 'AI project is intended to be used by or on behalf of law enforcement authorities, or by Union institutions, bodies, offices or agencies in support of law enforcement authorities or on their behalf to assess the risk of a natural person becoming the victim of criminal offences'
+    value: !!bool false 
+  polygraph: # Art. 6(2); Annex III(7)(a)
+    verbose: 'AI project is intended to be used by or on behalf of competent public authorities or by Union institutions, bodies, offices or agencies as polygraphs or similar tools'
+    value: !!bool false 
+  judicial: # Art. 6(2); Annex III(8)(a)
+    verbose: 'AI project is intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
+    value: !!bool false 
+  filter_exception_rights: # Art. 6(3)
+    verbose: 'The AI initiate does not pose a significant risk of harm to the health, safety or fundamental rights of natural persons, including by not materially influencing the outcome of decision making'
+    value: !!bool false 
+  filter_exception_narrow: # Art. 6(3)(a)
+    verbose: 'The AI project is intended to perform a narrow procedural task'
+    value: !!bool false
+  filter_exception_human: # Art. 6(3)(b)
+    verbose: 'the AI project is intended to improve the result of a previously completed human activity'
+    value: !!bool false
+  filter_exception_deviation: # Art. 6(3)(c)
+    verbose: 'the AI project is intended to detect decision-making patterns or deviations from prior decision-making patterns and is not meant to replace or influence the previously completed human assessment, without proper human review'
+    value: !!bool false
+  filter_exception_prep: # Art. 6(3)(d)
+    verbose: 'the AI project is intended to perform a preparatory task to an assessment relevant for the purposes of the use cases listed in Annex III.'
+    value: !!bool false 
+
 gpai_model:
   gpai_model: # Art. 3(63)
     verbose: 'AI project is an AI model, including where such an AI model is trained with a large amount of data using self-supervision at scale, that displays significant generality and is capable of competently performing a wide range of distinct tasks regardless of the way the model is placed on the market and that can be integrated into a variety of downstream systems or applications, except AI models that are used for research, development or prototyping activities before they are placed on the market'
@@ -133,63 +191,9 @@ prohibited_practice:
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
       value: !!bool false 
 
-# Requirements for those projects which involve high-risk AI systems
 
-high_risk_ai_system:
-  safety_component: # Art. 6(1)(a)
-    verbose: 'AI project is intended to be used as a safety component of a product'
-    value: !!bool false 
-  product_covered_by_machinery_regulation: # Art. 6(1)(b); Annex I
-    verbose: 'AI project is itself a product that is covered by Directive 2006/42/EC of the European Parliament and of the Council of 17 May 2006 on machinery, and amending Directive 95/16/EC (OJ L 157, 9.6.2006, p. 24) [as repealed by the Machinery Regulation]'
-    value: !!bool false 
-  product_covered_by_toy_safety_regulation: # Art. 6(1)(b); Annex I
-    verbose: 'AI project is itself a product that is covered by Directive 2009/48/EC of the European Parliament and of the Council of 18 June 2009 on the safety of toys (OJ L 170, 30.6.2009, p. 1)'
-    value: !!bool false 
-  product_covered_by_watercraft_regulation: # Art. 6(1)(b); Annex I
-    verbose: 'AI project is itself a product that is covered by Directive 2013/53/EU of the European Parliament and of the Council of 20 November 2013 on recreational craft and personal watercraft and repealing Directive 94/25/EC (OJ L 354, 28.12.2013, p. 90)'
-    value: !!bool false 
-  biometric_categorization: # Art. 6(2); Annex III(1)(b)
-    verbose: 'AI project is intended to be used for biometric categorisation, according to sensitive or protected attributes or characteristics based on the inference of those attributes or characteristics'
-    value: !!bool false 
-  emotion_recognition: # Art. 6(2); Annex III(1)(c)
-    verbose: 'AI project is intended to be used for emotion recognition'
-    value: !!bool false 
-  critical_infrastructure: # Art. 6(2); Annex III(2)
-    verbose: 'AI project is intended to be used as a safety component in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'
-    value: !!bool false 
-  admission: # Art. 6(2); Annex III(3)(a)
-    verbose: 'AI project is intended to be used to determine access or admission or to assign natural persons to educational and vocational training institutions at all levels'
-    value: !!bool false 
-  recruitment: # Art. 6(2); Annex III(4)(a)
-    verbose: 'AI project is intended to be used for the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates'
-    value: !!bool false 
-  public_assistance: # Art. 6(2); Annex III(5)(a)
-    verbose: 'AI project is intended to be used by public authorities or on behalf of public authorities to evaluate the eligibility of natural persons for essential public assistance benefits and services, including healthcare services, as well as to grant, reduce, revoke, or reclaim such benefits and services'
-    value: !!bool false 
-  victim_assessment: # Art. 6(2); Annex III(6)(a)
-    verbose: 'AI project is intended to be used by or on behalf of law enforcement authorities, or by Union institutions, bodies, offices or agencies in support of law enforcement authorities or on their behalf to assess the risk of a natural person becoming the victim of criminal offences'
-    value: !!bool false 
-  polygraph: # Art. 6(2); Annex III(7)(a)
-    verbose: 'AI project is intended to be used by or on behalf of competent public authorities or by Union institutions, bodies, offices or agencies as polygraphs or similar tools'
-    value: !!bool false 
-  judicial: # Art. 6(2); Annex III(8)(a)
-    verbose: 'AI project is intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
-    value: !!bool false 
-  filter_exception_rights: # Art. 6(3)
-    verbose: 'The AI initiate does not pose a significant risk of harm to the health, safety or fundamental rights of natural persons, including by not materially influencing the outcome of decision making'
-    value: !!bool false 
-  filter_exception_narrow: # Art. 6(3)(a)
-    verbose: 'The AI project is intended to perform a narrow procedural task'
-    value: !!bool false
-  filter_exception_human: # Art. 6(3)(b)
-    verbose: 'the AI project is intended to improve the result of a previously completed human activity'
-    value: !!bool false
-  filter_exception_deviation: # Art. 6(3)(c)
-    verbose: 'the AI project is intended to detect decision-making patterns or deviations from prior decision-making patterns and is not meant to replace or influence the previously completed human assessment, without proper human review'
-    value: !!bool false
-  filter_exception_prep: # Art. 6(3)(d)
-    verbose: 'the AI project is intended to perform a preparatory task to an assessment relevant for the purposes of the use cases listed in Annex III.'
-    value: !!bool false 
+
+# Requirements for those projects which involve high-risk AI systems
 
 risk_management_system:
   established: # Article 9
