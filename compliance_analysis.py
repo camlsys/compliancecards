@@ -35,7 +35,7 @@ def run_compliance_analysis_on_project(project_cc_yaml):
     set_eu_market_status(project_variables, project_cc_yaml)
 
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
-    if check_within_scope(project_cc_yaml):
+    if check_within_scope(project_variables, project_cc_yaml):
         msg = ("Project is within the scope of Act. Let's continue...") 
     else: 
         msg = ("Project is not within the scope of what is regulated by the Act.")

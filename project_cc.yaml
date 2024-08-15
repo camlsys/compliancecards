@@ -127,6 +127,7 @@ prohibited_practice:
       value: !!bool false 
     real_time_exception_threat: 
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the prevention of a specific, substantial and imminent threat to the life or physical safety of natural persons or a genuine and present or genuine and foreseeable threat of a terrorist attack'
+      value: !!bool false
     real_time_exception_investigation:
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
       value: !!bool false 
@@ -409,7 +410,7 @@ fundamental_rights_assessment:
     verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the deployer’s processes in which the AI project will be used in line with its intended purpose'
     value: !!bool false 
   time_period: # Art. 27(1)(b)
-    value: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the period of time within which, and the frequency with which, each high-risk AI project is intended to be used'
+    verbos: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the period of time within which, and the frequency with which, each high-risk AI project is intended to be used'
     value: !!bool false 
   persons_affected: # Art. 27(1)(c)
     verbose: 'AI project has been subject to a fundamental rights impact assessment that describes the categories of natural persons and groups likely to be affected by its use in the specific context'
@@ -427,9 +428,10 @@ fundamental_rights_assessment:
 # Information related to the Act's requirements for all AI systems
 
 transparency_obligations:
-  synthetic_content: # Art. 50(1)
+  synthetic_content1: # Art. 50(1)
     verbose: 'The AI project designed and developed in such a way that the natural persons concerned are informed that they are interacting with AI'
-  synthetic_content: # Art. 50(2)
+    value: !!bool false
+  synthetic_content2: # Art. 50(2)
     verbose: 'The outputs of the AI project are marked in a machine-readable format and detectable as artificially generated or manipulated'
     value: !!bool false 
   marking_solutions: # Art. 50(2)
