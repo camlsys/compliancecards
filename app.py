@@ -183,12 +183,9 @@ if uploaded_files:
                     if 'verbose' in details and 'value' in details:
                         st.subheader(key.replace('_', ' ').title())  # section header
                         # details['value'] = st.checkbox(details['verbose'], value=details['value'])
-                        # Determine the type of input based on the type of 'value'
                         if isinstance(details['value'], str):
-                            # If the value is a string, use a text input box
                             details['value'] = st.text_input(details['verbose'], value=details['value'])
                         elif isinstance(details['value'], bool):
-                            # If the value is a boolean, use a checkbox
                             details['value'] = st.checkbox(details['verbose'], value=details['value'])                        
                     if 'verbose' not in details and 'value' not in details:
                         st.subheader(key.replace('_', ' ').title())  # section header
@@ -199,7 +196,7 @@ if uploaded_files:
                 st.divider()
             st.write("Updated Data:", data)
            
-            yaml_data = yaml.dump(data)
+            yaml_data = yaml.dump(data, sort_keys=False)
 
             st.download_button(
                 label=f"Download Updated Data as YAML{card[0]}",
