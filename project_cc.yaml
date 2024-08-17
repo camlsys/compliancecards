@@ -152,10 +152,10 @@ high_risk_ai_system:
     value: !!bool false 
   emotion_recognition: # Art. 6(2); Annex III(1)(c)
     verbose: 'AI project is intended to be used for emotion recognition'
-    value: !!bool false 
+    value: !!bool true 
   critical_infrastructure: # Art. 6(2); Annex III(2)
     verbose: 'AI project is intended to be used as a safety component in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'
-    value: !!bool false 
+    value: !!bool true 
   admission: # Art. 6(2); Annex III(3)(a)
     verbose: 'AI project is intended to be used to determine access or admission or to assign natural persons to educational and vocational training institutions at all levels'
     value: !!bool false 
