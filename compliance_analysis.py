@@ -53,8 +53,6 @@ def run_compliance_analysis_on_project(project_cc_yaml):
 
     # Do this by examining the Project CC
 
-        # WE HAVE TO ADD A CONDITION THAT APPLIES THESE RULES BELOW ONLY IF operator_role == provider
-
         for key, value in project_cc_yaml['risk_management_system']:
             if not value:
                 msg = ("Because of project-level characteristics, this high-risk AI system fails the risk management requirements under Article 9.")

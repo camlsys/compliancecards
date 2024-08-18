@@ -504,3 +504,11 @@ additional_provider_obligations: # apply these only if operator == provider and 
   accessibility: # Article 16 (l)
     verbose: 'The AI project complies with accessibility requirements in accordance with Directives (EU) 2016/2102 and (EU) 2019/882'
     value: !!bool false 
+
+additional_deployer_obligations:
+  accordance_with_instructions: # Article 26 (1)
+    verbose: 'If operator is a deployer, that deployer has taken appropriate technical and organisational measures to ensure they use such systems in accordance with the instructions for use accompanying the systems'
+    value: !!bool false 
+  human_oversight: # Article 26 (2)
+    verbose: 'If operator is a deployer, that deployer has assigned human oversight to natural persons who have the necessary competence, training and authority, as well as the necessary support.'
+    value: !!bool false 
