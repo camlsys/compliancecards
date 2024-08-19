@@ -441,34 +441,89 @@ transparency_obligations:
 # Information related to the Act's requirements for GPAI models
 
 gpai_model_provider_obligations:
-  intended_uses: # Art. 53(1)(a); Annex XI(1)(1)(a-c)
-    verbose: 'Provide information on intended tasks, integration types, and acceptable use policies'
-    value: !!bool false 
-  model_architecture: # Art. 53(1)(a); Annex XI(1)(1)(d-f)
-    verbose: 'Provide details on model architecture, parameters, input/output modalities, and license'
-    value: !!bool false 
-  training_methodologies: # Art. 53(1)(b); Annex XI(1)(2)(b)
-    verbose: 'Describe training methodologies, key design choices, and optimization goals'
-    value: !!bool false 
-  data: # Art. 53(1)(b); Annex XI(1)(2)(c)
-    verbose: 'Provide information on training, testing, and validation data'
-    value: !!bool false 
-  computation: # Art. 53(1)(b); Annex XI(1)(2)(d-e)
-    verbose: 'Disclose computational resources and energy consumption for training'
-    value: !!bool false 
-  evaluation: # Art. 53(1)(b); Annex XI(2)(1-2)
-    verbose: 'Describe evaluation strategies, results, and adversarial testing measures'
-    value: !!bool false 
-  general_description: # Art. 53(1)(b); Annex XII(1)(a-h)
-    verbose: 'To downstream providers, provide general description of GPAI model, including intended tasks and integration types'
-    value: !!bool false 
-  development_process: # Art. 53(1)(b); Annex XII(2)(a-c)
-    verbose: 'To downstream providers, describe model elements, development process, and integration requirements'
-    value: !!bool false 
+  documentation:
+    intended_uses: # Art. 53(1)(a); Annex XI(1)(1)(a)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model includes a description of the tasks that the model is intended to perform and the type and nature of AI systems in which it can be integrated'
+      value: !!bool false 
+    accepable_use_policies: # Art. 53(1)(a); Annex XI(1)(1)(b)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model that includes a description of the acceptable use policies'
+      value: !!bool false 
+    release_date: # Art. 53(1)(a); Annex XI(1)(1)(c)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model that includes the date of release and methods of distribution'
+      value: !!bool false 
+    model_architecture: # Art. 53(1)(a); Annex XI(1)(1)(d)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model that includes the architecture and number of parameters'
+      value: !!bool false 
+    modality: # Art. 53(1)(a); Annex XI(1)(1)(e)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model that includes the modality (e.g. text, image) and format of inputs and outputs'
+      value: !!bool false 
+    license: # Art. 53(1)(a); Annex XI(1)(1)(f)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model that includes the license'
+      value: !!bool false 
+    technical_means: # Art. 53(1)(a); Annex XI(1)(2)(a)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a detailed description of the model that includes the technical means (e.g. instructions of use, infrastructure, tools) required for the AI project to be integrated in AI systems'
+      value: !!bool false 
+    design_specs: # Art. 53(1)(a); Annex XI(1)(2)(b)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a detailed description of the model that includes the design specifications of the model and training process, including training methodologies and techniques, the key design choices including the rationale and assumptions made; what the model is designed to optimise for and the relevance of the different parameters, as applicable;'
+      value: !!bool false 
+    data: # Art. 53(1)(a); Annex XI(1)(2)(c)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a detailed description of the model that includes information on the data used for training, testing and validation, where applicable, including the type and provenance of data and curation methodologies (e.g. cleaning, filtering, etc.), the number of data points, their scope and main characteristics; how the data was obtained and selected as well as all other measures to detect the unsuitability of data sources and methods to detect identifiable biases, where applicable'
+      value: !!bool false 
+    computation: # Art. 53(1)(b); Annex XI(1)(2)(d)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a detailed description of the model that includes information on the computational resources used to train the model (e.g. number of floating point operations), training time, and other relevant details related to the training;'
+      value: !!bool false 
+    energy: # Art. 53(1)(b); Annex XI(1)(2)(e)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a detailed description of the model that includes information on the known or estimated energy consumption of the model'
+      value: !!bool false 
+    evaluation: # Art. 53(1)(b); Annex XI(2)(1-2)
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that describes evaluation strategies, results, and adversarial testing measures'
+      value: !!bool false 
+  provider_documentation:
+    general: 
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulation'
+      value: !!bool false 
+    tasks: # ANNEX XII(1)(a)
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the tasks that the model is intended to perform and the type and nature of AI systems into which it can be integrated;'
+      value: !!bool false 
+    acceptable_use: # ANNEX XII(1)(b)
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the acceptable use policies applicable;'
+      value: !!bool false 
+    release_date: # ANNEX XII(1)(c)
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the date of release and methods of distribution;'
+      value: !!bool false 
+    hardware: # ANNEX XII(1)(d)
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including how the model interacts, or can be used to interact, with hardware or software that is not part of the model itself, where applicable;'
+      value: !!bool false 
+    versions: # ANNEX XII(1)(e)
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the versions of relevant software related to the use of the general-purpose AI model, where applicable'
+      value: !!bool false 
+    architecture: # ANNEX XII(1)(f)
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the architecture and number of parameters;'
+      value: !!bool false 
+    modality: # ANNEX XII(1)(g)
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the modality (e.g. text, image) and format of inputs and outputs;'
+      value: !!bool false 
+    license: # ANNEX XII(1)(h)
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the licence for the model.;'
+      value: !!bool false 
+  other:
+    policy: # Art. 52(1)(c)
+      verbose: 'Provider has put in place a policy to comply with Union law on copyright and related rights, and in particular to identify and comply with, including through state-of-the-art technologies, a reservation of rights expressed pursuant to Article 4(3) of Directive (EU) 2019/790;'
+      value: !!bool false 
+    content: # Art. 52(1)(d)
+      verbose: 'Provider has drawn up and made publicly available a sufficiently detailed summary about the content used for training of the general-purpose AI model, according to a template provided by the AI Office.'
+      value: !!bool false 
+    representative: # Art. 54(1)(d)
+      verbose: 'Prior to placing the AI project on the Union market, the provider, if established in a third country, has, by written mandate, appointed an authorised representative which is established in the Union.'
+      value: !!bool false 
+
+    # Add other obligations of domestic represenatitives 
 
 # Information related to the Act's requirements for GPAI models with systematic risk 
 
 obligations_for_gpai_models_with_systemic_risk:
+  notification: # Art 52(1)
+    verbose: 'Within two weeks of it being known that the AI project should be classified as a GPAI model with systemtic ris, tkhe Commission was notified and provided with the information that supports this finding'
   evaluation: # Art. 55(1)(a)
     verbose: 'The AI project was subject to a model evaluation using standardized protocols'
     value: !!bool false 
@@ -484,6 +539,14 @@ obligations_for_gpai_models_with_systemic_risk:
   cybersecurity: # Art. 55(1)(d)
     verbose: 'Adequate cybersecurity protection for any models and infrastructures in the AI project was ensured'
     value: !!bool false 
+  documenation_evaluation:
+    verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that includes a detailed description of the evaluation strategies, including evaluation results, on the basis of available public evaluation protocols and tools or otherwise of other evaluation methodologies. Evaluation strategies shall include evaluation criteria, metrics and the methodology on the identification of limitations.'
+    value: !!bool false 
+  documentation_adversarial:
+    verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that includes, where applicable, a detailed description of the measures put in place for the purpose of conducting internal and/or external adversarial testing (e.g. red teaming), model adaptations, including alignment and fine-tuning.'
+    value: !!bool false 
+  documentation_architecture: 
+    verbose: ''The provider has drawn up and will keep up-to-date technical documentation of the model that includes, where applicable, a detailed description of the system architecture explaining how software components build or feed into each other and integrate into the overall processing.'
 
 additional_provider_obligations: # apply these only if operator == provider and ai_project_type == high_risk_ai_system
   contact: # Article 16 (b)
