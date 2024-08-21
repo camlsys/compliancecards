@@ -53,6 +53,10 @@ gpai_model_systematic_risk:
     verbose: 'The cumulative amount of computation used for the training of the AI project, as measured in floating point operations (FLOPs), has been greater than 10^25'
     value: !!bool false 
 
+# ypi: I don't think we need to help users figure out if their GPAI model has systemic risk. There are only very few models with that risk(only two at the moment), and they’re mostly used by big tech, who aren’t our target users anyway. Plus, it’s the job of the AI office in the EU Commission to keep that list updated which means the criteria about flops can also change. 
+
+
+
 # Information related to the Act's exceptions for scientific research, open-source AI, and more
 
 excepted:
