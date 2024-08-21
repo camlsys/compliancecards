@@ -24,6 +24,12 @@ operator_role:
     verbose: 'AI project operator is a product manufacturer'
     value: !!bool false # Art. 2
 
+# ypi: just to not that providers, deployers and product manufacturer that are outside of EU are still in scope if the output of AI is used within EU.
+# importer and distributor are only in scope if they locate within EU. 
+
+
+
+
 eu_market_status:
   placed_on_market: # Art. 3(9)
     verbose: 'AI project is being made available on the EU market (i.e., supplied for distribution or use in the course of a commercial activity, whether in return for payment or free of charge) for the first time'
