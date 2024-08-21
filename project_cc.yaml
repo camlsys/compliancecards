@@ -120,6 +120,11 @@ prohibited_practice:
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
       value: !!bool false 
 
+# ypi: my interpretation for  emotion_prediction is "AI systems that infer emotions of individuals in the areas of workplace and educational institutions, except for AI medical or safety systems."
+
+
+
+
 # Requirements for those projects which involve high-risk AI systems
 
 high_risk_ai_system:
