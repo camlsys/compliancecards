@@ -24,6 +24,11 @@ operator_role:
     verbose: 'AI project operator is a product manufacturer'
     value: !!bool false # Art. 2
 
+# ypi: just to note that providers, deployers and product manufacturer that are outside of EU are still in scope if the output of AI is used within EU.
+# importer and distributor are only in scope if they locate within EU. 
+
+
+
 eu_market_status:
   placed_on_market: # Art. 3(9)
     verbose: 'AI project is being made available on the EU market (i.e., supplied for distribution or use in the course of a commercial activity, whether in return for payment or free of charge) for the first time'
@@ -95,6 +100,7 @@ excepted:
 
 
 #ypi: add peronal and non-professional use
+# ypi: The exemptions can be moved up to the operator role since it’s also related to Article 2.
 
 # Information related to practices prohibited by the Act
 
@@ -135,7 +141,7 @@ prohibited_practice:
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
       value: !!bool false 
 
-# Requirements for those projects which involve high-risk AI systems
+
 
 high_risk_ai_system:
   safety_component: # Art. 6(1)(a)
@@ -221,6 +227,18 @@ risk_management_system:
   testing_threshold: # Art. 9(8)
     verbose: 'Testing has or will be performed before the AI project is placed on the market and has or will be carried out against prior defined metrics and probabilistic thresholds that are appropriate to the intended purpose'
     value: !!bool false 
+
+  # ypi: I will also add:
+  # vulnerable_groups: #Art. 9(9)
+  #   verbose: 'Adverse impacts in the view of intended purpose the high-risk AI system on individuals under 18 and other vulnerable groups have been considered'
+  #   value: !!bool true
+  # integration_with_other_laws: #Art. 9(10)
+  #   description: 'For providers subject to other Union law requirements, risk management procedures may be integrated or combined with those established under such law.'
+  #   value: !!bool true
+
+
+
+
 
 technical_documentation:
   drawn_up: # Art. 11(1)
