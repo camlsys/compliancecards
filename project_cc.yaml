@@ -235,7 +235,7 @@ technical_documentation:
   versions: # Art. 11(1); Annex IV(1)(c)
     verbose: 'Technical Documentation includes a general description of the AI project that covers the versions of relevant software or firmware, and any requirements related to version updates'
     value: !!bool false 
-  packages: # Art. 11(1); Annex IV(1)(d)
+  market_forms: # Art. 11(1); Annex IV(1)(d)
     verbose: 'Technical Documentation includes a general description of the AI project that covers the description of all the forms in which the AI project is placed on the market or put into service, such as software packages embedded into hardware, downloads, or APIs'
     value: !!bool false 
   hardware: # Art. 11(1); Annex IV(1)(e)
@@ -262,6 +262,13 @@ technical_documentation:
   product: # Art. 11(2)
     verbose: 'The AI project is either not related to a product covered by the Union harmonisation legislation listed in Section A of Annex I and placed on the market or put into service or, if it is, a single set of technical documentation has been drawn up containing all the information set out in paragraph 1, as well as the information required under those legal acts'
     value: !!bool false 
+
+
+### ypi: add   Annex IV(1)(h)
+###  instructions_for_use:
+###    verbose: 'The Technical Documentation includes a general description of the AI project that covers instructions for use for the deployer and a basic description of the user-interface provided, where applicable.'
+ ###   value: !!bool false
+
 
 record_keeping:
   logging_generally: # Article 12(1)
