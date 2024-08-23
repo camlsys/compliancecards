@@ -93,6 +93,9 @@ excepted:
     verbose: 'AI project involves AI models that are released under a free and open-source licence that allows for the access, usage, modification, and distribution of the model, and whose parameters, including the weights, the information on the model architecture, and the information on model usage, are made publicly available. This exception shall not apply to general purpose AI models with systemic risks'
     value: !!bool false  
 
+
+#ypi: add peronal and non-professional use
+
 # Information related to practices prohibited by the Act
 
 prohibited_practice:
