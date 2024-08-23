@@ -278,7 +278,7 @@ record_keeping:
     verbose: 'The automatic recording of events (logs) that are being generated over the lifetime of the system are being kept by the provider for at least sixth months'
     value: !!bool false 
   logging_risk: # Art. 12(1)(a)
-    verbose: 'The AI project technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for identifying situations that may result in the AI projectpresenting a risk within the meaning of Article 79(1) or in a substantial modification'
+    verbose: 'The AI project technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for identifying situations that may result in the AI project presenting a risk within the meaning of Article 79(1) or in a substantial modification'
     value: !!bool false 
   logging_post_market: # Art. 12(1)(b)
     verbose: 'The AI project technically allows for the automatic recording of events (logs) over the lifetime of the system and these logging capabilities enable the recording of events relevant for facilitating the post-market monitoring referred to in Article 72'
