@@ -10,18 +10,14 @@ project_variables = {
         "high_risk_ai_system": False,
         "gpai_model_systematic_risk": False
     },
-    "operator_role": {
+    "operator_details": {
         "provider": False,
-        "deployer": False,
-        "importer": False,
-        "distributor": False,
-        "product_manufacturer": False,
-        "eu_located": False
+        "eu_located": False,
+        "output_used": False
     },
     "eu_market_status": {
         "placed_on_market": False,
-        "put_into_service": False,
-        "output_used": False
+        "put_into_service": False
     }
 }
 

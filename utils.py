@@ -55,26 +55,41 @@ def set_eu_market_status(project_variables, project_cc_yaml):
     return project_variables
 
 
-def check_within_scope(project_variables, project_cc_yaml):
+def check_within_scope_cc(project_variables):
+
+    # Check that the person filling out the form (the operator) is in fact a provider;
+    
+    if project_variables['operator_details']['provider']:
+        return True
+    else:
+        print("The initial versiton of the Compliance Cards System is for provider-side compliance analyses only.")
+        return False
+
+def check_within_scope_act(project_variables, project_cc_yaml):
+
+    # Check that the project is within the scope of the Act 
     
     ai_system = project_variables['ai_project_type']['ai_system']
+    gpai_model = project_variables['ai_project_type']['gpai_model']
+
+    placed_on_market = project_variables['eu_market_status']['placed_on_market']
+    put_into_service = project_variables['eu_market_status']['put_into_service']
+    
+    eu_located = project_variables['operator_details']['eu_located']
+    output_used = project_variables['operator_details']['output_used']
     
     if not check_excepted(project_cc_yaml):
-        if provider and ((ai_system and (placed_on_market or put_into_service)) or (gpai_model and placed_on_market)):   # Article 2.1(a)
+        if ((ai_system and (placed_on_market or put_into_service)) or (gpai_model and placed_on_market)):   # Article 2.1(a)
             return True
-        if deployer and eu_located: # Article 2.1(b)
-            return True
-        if (provider or deployer) and (ai_system and eu_located and output_used): # Article 2.1(c)
-            return True
-        if (importer or distributor) and ai_system: # Article 2.1(d)
-            return True
-        if product_manufacturer and ai_system and (placed_on_market or put_into_service): # Article 2.1(e)
+        if (ai_system and eu_located and output_used): # Article 2.1(c)
             return True
     else:
+        print("Your project is not within the scope of the Act and its requirements.")      
         return False
 
 def check_excepted(project_cc_yaml):
     if project_cc_yaml['excepted']['scientific'] or project_cc_yaml['excepted']['pre_market'] or (ai_system and project_cc_yaml['excepted']['open_source_ai_system']) or (gpai_model and project_cc_yaml['excepted']['open_source_gpai_system']):
+        print("Your project falls into one of the exemptions from the Act.")   
         return True
     else:
         return False 

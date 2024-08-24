@@ -1,12 +1,9 @@
 
-# Information related to high-level characteristics of AI project, including the role of the operator, market status, and type of AI
+# Information related to high-level characteristics of AI project, including the role of the operator, their location, and where the output is used
 
-operator_role:
+operator_details:
   provider: # Art. 2
     verbose: 'The operator of this AI project is a natural or legal person, public authority, agency or other body that develops an AI project or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark, whether for payment or free of charge'
-    value: !!bool false 
-  deployer: # Art. 2
-    verbose: 'AI project operator is a natural or legal person, public authority, agency or other body using an AI project under its authority except where the AI system is used in the course of a personal non-professional activity'
     value: !!bool false 
   eu_located: # Art. 2
     verbose: 'AI project operator has its place of establishment or location within the Union'
@@ -14,20 +11,6 @@ operator_role:
   output_used: # Art. 2
     verbose: 'The output produced by the AI project is used in the Union'
     value: !!bool false 
-  importer: # Art. 2 
-    verbose: 'AI project operator is a natural or legal person located or established in the Union that places on the market an AI system that bears the name or trademark of a natural or legal person established in a third country'
-    value: !!bool false 
-  distributor:
-    verbose: 'AI project operator is a natural or legal person in the supply chain, other than a provider or the importer, that makes an AI system available on the Union market'
-    value: !!bool false # Art. 2
-  product_manufacturer:
-    verbose: 'AI project operator is a product manufacturer'
-    value: !!bool false # Art. 2
-
-# ypi: just to note that providers, deployers and product manufacturer that are outside of EU are still in scope if the output of AI is used within EU.
-# importer and distributor are only in scope if they locate within EU. 
-
-
 
 eu_market_status:
   placed_on_market: # Art. 3(9)
@@ -57,6 +40,8 @@ gpai_model_systematic_risk:
   flops: # Art. 51(2)
     verbose: 'The cumulative amount of computation used for the training of the AI project, as measured in floating point operations (FLOPs), has been greater than 10^25'
     value: !!bool false 
+
+# Information related to the additional transparency requirements in Article 50, if applicable
 
 transparency_related: 
   direct_user_interaction: 
@@ -98,10 +83,6 @@ excepted:
     verbose: 'AI project involves AI models that are released under a free and open-source licence that allows for the access, usage, modification, and distribution of the model, and whose parameters, including the weights, the information on the model architecture, and the information on model usage, are made publicly available. This exception shall not apply to general purpose AI models with systemic risks'
     value: !!bool false  
 
-
-#ypi: add peronal and non-professional use
-# ypi: The exemptions can be moved up to the operator role since it’s also related to Article 2.
-
 # Information related to practices prohibited by the Act
 
 prohibited_practice:
@@ -141,7 +122,7 @@ prohibited_practice:
       verbose: 'The AI project involves use of ‘real-time’ remote biometric identification systems in publicly accessible spaces for the purposes of law enforcement stricly for the localisation or identification of a person suspected of having committed a criminal offence, for the purpose of conducting a criminal investigation or prosecution or executing a criminal penalty for offences referred to in Annex II and punishable in the Member State concerned by a custodial sentence or a detention order for a maximum period of at least four years.'
       value: !!bool false 
 
-
+# Information related to whether or not the project, if an AI system, is a high-risk AI system
 
 high_risk_ai_system:
   safety_component: # Art. 6(1)(a)
@@ -199,6 +180,8 @@ high_risk_ai_system:
     verbose: 'the AI project is intended to perform a preparatory task to an assessment relevant for the purposes of the use cases listed in Annex III.'
     value: !!bool false 
 
+# Information related to the risk management system requirements for high-risk AI systems (Article 9)
+
 risk_management_system:
   established: # Article 9
     verbose: 'A risk management system has been established, implemented, documented and maintained for the AI project'
@@ -227,18 +210,14 @@ risk_management_system:
   testing_threshold: # Art. 9(8)
     verbose: 'Testing has or will be performed before the AI project is placed on the market and has or will be carried out against prior defined metrics and probabilistic thresholds that are appropriate to the intended purpose'
     value: !!bool false 
+  vulnerable_groups: #Art. 9(9)
+    verbose: 'Adverse impacts in the view of intended purpose the high-risk AI system on individuals under 18 and other vulnerable groups have been considered'
+    value: !!bool true
+  integration_with_other_laws: #Art. 9(10)
+    description: 'For providers subject to other Union law requirements, risk management procedures may be integrated or combined with those established under such law.'
+    value: !!bool true
 
-  # ypi: I will also add:
-  # vulnerable_groups: #Art. 9(9)
-  #   verbose: 'Adverse impacts in the view of intended purpose the high-risk AI system on individuals under 18 and other vulnerable groups have been considered'
-  #   value: !!bool true
-  # integration_with_other_laws: #Art. 9(10)
-  #   description: 'For providers subject to other Union law requirements, risk management procedures may be integrated or combined with those established under such law.'
-  #   value: !!bool true
-
-
-
-
+# Information related to the risk management system requirements for high-risk AI systems (Article 11)
 
 technical_documentation:
   drawn_up: # Art. 11(1)
@@ -290,6 +269,7 @@ technical_documentation:
 ###    verbose: 'The Technical Documentation includes a general description of the AI project that covers instructions for use for the deployer and a basic description of the user-interface provided, where applicable.'
  ###   value: !!bool false
 
+# Information related to the record keeping requirements for high-risk AI systems (Article 12)
 
 record_keeping:
   logging_generally: # Article 12(1)
@@ -319,6 +299,8 @@ record_keeping:
   identification: # Art. 12(2)(d)
     verbose: 'For the remote biometric identification systems high-risk AI systems referred to in point 1 (a), of Annex III, the logging capabilities shall provide, at a minimum, the identification of the natural persons involved in the verification of the results, as referred to in Article 14(5)'
     value: !!bool false 
+
+# Information related to the requirements that the providers of high-risk AI systems provide certain information to deployers  (Article 13)
 
 transparency_and_provision_of_information_to_deployers:
   interpretability: # Art. 13(1)
@@ -367,6 +349,8 @@ transparency_and_provision_of_information_to_deployers:
     verbose: 'Instructions include description of mechanisms for deployers to collect, store, and interpret logs, if applicable'
     value: !!bool false 
 
+# Information related to the human oversight requirements for high-risk AI systems (Article 14)
+
 human_oversight:
   designed: # Art. 14(1)
     verbose: 'AI project is designed and developed so as to be effectively overseen by natural persons during use, including through the use of appropriate human-machine interface tools'
@@ -396,6 +380,8 @@ human_oversight:
     verbose: 'For Annex III point 1(a) systems, actions or decisions require verification by at least two competent persons, with exceptions for law enforcement, migration, border control, or asylum'
     value: !!bool false 
 
+# Information related to the accuracy, robustness, and cybersecurity requirements for high-risk AI systems (Article 15)
+
 accuracy_robustness_cybersecurity:
   design: # Art. 15(1)
     verbose: 'The AI project is designed and developed to achieve appropriate levels of accuracy, robustness, and cybersecurity, performing consistently throughout its lifecycle'
@@ -419,6 +405,8 @@ accuracy_robustness_cybersecurity:
     verbose: 'The AI project includes technical solutions that address AI-specific vulnerabilities, including measures against data poisoning, model poisoning, adversarial examples, and confidentiality attacks'
     value: !!bool false 
 
+# Information related to the quality management system requirements for high-risk AI systems (Article 17)
+
 quality_management_system:
   quality_management_system: # Art. 17(1)(a)
     verbose: 'The AI project is subject to a quality management system with strategy for regulatory compliance'
@@ -432,6 +420,8 @@ quality_management_system:
   testing: # Art. 17(1)(d)
     verbose: 'The quality management system that the AI project was subject to includes examination, test, and validation procedures before, during, and after development'
     value: !!bool false 
+
+# Information related to the fundamental rights assessment that is required of high-risk AI systems (Article 27)
 
 fundamental_rights_assessment:
   process: # Art. 27(1)(a)
@@ -596,30 +586,4 @@ additional_provider_obligations: # apply these only if operator == provider and 
     verbose: 'The AI project complies with accessibility requirements in accordance with Directives (EU) 2016/2102 and (EU) 2019/882'
     value: !!bool false 
 
-additional_deployer_obligations: # apply these only if operator == deployer and ai_project_type == high_risk_ai_system
-  accordance_with_instructions: # Article 26 (1)
-    verbose: 'If operator is a deployer, that deployer has taken appropriate technical and organisational measures to ensure they use such systems in accordance with the instructions for use accompanying the systems'
-    value: !!bool false 
-  human_oversight: # Article 26 (2)
-    verbose: 'If operator is a deployer, that deployer has assigned human oversight to natural persons who have the necessary competence, training and authority, as well as the necessary support.'
-    value: !!bool false 
-  relevant_input: # Article 26 (4)
-    verbose: 'If operator is a deployer, to the extent the deployer exercises control over the input data, that deployer shall ensure that input data is relevant and sufficiently representative in view of the intended purpose of the AI project'
-    value: !!bool false 
-  monitoring: # Article 26 (5)
-    verbose: 'If operator is a deployer, that deployer shall monitor the operation of the AI project on the basis of the instructions for use and, where relevant, inform providers in accordance with Article 72'
-    value: !!bool false 
-  monitoring: # Article 26 (6)
-    verbose: 'If operator is a deployer, that deployer shall keep the logs automatically generated by the AI project to the extent such logs are under their control, for a period appropriate to the intended purpose of the AI project, of at least six months, unless provided otherwise in applicable Union or national law, in particular in Union law on the protection of personal data.'
-    value: !!bool false 
-  employees: # Article 26 (7)
-    verbose: 'If operator is a deployer and an employer, before putting into service or using a AI project at the workplace, that deployers shall inform worker representatives and the affected workers that they will be subject to the use of the AI project.' 
-    value: !!bool false 
-  employees: # Article 26 (8)
-    verbose: 'If operator is a deployer and a public authority, or Union institution, body, office or agency, that deployer shall register the AI project in the EU database per Article 49(3)'
-    value: !!bool false 
-  employees: # Article 26 (9)
-    verbose: 'If operator is a deployer and if applicable, the deployer used the information provided under Article 13 of this Regulation to comply with their obligation to carry out a data protection impact assessment under Article 35 of Regulation (EU) 2016/679 or Article 27 of Directive (EU) 2016/680'
-    value: !!bool false 
 
-    # Couple more to add from Article 26, using same format 
