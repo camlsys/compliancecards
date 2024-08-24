@@ -2,13 +2,16 @@
 # Information related to high-level characteristics of AI project, including the role of the operator, their location, and where the output is used
 
 operator_details:
-  provider: # Art. 2
+  provider: 
+    article: "Art. 2"
     verbose: 'The operator of this AI project is a natural or legal person, public authority, agency or other body that develops an AI project or a general-purpose AI model or that has an AI system or a general-purpose AI model developed and places it on the market or puts the AI system into service under its own name or trademark, whether for payment or free of charge'
     value: !!bool false 
-  eu_located: # Art. 2
+  eu_located: 
+    article: 'Art. 2'
     verbose: 'AI project operator has its place of establishment or location within the Union'
     value: !!bool True  
-  output_used: # Art. 2
+  output_used:
+    article: 'Art. 2'
     verbose: 'The output produced by the AI project is used in the Union'
     value: !!bool false 
 
@@ -458,7 +461,7 @@ transparency_obligations:
 
 # Information related to the Act's requirements for GPAI models
 
-gpai_model_provider_obligations:
+gpai_model_obligations:
   documentation:
     intended_uses: # Art. 53(1)(a); Annex XI(1)(1)(a)
       verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model includes a description of the tasks that the model is intended to perform and the type and nature of AI systems in which it can be integrated'
@@ -539,7 +542,7 @@ gpai_model_provider_obligations:
 
 # Information related to the Act's requirements for GPAI models with systematic risk 
 
-obligations_for_gpai_models_with_systemic_risk:
+gpai_models_with_systemic_risk_obligations:
   notification: # Art 52(1)
     verbose: 'Within two weeks of it being known that the AI project should be classified as a GPAI model with systemtic ris, tkhe Commission was notified and provided with the information that supports this finding'
   evaluation: # Art. 55(1)(a)
@@ -564,7 +567,8 @@ obligations_for_gpai_models_with_systemic_risk:
     verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that includes, where applicable, a detailed description of the measures put in place for the purpose of conducting internal and/or external adversarial testing (e.g. red teaming), model adaptations, including alignment and fine-tuning.'
     value: !!bool false 
   documentation_architecture: 
-    verbose: ''The provider has drawn up and will keep up-to-date technical documentation of the model that includes, where applicable, a detailed description of the system architecture explaining how software components build or feed into each other and integrate into the overall processing.'
+    verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that includes, where applicable, a detailed description of the system architecture explaining how software components build or feed into each other and integrate into the overall processing.'
+    value: !!bool false
 
 additional_provider_obligations: # apply these only if operator == provider and ai_project_type == high_risk_ai_system
   contact: # Article 16 (b)

@@ -97,6 +97,7 @@ def check_excepted(project_cc_yaml):
     else:
         return False 
 
+# TODO update function
 def check_prohibited(dispositive_variables, project_cc_yaml):
 
     ai_system = project_variables['ai_project_type']['ai_system'] 
