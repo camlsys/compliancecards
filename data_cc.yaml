@@ -1,167 +1,219 @@
 intended_purpose:
-  safety_component: # Art. 6(1)(a)
+  safety_component: 
+    article: 'Art. 6(1)(a)'
     verbose: 'This dataset is appropriate to use for AI projects involving product safety components'
     value: !!bool false 
-  product_regulated_machinery: # Art. 6(1)(b); Annex I
+  product_regulated_machinery: 
+    article: 'Art. 6(1)(b); Annex I'
     verbose: 'This dataset is appropriate to use for AI projects involving products covered by Directive 2006/42/EC of the European Parliament and of the Council of 17 May 2006 on machinery, and amending Directive 95/16/EC (OJ L 157, 9.6.2006, p. 24) [as repealed by the Machinery Regulation]'
     value: !!bool false 
-  product_regulated_toy: # Art. 6(1)(b); Annex I
+  product_regulated_toy: 
+    article: 'Art. 6(1)(b); Annex I'
     verbose: 'This dataset is appropriate to use for AI projects involving products covered by Directive 2009/48/EC of the European Parliament and of the Council of 18 June 2009 on the safety of toys (OJ L 170, 30.6.2009, p. 1)'
     value: !!bool false 
-  product_regulated_watercraft: # Art. 6(1)(b); Annex I
+  product_regulated_watercraft: 
+    article: 'Art. 6(1)(b); Annex I'
     verbose: 'This dataset is appropriate to use for AI projects involving products covered by Directive 2013/53/EU of the European Parliament and of the Council of 20 November 2013 on recreational craft and personal watercraft and repealing Directive 94/25/EC (OJ L 354, 28.12.2013, p. 90)'
     value: !!bool false 
-  biometric_categorization: # Art. 6(2); Annex III(1)(b)
+  biometric_categorization: 
+    article: 'Art. 6(2); Annex III(1)(b)'
     verbose: 'This dataset is appropriate to use for AI projects involving biometric categorisation, according to sensitive or protected attributes or characteristics based on the inference of those attributes or characteristics'
     value: !!bool false 
-  emotion_recognition: # Art. 6(2); Annex III(1)(c)
+  emotion_recognition: 
+    article: 'Art. 6(2); Annex III(1)(c)'
     verbose: 'This dataset is appropriate to use for AI projects involving emotion recognition'
     value: !!bool false 
-  critical_infrastructure: # Art. 6(2); Annex III(2)
+  critical_infrastructure: 
+    article: 'Art. 6(2); Annex III(2)'
     verbose: 'This dataset is appropriate to use for AI projects involving safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'
     value: !!bool true 
-  admission: # Art. 6(2); Annex III(3)(a)
+  admission: 
+    article: 'Art. 6(2); Annex III(3)(a)'
     verbose: 'This dataset is appropriate to use for AI projects involving the determination of access or admission or to assigning natural persons to educational and vocational training institutions at all levels'
     value: !!bool false 
-  recruitment: # Art. 6(2); Annex III(4)(a)
+  recruitment: 
+    article: 'Art. 6(2); Annex III(4)(a)'
     verbose: 'This dataset is appropriate to use for AI projects involving the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates'
     value: !!bool false 
-  public_assistance: # Art. 6(2); Annex III(5)(a)
+  public_assistance: 
+    article: 'Art. 6(2); Annex III(5)(a)'
     verbose: 'This dataset is appropriate to use for AI projects intended to be used by public authorities or on behalf of public authorities to evaluate the eligibility of natural persons for essential public assistance benefits and services, including healthcare services, as well as to grant, reduce, revoke, or reclaim such benefits and services'
     value: !!bool false 
-  victim_assessment: # Art. 6(2); Annex III(6)(a)
+  victim_assessment: 
+    article: 'Art. 6(2); Annex III(6)(a)'
     verbose: 'This dataset is appropriate to use for AI projects intended to be used by or on behalf of law enforcement authorities, or by Union institutions, bodies, offices or agencies in support of law enforcement authorities or on their behalf to assess the risk of a natural person becoming the victim of criminal offences'
     value: !!bool false 
-  polygraph: # Art. 6(2); Annex III(7)(a)
+  polygraph: 
+    article: 'Art. 6(2); Annex III(7)(a)'
     verbose: 'This dataset is appropriate to use for AI projects intended to be used by or on behalf of competent public authorities or by Union institutions, bodies, offices or agencies as polygraphs or similar tools'
     value: !!bool false 
-  judicial: # Art. 6(2); Annex III(8)(a)
+  judicial: 
+    article: 'Art. 6(2); Annex III(8)(a)' 
     verbose: 'This dataset is appropriate to use for AI projects intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
 
 data_and_data_governance:
-  data_governance: # Art. 10(1)-(2)
+  data_governance: 
+    article: 'Art. 10(1)-(2)'
     verbose: 'The dataset was subject to data governance and management practices appropriate to the intended use case'
     value: !!bool false
-  design_choices:  # Art. 10(2)(a)
+  design_choices:  
+    article: 'Art. 10(2)(a)'
     verbose: 'The dataset has been subject to data governance and management practices as regards its relevant design choices'
     value: !!bool false
-  data_origin: # Art. 10(2)(b)
+  data_origin: 
+    article: 'Art. 10(2)(b)'
     verbose: 'The dataset has been subject to data governance and management practices as regards its data collection processes and the origin of data, and in the case of personal data, the original purpose of the data collection'
     value: !!bool false
-  data_preparation: # Art. 10(2)(c)
+  data_preparation: 
+    article: 'Art. 10(2)(c)'
     verbose: 'The dataset has been subject to data governance and management practices as regards its data-preparation processing operations, such as annotation, labelling, cleaning, updating, enrichment and aggregation' 
     value: !!bool false
-  data_assumptions: # Art. 10(2)(d)
+  data_assumptions: 
+    article: 'Art. 10(2)(d)'
     verbose: 'The dataset has been subject to data governance and management practices as regards its formulation of assumptions, in particular with respect to the information that the data are supposed to measure and represent'
     value: !!bool false
-  data_quantity: # Art. 10(2)(e)
+  data_quantity: 
+    article: 'Art. 10(2)(e)'
     verbose: 'The dataset has been subject to data governance and management practices that include an assessment of the availability, quantity and suitability of the data sets that are needed'
     value: !!bool false
-  data_bias_examination: # Art. 10(2)(f)
+  data_bias_examination: 
+    article: 'Art. 10(2)(f)'
     verbose: 'The dataset has been subject to data governance and management practices that include an examination of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations' 
     value: !!bool false
-  data_bias_mitigation: # Art. 10(2)(g)
+  data_bias_mitigation: 
+    article: 'Art. 10(2)(g)'
     verbose: 'The dataset has been subject to data governance and management practices that include appropriate measures to detect, prevent and mitigate possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations'
     value: !!bool false
-  data_compliance: # Art. 10(2)(h)
+  data_compliance: 
+    article: 'Art. 10(2)(h)'
     verbose: 'The dataset has been subject to data governance and management practices that include identification of relevant data gaps or shortcomings that prevent compliance with this Regulation, and how those gaps and shortcomings can be addressed'
     value: !!bool false
-  data_relevance: # Art. 10(3); Rec. 67
+  data_relevance: 
+    article: 'Art. 10(3); Rec. 67'
     verbose: 'Training data is relevant' 
     value: !!bool false
-  data_representativity: # Art. 10(3); Rec. 67
+  data_representativity: 
+    article: 'Art. 10(3); Rec. 67'
     verbose: 'Training data is sufficiently representative'
     value: !!bool false
-  data_errors: # Art. 10(3); Rec. 67
+  data_errors: 
+    article: 'Art. 10(3); Rec. 67'
     verbose: 'Training data is, to the best extent possible, free of errors'
     value: !!bool false
-  data_completeness: # Art. 10(3); Rec. 67
+  data_completeness: 
+    article: 'Art. 10(3); Rec. 67'
     verbose: 'Training data is complete in view of the intended purpose of system'
     value: !!bool false
-  statistical_properties: # Art. 10(3)
+  statistical_properties: 
+    article: 'Art. 10(3)'
     verbose: 'Training data possesses the appropriate statistical properties, including, where applicable, as regards the people in relation to whom the system is intended to be used'
     value: !!bool false
-  contextual: # Art. 10(4)
+  contextual: 'Art. 10(4)'
+    article: 
     verbose: 'Training data takes into account, to the extent required by the intended purpose, the characteristics or elements that are particular to the specific geographical, contextual, behavioural or functional setting within which the system is intended to be used'
     value: !!bool false
-  personal_data_necessary: # Art. 10(5)
+  personal_data_necessary: 
+    article: 'Art. 10(5)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the use of this data was strictly necessary'
     value: !!bool false
-  personal_data_safeguards: # Art. 10(5)
+  personal_data_safeguards: 
+    article: 'Art. 10(5)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the use complied with appropriate safeguards for the fundamental rights and freedoms of natural persons'
     value: !!bool false
-  personal_data_gdpr: # Art. 10(5)
+  personal_data_gdpr: 
+    article: 'Art. 10(5)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the use of this data satisfied the provisions set out in Regulations (EU) 2016/679 and (EU) 2018/1725 and Directive (EU) 2016/680'
     value: !!bool false
-  personal_data_other_options: # Art. 10(5)(a)
+  personal_data_other_options: 
+    article: 'Art. 10(5)(a)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the bias detection and correction was not effectively fulfilled by processing other data, including synthetic or anonymised data'
     value: !!bool false
-  personal_data_limitations: # Art. 10(5)(b)
+  personal_data_limitations: 
+    article: 'Art. 10(5)(b)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the special categories of personal data were not subject to technical limitations on the re-use of the personal data, and state-of-the-art security and privacy-preserving measures, including pseudonymisation'
     value: !!bool false
-  personal_data_controls: # Art. 10(5)(c)
+  personal_data_controls: 
+    article: 'Art. 10(5)(c)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the special categories of personal data were subject to measures to ensure that the personal data processed are secured, protected, subject to suitable safeguards, including strict controls and documentation of the access, to avoid misuse and ensure that only authorised persons have access to those personal data with appropriate confidentiality obligations'
     value: !!bool false
-  personal_data_access: # Art. 10(5)(d)
+  personal_data_access: 
+    article: 'Art. 10(5)(d)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the special categories of personal data were not to be transmitted, transferred or otherwise accessed by other parties'
     value: !!bool false
-  personal_data_deletion: # Art. 10(5)(e)
+  personal_data_deletion: 
+    article: 'Art. 10(5)(e)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the special categories of personal data were deleted once the bias was corrected or the personal data reached the end of its retention period (whichever came first)'
     value: !!bool false
-  personal_data_necessary_105f: # Art. 10(5)(f)
+  personal_data_necessary_105f: 
+    article: 'Art. 10(5)(f)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the records of processing activities pursuant to Regulations (EU) 2016/679 and (EU) 2018/1725 and Directive (EU) 2016/680 include the reasons why the processing of special categories of personal data was strictly necessary to detect and correct biases, and why that objective could not be achieved by processing other data'
     value: !!bool false
 
 technical_documentation:
-  general_description: # Art. 11; Annex IV(2)(d)
+  general_description: 
+    article: 'Art. 11; Annex IV(2)(d)'
     verbose: 'Dataset carries technical documention, such as a dataseet, including a general description of the dataset.'
     value: !!bool false
-  provenance: # Art. 11; Annex IV(2)(d)
+  provenance: 
+    article: 'Art. 11; Annex IV(2)(d)'
     verbose: 'Dataset carries technical documention, such as a dataseet, including information about its provenance' 
     value: !!bool false
-  scope: # Art. 11; Annex IV(2)(d)
+  scope: 
+    article: 'Art. 11; Annex IV(2)(d)'
     verbose: 'Dataset carries technical documention, such as a dataseet, including information about scope and main characteristics' 
     value: !!bool false
-  origins: # Art. 11; Annex IV(2)(d)
+  origins: 
+    article: 'Art. 11; Annex IV(2)(d)' 
     verbose: 'Dataset carries technical documention, such as a dataseet, including information about how the data was obtained and selected'
     value: !!bool false
-  labelling: # Art. 11; Annex IV(2)(d)
+  labelling: 
+    article: 'Art. 11; Annex IV(2)(d)'
     verbose: 'Dataset carries technical documention, such as a dataseet, including information about labelling procedures (e.g. for supervised learning)'
     value: !!bool false
-  cleaning: # Art. 11; Annex IV(2)(d)
+  cleaning: 
+    article: 'Art. 11; Annex IV(2)(d)' 
     verbose: 'Dataset carries technical documention, such as a dataseet, including information about data cleaning methodologies (e.g. outliers detection)'
     value: !!bool false
-  cybersecurity: # Art. 11; Annex IV(2)(h)
+  cybersecurity:  
+    article: 'Art. 11; Annex IV(2)(h)'
     verbose: 'Cybersecurity measures put in place as regards the data (e.g., scanning for data poisoning)'
     value: !!bool false
 
-transparency_and_provision_of_information_to_deployers: # Art. 13(3)(b)(vi)
+transparency_and_provision_of_information_to_deployers: 
   transparency_and_provision_of_information_to_deployers:
+    article: '# Art. 13(3)(b)(vi)'
     verbose: 'Specifications for the input data, or any other relevant information in terms of the training, validation and testing data sets used, taking into account the intended purpose of the AI system'
     value: !!bool false
 
-quality_management_system: # Art. 17(1)(f)
+quality_management_system: 
   quality_management_system:
+    article: 'Art. 17(1)(f)'
     verbose: 'Systems and procedures for data management, including data acquisition, data collection, data analysis, data labelling, data storage, data filtration, data mining, data aggregation, data retention and any other operation regarding the data that is performed before and for the purposes of the placing on the market or putting into service of high-risk AI systems'
     value: !!bool false
 
-gpai_requirements: # Art. 53(1); Annex XI(2)(c)
+gpai_requirements: 
   data_type: 
+    article: 'Art. 53(1); Annex XI(2)(c)'
     verbose: 'Documentation for the dataset is available that contains the type of data'
     value: !!bool false
   data_provenance: 
+    article: 'Art. 53(1); Annex XI(2)(c)'
     verbose: 'Documentation for the dataset is available that contains the provenance of data'
     value: !!bool false 
   data_curation:
+    article: 'Art. 53(1); Annex XI(2)(c)'
     verbose: 'Documentation for the dataset is available that contains the curation methodologies (e.g. cleaning, filtering, etc.)'
     value: !!bool false 
-  data_number:
+  data_number: 
+    article: 'Art. 53(1); Annex XI(2)(c)'
     verbose: 'Documentation for the dataset is available that contains the number of data points'
     value: !!bool false 
-  data_scope:
+  data_scope: 
+    article: 'Art. 53(1); Annex XI(2)(c)'
     verbose: 'Documentation for the dataset is available that contains the number of data scope and main characteristics'
     value: !!bool false 
   data_origin:
+    article: 'Art. 53(1); Annex XI(2)(c)'
     verbose: 'Documentation for the dataset is available that contains information on how the data was obtained and selected as well as all other measures to detect the unsuitability of data sources and methods to detect identifiable biases'
     value: !!bool false 
