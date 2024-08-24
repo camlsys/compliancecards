@@ -18,11 +18,9 @@ dispositive_variables = {
     "eu_market_status": {
         "placed_on_market": False,
         "put_into_service": False
-    }
+    },
+    "intended_purposes": [],
 }
-
-intended_purposes = set() 
-
 
 # Here is the potential orchestrator function that I think is the key missing part:
 # 
