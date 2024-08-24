@@ -3,12 +3,12 @@ import yaml
 # We could probably combine set_type, set_operator_role_and_location, and set_eu_market_status into a single function that sets all project_variables
 # We will have to add a couple other things to that function as well 
 
-def set_type(project_variables, project_cc_yaml):
+def set_type(dispositive_variables, project_cc_yaml):
 
     project_type = None
     
-    ai_system = project_variables['ai_project_type']['ai_system']
-    gpai_model = project_variables['ai_project_type']['gpai_model']
+    ai_system = dispositive_variables['ai_project_type']['ai_system']
+    gpai_model = dispositive_variables['ai_project_type']['gpai_model']
     
     if project_cc_yaml['ai_system']['ai_system']['value']:
         ai_system = True
@@ -27,15 +27,15 @@ def set_type(project_variables, project_cc_yaml):
             
     return project_type
 
-def set_operator_role_and_location(project_variables, project_cc_yaml):
+def set_operator_role_and_location(dispositive_variables, project_cc_yaml):
     operators = 0
     
-    ai_system = project_variables['ai_project_type']['ai_system']
-    gpai_model = project_variables['ai_project_type']['gpai_model']
+    ai_system = dispositive_variables['ai_project_type']['ai_system']
+    gpai_model = dispositive_variables['ai_project_type']['gpai_model']
     
-    for var in project_variables['operator_role']:
+    for var in dispositive_variables['operator_role']:
         if project_cc_yaml['operator_role'][f'{var}']['value']:
-            project_variables['operator_role'][f'{var}'] = True
+            dispositive_variables['operator_role'][f'{var}'] = True
             operators += 1 
         
     if ai_system and gpai_model:
@@ -43,43 +43,43 @@ def set_operator_role_and_location(project_variables, project_cc_yaml):
     if operators != 1:
         msg = ("Please specify exactly one operator role.")
     
-    return project_variables
+    return dispositive_variables
 
-def set_eu_market_status(project_variables, project_cc_yaml):
+def set_eu_market_status(dispositive_variables, project_cc_yaml):
     
     if project_cc_yaml['eu_market_status']['placed_on_market']['value']:
-        project_variables['eu_market_status']["placed_on_market"] = True
+        dispositive_variables['eu_market_status']["placed_on_market"] = True
     if project_cc_yaml['eu_market_status']['put_into_service']['value']:
-        project_variables['eu_market_status']["put_into_service"] = True
+        dispositive_variables['eu_market_status']["put_into_service"] = True
         
     if project_cc_yaml['operator_role']['output_used']['value']:
-        project_variables['operator_role']["output_used"] = True
+        dispositive_variables['operator_role']["output_used"] = True
         
-    return project_variables
+    return dispositive_variables
 
 
-def check_within_scope_cc(project_variables):
+def check_within_scope_cc(dispositive_variables):
 
     # Check that the person filling out the form (the operator) is in fact a provider;
     
-    if project_variables['operator_details']['provider']:
+    if dispositive_variables['operator_details']['provider']:
         return True
     else:
         print("The initial versiton of the Compliance Cards System is for provider-side compliance analyses only.")
         return False
 
-def check_within_scope_act(project_variables, project_cc_yaml):
+def check_within_scope_act(dispositive_variables, project_cc_yaml):
 
     # Check that the project is within the scope of the Act 
     
-    ai_system = project_variables['ai_project_type']['ai_system']
-    gpai_model = project_variables['ai_project_type']['gpai_model']
+    ai_system = dispositive_variables['ai_project_type']['ai_system']
+    gpai_model = dispositive_variables['ai_project_type']['gpai_model']
 
-    placed_on_market = project_variables['eu_market_status']['placed_on_market']
-    put_into_service = project_variables['eu_market_status']['put_into_service']
+    placed_on_market = dispositive_variables['eu_market_status']['placed_on_market']
+    put_into_service = dispositive_variables['eu_market_status']['put_into_service']
     
-    eu_located = project_variables['operator_details']['eu_located']
-    output_used = project_variables['operator_details']['output_used']
+    eu_located = dispositive_variables['operator_details']['eu_located']
+    output_used = dispositive_variables['operator_details']['output_used']
     
     if not check_excepted(project_cc_yaml):
         if ((ai_system and (placed_on_market or put_into_service)) or (gpai_model and placed_on_market)):   # Article 2.1(a)
@@ -97,7 +97,7 @@ def check_excepted(project_cc_yaml):
     else:
         return False 
 
-def check_prohibited(project_variables, project_cc_yaml):
+def check_prohibited(dispositive_variables, project_cc_yaml):
 
     ai_system = project_variables['ai_project_type']['ai_system'] 
     
@@ -115,9 +115,4 @@ def check_prohibited(project_variables, project_cc_yaml):
     else: 
         print("You are not engaged in any prohibited practices.")
         return False
-
-set_intended_purposes(project_cc_yaml):
-    for key, value in project_cc_yaml['high_risk_ai_system']:
-        if value:
-            intended_purposes.add(key)
             

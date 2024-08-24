@@ -3,7 +3,7 @@ from utils import set_type, set_operator_role_and_location, set_eu_market_status
 
 # Create some variables we will use throughout our analysis
 
-project_variables = {
+dispositive_variables = {
     "ai_project_type": {
         "ai_system": False,
         "gpai_model": False,
@@ -32,13 +32,13 @@ intended_purposes = set()
 #   -do some administrative stuff to make your life easier like maybe getting all the files in the folder into a list, etc.
 #
 #   -Call set_dispositive_variables, passing in all the cards as the argument: 
-#       -This must loop through all the cards to set the project_variables where applicable. There is no function for this yet. I can write it.
+#       -This must loop through all the cards to set the dispositive_variables where applicable. There is no function for this yet. I can write it.
 #       -It must set the intended purposes by parsing them from the Project CC and. I wrote a utility function for this.
 #   -Optionally call the functions that check whethe the project is in scope of CC and in scope of the Act. These could also be called from run_compliance_analysis_on_project
 #   -Optionally check for prohibited practices. This has been commented out, but the functionality is there as-is. This could also be called from run_compliance_analysis_on_project
 #   
 #   Call run_compliance_analysis_on_project, passing in the sole Project CC as the argument
-#       -This must run the internal check of the project CC based on the project_variables it has set. It is only partially doing this as-is. To finish the job, we must:
+#       -This must run the internal check of the project CC based on the dispositive_variables it has set. It is only partially doing this as-is. To finish the job, we must:
 #        -Be sure to run the check for all types of models and systems including AI systems without high risk, GPAI without systemic risk, GPAI with systemic risk. It is only doing high-risk AI systems at the moment.
 #
 #   Call run_compliance_analysis_on_model() *for all model CCs in the folder*, passing in the ai_project_type variable and maybe project_intended_purpose 
@@ -56,18 +56,18 @@ intended_purposes = set()
 def run_compliance_analysis_on_project(project_cc_yaml): 
 
     # Determine project type (AI system vs. GPAI model) as well as operator type. We will use these for different things.
-    project_type = set_type(project_variables, project_cc_yaml)
-    set_operator_role_and_location(project_variables, project_cc_yaml)
-    set_eu_market_status(project_variables, project_cc_yaml)
+    project_type = set_type(dispositive_variables, project_cc_yaml)
+    set_operator_role_and_location(dispositive_variables, project_cc_yaml)
+    set_eu_market_status(dispositive_variables, project_cc_yaml)
 
     # Check if project is within scope of the Compliance Cards project. If not, inform user.
-    if check_within_scope_cc(project_variables):
+    if check_within_scope_cc(dispositive_variables):
         msg = ("Project is within the scope of the Compliance Cards system. Let's continue...") 
     else: 
         msg = ("Project is not within the scope of the initial version of the Compliance Cards system.")
     
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
-    if check_within_scope_act(project_variables, project_cc_yaml):
+    if check_within_scope_act(dispositive_variables, project_cc_yaml):
         msg = ("Project is within the scope of Act. Let's continue...") 
     else: 
         msg = ("Project is not within the scope of what is regulated by the Act.")
@@ -213,6 +213,8 @@ def check_intended_purpose():
     for purpose in project_intended_purposes:
         if purpose not in model_intended_purposes:
             msg = f"You are not compliant because {purpose} is not a valid purpose"
+
+    # TODO return list of intended purpose 
 
     return msg
 
