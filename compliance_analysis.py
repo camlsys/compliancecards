@@ -21,36 +21,25 @@ project_variables = {
     }
 }
 
-project_intended_purpose = None 
+intended_purposes = set() 
 
-# TO-DO: A thesis of this paper is that we cannot declare a project compliant without looking at all of its component models and datasets. 
-# What that means in practical terms is that we need to check all model and data CCs in addition to the project CC to render a decision of compliance.
-# There are two ways we can go about this: 
-# (1) We can have an orchestrator function that sits on top of run_compliance_analysis_on_project(), run_compliance_analysis_on_data(), and 
-# run_compliance_analysis_on_model() and orchestrates them. In particular, it will have to first run run_compliance_analysis_on_project() to set 
-# the values of some "dispositive characteristic" variables, which it can then pass into run_compliance_analysis_on_data() and run_compliance_analysis_on_model()
-# to make sure that the analysis done there is dynamically appropriate. Importantly, it will also have to run run_compliance_analysis_on_data(), and 
-# run_compliance_analysis_on_model() for each and every data and model CCs in the folder, passing in those "dispositive characteristic" variables 
-# as arguments to ensure the analysis is apprpriate. 
-# (2) We could treat run_compliance_analysis_on_project() as the orchestrator function. This would mean this function would first need to set all of the
-# "dispositive characteristic" variables and then, after doing that, call compliance_analysis_on_data() and run_compliance_analysis_on_model() for all
-# of the model and data CCs in the folder, passing in the "dispositive characteristic" variables as arguments.
-#
-# I slightly prefer option (1), so here is some pseudo-code for a potential orchestrator function:
+
+# Here is the potential orchestrator function that I think is the key missing part:
 # 
 # def orchestrator():
 #
-#   this might be a good time to check to make sure there is at least one Project CC and also do do any   
-#   some administrative stuff to make your life easier like maybe getting all the files in the folder into a list, etc.
+#   -make sure there is at least one Project CC, one Data CC, and one Model CC -- need at least one of each 
+#   -do some administrative stuff to make your life easier like maybe getting all the files in the folder into a list, etc.
 #
+#   -Call set_dispositive_variables, passing in all the cards as the argument: 
+#       -This must loop through all the cards to set the project_variables where applicable. There is no function for this yet. I can write it.
+#       -It must set the intended purposes by parsing them from the Project CC and. I wrote a utility function for this.
+#   -Optionally call the functions that check whethe the project is in scope of CC and in scope of the Act. These could also be called from run_compliance_analysis_on_project
+#   -Optionally check for prohibited practices. This has been commented out, but the functionality is there as-is. This could also be called from run_compliance_analysis_on_project
+#   
 #   Call run_compliance_analysis_on_project, passing in the sole Project CC as the argument
-#       -This must set the "dispositive" variables (i.e., the project_variables above) by parsing them from the Project CC. It already does this as-is.
-#       -This must also check to see if the project is out of scope. It does this as-is.
-#       -This must also check for prohibited practices. This has been commented out, but the functionality is there as-is.
-#       -Last but not least, this must run the internal check of the project CC based on the project_variables it has set. It is only partially doing this as-is. To finish the job, we must:
-#           -Run the check for other types of models and systems: AI systems without high risk, GPAI without systemic risk, GPAI with systemic risk. It is only doing high-risk AI systems at the moment.
-#           -Where the operator is a provider, ensure any additional requirements for providers are met (see the Project CC template for details)
-#           -Where the operator is a deployer, ensure any additional requirements for deployers are met (see the Project CC template for details)
+#       -This must run the internal check of the project CC based on the project_variables it has set. It is only partially doing this as-is. To finish the job, we must:
+#        -Be sure to run the check for all types of models and systems including AI systems without high risk, GPAI without systemic risk, GPAI with systemic risk. It is only doing high-risk AI systems at the moment.
 #
 #   Call run_compliance_analysis_on_model() *for all model CCs in the folder*, passing in the ai_project_type variable and maybe project_intended_purpose 
 #       -This should include a "cross comparison" of the intended uses listed in the model CC and the project_intended_purpose parsed from the Project CC, something that is not yet integrated 
@@ -64,7 +53,6 @@ project_intended_purpose = None
 #   tells the user where the compliance analysis failed. If we wanted to get really fancy, we could include error messages for each individual
 #   entry in the yaml files, possibly citing the part of the Act that they need to reference (currently in comments that user does not see)
 
-
 def run_compliance_analysis_on_project(project_cc_yaml): 
 
     # Determine project type (AI system vs. GPAI model) as well as operator type. We will use these for different things.
@@ -72,8 +60,14 @@ def run_compliance_analysis_on_project(project_cc_yaml):
     set_operator_role_and_location(project_variables, project_cc_yaml)
     set_eu_market_status(project_variables, project_cc_yaml)
 
+    # Check if project is within scope of the Compliance Cards project. If not, inform user.
+    if check_within_scope_cc(project_variables):
+        msg = ("Project is within the scope of the Compliance Cards system. Let's continue...") 
+    else: 
+        msg = ("Project is not within the scope of the initial version of the Compliance Cards system.")
+    
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
-    if check_within_scope(project_variables, project_cc_yaml):
+    if check_within_scope_act(project_variables, project_cc_yaml):
         msg = ("Project is within the scope of Act. Let's continue...") 
     else: 
         msg = ("Project is not within the scope of what is regulated by the Act.")
@@ -121,7 +115,7 @@ def run_compliance_analysis_on_project(project_cc_yaml):
     
     return msg
 
-def run_compliance_analysis_on_data(data_cc_yaml): # TO-DO: we probably have to pass ai_project_type and project_intended_purpose into this function
+def run_compliance_analysis_on_data(data_cc_yaml, project_intended_purpose): # TO-DO: we probably have to pass ai_project_type and project_intended_purpose into this function
     
     for key, value in data_cc_yaml['data_and_data_governance']:
         if not value:
@@ -139,11 +133,13 @@ def run_compliance_analysis_on_data(data_cc_yaml): # TO-DO: we probably have to 
     # TO-DO: No matter where we land with an orchestrator function, this function must also check to the value that has been set for both
     # GPAI models with and without systemic risk and then check to see if the relevant requirements have met if either of these values applies.
     # Right now it is only checking high-risk AI system requirements. Another thing that we likely have to add here is the cross-comparison of the 
-    # intended uses.
+    # intended purposes. That might look like this:
+    # if data_cc_yaml['intended_purpose'] not in intended_purposes:
+    #   return false 
 
     return msg
     
-def run_compliance_analysis_on_model(model_cc_yaml):  # TO-DO: we probably have to pass ai_project_type and project_intended_purpose into this function
+def run_compliance_analysis_on_model(model_cc_yaml, project_intended_purpose):  # TO-DO: we probably have to pass ai_project_type and project_intended_purpose into this function
     
     for key, value in model_cc_yaml['risk_management_system']:
         if not value:
@@ -164,7 +160,9 @@ def run_compliance_analysis_on_model(model_cc_yaml):  # TO-DO: we probably have 
     # TO-DO: No matter where we land with an orchestrator function, this function must also check to the value that has been set for both
     # GPAI models with and without systemic risk and then check to see if the relevant requirements have met if either of these values applies.
     # Right now it is only checking high-risk AI system requirements. Another thing that we likely have to add here is the cross-comparison of the 
-    # intended uses.
+    # intended purposes. That might look like this:
+    # if model_cc_yaml['intended_purpose'] not in intended_purposes:
+    #   return false 
     
     return msg
 

@@ -1,5 +1,8 @@
 import yaml
    
+# We could probably combine set_type, set_operator_role_and_location, and set_eu_market_status into a single function that sets all project_variables
+# We will have to add a couple other things to that function as well 
+
 def set_type(project_variables, project_cc_yaml):
 
     project_type = None
@@ -112,3 +115,9 @@ def check_prohibited(project_variables, project_cc_yaml):
     else: 
         print("You are not engaged in any prohibited practices.")
         return False
+
+set_intended_purposes(project_cc_yaml):
+    for key, value in project_cc_yaml['high_risk_ai_system']:
+        if value:
+            intended_purposes.add(key)
+            
