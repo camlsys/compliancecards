@@ -731,6 +731,10 @@ gpai_models_with_systemic_risk_obligations:
     value: !!bool false
 
 additional_provider_obligations: 
+  ai_literacy:
+    article: 'Article 4'
+    verbose: ''
+    value: !!bool false 
   contact: 
     article: 'Article 16 (b)'
     verbose: 'It is indicated on the AI project or, if that is not possible, on its packaging or its accompanying documentation, as applicable, the name of the provider as well as their registered trade name or registered trade mark and the address at which they can be contacted;'
