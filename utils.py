@@ -3,30 +3,6 @@ import yaml
 # We could probably combine set_type, set_operator_role_and_location, and set_eu_market_status into a single function that sets all project_variables
 # We will have to add a couple other things to that function as well 
 
-def set_type(dispositive_variables, project_cc_yaml):
-
-    project_type = None
-    
-    ai_system = dispositive_variables['ai_project_type']['ai_system']
-    gpai_model = dispositive_variables['ai_project_type']['gpai_model']
-    
-    if project_cc_yaml['ai_system']['ai_system']['value']:
-        ai_system = True
-    if project_cc_yaml['gpai_model']['gpai_model']['value']:
-        gpai_model = True
-    if ai_system and gpai_model:
-        msg = ("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
-    if ai_system == True:
-        for key, value in project_cc_yaml['high_risk_ai_system']:
-            if value and sum(map(bool, [project_cc_yaml['high_risk_ai_system']['filter_exception_rights'],project_cc_yaml['high_risk_ai_system']['filter_exception_narrow'],project_cc_yaml['high_risk_ai_system']['filter_exception_human'],project_cc_yaml['high_risk_ai_system']['filter_exception_deviation'], project_cc_yaml['high_risk_ai_system']['filter_exception_prep']])) < 1:
-                project_type = "high_risk_ai_system"
-                
-    if gpai_model == True:
-        if project_cc_yaml['gpai_model_systematic_risk']['evaluation'] or project_cc_yaml['gpai_model_systematic_risk']['flops']:
-            project_type = "gpai_model_systematic_risk"
-            
-    return project_type
-
 def set_operator_role_and_location(dispositive_variables, project_cc_yaml):
     operators = 0
     

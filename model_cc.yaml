@@ -1,3 +1,5 @@
+card_type: "model" # "project", "data" or "model"
+
 intended_purpose:
   safety_component: 
     article: 'Art. 6(1)(a)'

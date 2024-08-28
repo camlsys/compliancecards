@@ -1,3 +1,5 @@
+card_type: "data" # "project", "data" or "model"
+
 intended_purpose:
   safety_component: 
     article: 'Art. 6(1)(a)'
@@ -109,8 +111,8 @@ data_and_data_governance:
     article: 'Art. 10(3)'
     verbose: 'Training data possesses the appropriate statistical properties, including, where applicable, as regards the people in relation to whom the system is intended to be used'
     value: !!bool false
-  contextual: 'Art. 10(4)'
-    article: 
+  contextual: 
+    article: 'Art. 10(4)'
     verbose: 'Training data takes into account, to the extent required by the intended purpose, the characteristics or elements that are particular to the specific geographical, contextual, behavioural or functional setting within which the system is intended to be used'
     value: !!bool false
   personal_data_necessary: 

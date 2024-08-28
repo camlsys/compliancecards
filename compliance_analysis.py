@@ -1,5 +1,5 @@
 import yaml
-from utils import set_type, set_operator_role_and_location, set_eu_market_status, check_within_scope_cc, check_within_scope_act
+from utils import set_operator_role_and_location, set_eu_market_status, check_within_scope_cc, check_within_scope_act
 
 # Create some variables we will use throughout our analysis
 
@@ -31,22 +31,40 @@ dispositive_variables = {
 
 def check_overall_compliance(dispositive_variables, cc_files):
 
+
     # check intended purposes 
-    dispositive_variables = check_intended_purpose(dispositive_variables, cc_files)
+    # dispositive_variables = check_intended_purpose(dispositive_variables, cc_files)
    
     # for each model_cc and data_cc - run analysis with ref to project_cc
     
-    dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml)
-    dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml)
+    # dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml)
+    # dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml)
     
     dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml)
 
     return dispositive_variables
 
-def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml): 
-
-    # Determine project type (AI system vs. GPAI model) as well as operator type. We will use these for different things.
-    project_type = set_type(dispositive_variables, project_cc_yaml)
+def run_compliance_analysis_on_project(project_cc_yaml): 
+    
+    # Project Type    
+    if project_cc_yaml['ai_system']['ai_system']['value']:
+        dispositive_variables['ai_project_type']['ai_system'] = True
+    if project_cc_yaml['gpai_model']['gpai_model']['value']:
+        dispositive_variables['ai_project_type']['gpai_model'] = True
+    if dispositive_variables['ai_project_type']['ai_system'] and dispositive_variables['ai_project_type']['gpai_model']:
+        dispositive_variables['msg'] = "Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly."
+        return dispositive_variables
+    
+    if ai_system == True:
+        for key, value in project_cc_yaml['high_risk_ai_system']:
+            if value and sum(map(bool, [project_cc_yaml['high_risk_ai_system']['filter_exception_rights'],project_cc_yaml['high_risk_ai_system']['filter_exception_narrow'],project_cc_yaml['high_risk_ai_system']['filter_exception_human'],project_cc_yaml['high_risk_ai_system']['filter_exception_deviation'], project_cc_yaml['high_risk_ai_system']['filter_exception_prep']])) < 1:
+                project_type = "high_risk_ai_system"
+                
+    if gpai_model == True:
+        if project_cc_yaml['gpai_model_systematic_risk']['evaluation'] or project_cc_yaml['gpai_model_systematic_risk']['flops']:
+            project_type = "gpai_model_systematic_risk"
+    
+    # Operator Type
     set_operator_role_and_location(dispositive_variables, project_cc_yaml)
     set_eu_market_status(dispositive_variables, project_cc_yaml)
 
@@ -106,35 +124,35 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
 
     if gpai_model:
 
-    # # If the project is a GPAI model with systematic risk, check that is has additionally met all the requirements for such systems: 
+        # # If the project is a GPAI model with systematic risk, check that is has additionally met all the requirements for such systems: 
 
-    # if gpai_model_systematic_risk:
+        # if gpai_model_systematic_risk:
 
-    # # Do this by examining the Project CC
+        # # Do this by examining the Project CC
 
-    #     for key, value in project_cc_yaml['gpai_obligations_for_systemic_risk_models']:
-    #         if not value:
-    #             msg = ("GPAI model with systematic risk fails the transparency requirements under Article 55.")
+        #     for key, value in project_cc_yaml['gpai_obligations_for_systemic_risk_models']:
+        #         if not value:
+        #             msg = ("GPAI model with systematic risk fails the transparency requirements under Article 55.")
 
-    # Do this by examining the Project CC
+        # Do this by examining the Project CC
 
         for key, value in project_cc_yaml['gpai_model_obligations']:
             if not value:
                 msg = ("GPAI model fails the transparency requirements under Article 53.")    
 
 
-    if gpai_model_systematic_risk:
-        for key, value in project_cc_yaml['gpai_models_with_systemic_risk_obligations']:
+    # if gpai_model_systematic_risk:
+        # for key, value in project_cc_yaml['gpai_models_with_systemic_risk_obligations']:
 
 
-    # if ai_system:
-    #     for key, value in project_cc_yaml['']:
+        # if ai_system:
+        #     for key, value in project_cc_yaml['']:
         # TODO to be included in project_cc
-        
+            
 
-    # TODO: No matter where we land with an orchestrator function, this function must also check to the value it has set for both
-    # GPAI models with and without systemic risk and then check to see if the relevant requirement have met if either of these values applies.
-    # This will look a lot like what is happening above for high-risk AI systems. 
+        # TODO: No matter where we land with an orchestrator function, this function must also check to the value it has set for both
+        # GPAI models with and without systemic risk and then check to see if the relevant requirement have met if either of these values applies.
+        # This will look a lot like what is happening above for high-risk AI systems. 
     
     return dispositive_variables
 
@@ -158,7 +176,6 @@ def run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml):
     #             for key, value in data_cc_yaml['gpai_requirements']['gpai_requirements']:
     #                 if not value:
     #                     msg = (f"Because of the dataset represented by {filename}, this GPAI fails the transparency requirements under Article 53.")
-
 
     # TODO: No matter where we land with an orchestrator function, this function must also check to the value that has been set for both
     # GPAI models with and without systemic risk and then check to see if the relevant requirements have met if either of these values applies.
