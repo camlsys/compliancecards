@@ -30,7 +30,7 @@ ai_system:
   ai_system: 
     article: 'Art. 3(1)'
     verbose: 'AI project is a machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments'
-    value: !!bool false 
+    value: !!bool true 
 
 gpai_model:
   gpai_model: 
@@ -93,6 +93,8 @@ high_risk_ai_system:
     article: 'Art. 6(2); Annex III(8)(a)'
     verbose: 'AI project is intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
+
+high_risk_ai_system_exceptions:    
   filter_exception_rights: 
     article: 'Art. 6(3)'
     verbose: 'The AI initiate does not pose a significant risk of harm to the health, safety or fundamental rights of natural persons, including by not materially influencing the outcome of decision making'

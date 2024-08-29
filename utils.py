@@ -72,20 +72,22 @@ def check_excepted(project_cc_yaml):
     else:
         return False 
 
-# TODO update function
 def check_prohibited(project_cc_yaml):
 
-    ai_system = project_variables['ai_project_type']['ai_system'] 
+    ai_system = project_cc_yaml['ai_system']['ai_system'] 
     
     if ai_system:
         for key in project_cc_yaml['prohibited_practice']['ai_system']:
-            if key[value]: 
+            if project_cc_yaml['prohibited_practice']['ai_system'][f'{key}']['value'] == True: 
                 print("You are engaged in a prohibited practice and thus the project is non-compliant.")
                 return True
-    if project_cc_yaml['prohibited_practice']['biometric']['categorization']:
+    if project_cc_yaml['prohibited_practice']['biometric']['categorization'] == True:
         print("You are engaged in a prohibited practice and thus the project is non-compliant.")
         return True
-    if project_cc_yaml['prohibited_practice']['biometric']['real_time'] and sum(map(bool, [project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_victim'],project_cc['prohibited_practice']['biometric']['real_time_exception_threat'], project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_investigation']])) == 0:
+    if project_cc_yaml['prohibited_practice']['biometric']['real_time'] and \
+       sum(map(bool, [project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_victim'],
+                       project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_threat'], 
+                       project_cc_yaml['prohibited_practice']['biometric']['real_time_exception_investigation']])) == 0:
         print("You are engaged in a prohibited practice and thus the project is non-compliant.")
         return True
     else: 
