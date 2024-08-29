@@ -1,5 +1,7 @@
 card_type: "data" # "project", "data" or "model"
 
+# Meta data related to intended purpose(s) of data 
+
 intended_purpose:
   safety_component: 
     article: 'Art. 6(1)(a)'
@@ -54,6 +56,8 @@ intended_purpose:
     verbose: 'This dataset is appropriate to use for AI projects intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
 
+# Metadata related to data-related requirements for high-risk AI systems
+
 high_risk_ai_systems:
   data_and_data_governance_data_governance: 
     article: 'Art. 10(1)-(2)'
@@ -105,15 +109,15 @@ high_risk_ai_systems:
     value: !!bool false
   data_and_data_governance_data_completeness: 
     article: 'Art. 10(3); Rec. 67'
-    verbose: 'Training data is complete in view of the intended purpose of system'
+    verbose: 'Training data is complete in view of the intended purpose'
     value: !!bool false
   data_and_data_governance_statistical_properties: 
     article: 'Art. 10(3)'
-    verbose: 'Training data possesses the appropriate statistical properties, including, where applicable, as regards the people in relation to whom the system is intended to be used'
+    verbose: 'Training data possesses the appropriate statistical properties, including, where applicable, as regards the people in relation to whom it is intended to be used'
     value: !!bool false
   data_and_data_governance_contextual: 
     article: 'Art. 10(4)'
-    verbose: 'Training data takes into account, to the extent required by the intended purpose, the characteristics or elements that are particular to the specific geographical, contextual, behavioural or functional setting within which the system is intended to be used'
+    verbose: 'Training data takes into account, to the extent required by the intended purpose, the characteristics or elements that are particular to the specific geographical, contextual, behavioural or functional setting within which it is intended to be used'
     value: !!bool false
   data_and_data_governance_personal_data_necessary: 
     article: 'Art. 10(5)'
@@ -177,16 +181,18 @@ high_risk_ai_systems:
     value: !!bool false
   technical_documentation_cybersecurity:  
     article: 'Art. 11; Annex IV(2)(h)'
-    verbose: 'Cybersecurity measures put in place as regards the data (e.g., scanning for data poisoning)'
+    verbose: 'Cybersecurity measures were put in place as regards the data (e.g., scanning for data poisoning)'
     value: !!bool false
   transparency_and_provision_of_information_to_deployers: 
     article: '# Art. 13(3)(b)(vi)'
-    verbose: 'Specifications for the input data, or any other relevant information in terms of the training, validation and testing data sets used, taking into account the intended purpose of the AI system'
+    verbose: 'Dataset is accompanied by instructions for use that convery relevant information about it, taking into account its intended purpose'
     value: !!bool false
   quality_management_system: 
     article: 'Art. 17(1)(f)'
-    verbose: 'Systems and procedures for data management, including data acquisition, data collection, data analysis, data labelling, data storage, data filtration, data mining, data aggregation, data retention and any other operation regarding the data that is performed before and for the purposes of the placing on the market or putting into service of high-risk AI systems'
+    verbose: 'Datset was subject to a quality management system that is documented in a systematic and orderly manner in the form of written policies, procedures and instructions, and includes a description of the systems and procedures for data management, including data acquisition, data collection, data analysis, data labelling, data storage, data filtration, data mining, data aggregation, data retention and any other operation regarding the data'
     value: !!bool false
+
+# Meta data related to data-relaed requirements for GPAI models 
 
 gpai_requirements: 
   data_type: 
