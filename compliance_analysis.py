@@ -171,9 +171,14 @@ def run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml):
     #         if not value:
     #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
 
+    if dispositive_variables['ai_project_type']["ai_system"] == True:
+        for value in data_cc_yaml['high_risk_ai_system_requirements']:
+            if data_cc_yaml['high_risk_ai_system_requirements'][f'{value}'] == True:
+                dispositive_variables['msg'].append(f"")
+
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
         for value in data_cc_yaml['gpai_requirements']:
-            if data_cc_yaml['gpai_requirements'][f'{value}'] == True:
+            if data_cc_yaml['gpai_requirements'][f'{value}'] == True: # should this be false? BM
                 dispositive_variables['msg'].append(f"")
 
     return dispositive_variables

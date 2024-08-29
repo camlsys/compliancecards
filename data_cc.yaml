@@ -58,7 +58,7 @@ intended_purpose:
 
 # Metadata related to data-related requirements for high-risk AI systems
 
-high_risk_ai_systems:
+high_risk_ai_system_requirements:
   data_and_data_governance_data_governance: 
     article: 'Art. 10(1)-(2)'
     verbose: 'The dataset was subject to data governance and management practices appropriate to the intended use case'
