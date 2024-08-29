@@ -54,160 +54,142 @@ intended_purpose:
     verbose: 'This model is appropriate to use for AI projects intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
 
-risk_management_system:
-  foreseeable_risks: 
+high_risk_ai_models:
+  risk_management_system_general:
+    article: 'Art. 9(2)'
+    verbose: 'A risk management system has been planned, run, reviewed, and updated throughout the model lifecycle' 
+    value: !!bool false 
+  risk_management_system_foreseeable_risks: 
     article: 'Art. 9(2)(a)'
-    verbose: 'Known or reasonably foreseeable risks the model can pose to health or safety when used for intended purpose'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included the identification and analysis of any known or reasonably foreseeable risks the model can pose to health or safety when used for intended purpose'
     value: !!bool false
-  evaluation: 
+  risk_management_system_evaluation: 
     article: 'Art. 9(2)(b)'
-    verbose: 'Estimation and evaluation of risks when model used for intended purpose'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included the estimation and evaluation of risks when model used for intended purpose'
     value: !!bool false
-  misuse: 
+  risk_management_system_misuse: 
     article: 'Art. 9(2)(b)'
-    verbose: 'Estimation and evaluation of risks when model used under conditions of reasonably foreseeable misuse' 
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included the estimation and evaluation of risks when model used under conditions of reasonably foreseeable misuse' 
     value: !!bool false
-  testing_performance: 
+  risk_management_system_testing_performance: 
     article: 'Art. 9(6)'
-    verbose: 'Testing to ensure model performs consistently for intended purpose'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included testing to ensure model performs consistently for intended purpose'
     value: !!bool false
-  testing_compliance: 
+  risk_management_system_testing_compliance: 
     article: 'Art. 9(6)'
-    verbose: 'Testing to ensure model complies with Act'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included testing to ensure model complies with Act'
     value: !!bool false
-  testing_benchmark: 
+  risk_management_system_testing_benchmark: 
     article: 'Art. 9(8)'
-    verbose: 'Testing against prior defined metrics appropriate to intended purpose'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included testing against prior defined metrics appropriate to intended purpose'
     value: !!bool false
-  testing_probabilistic:  
+  risk_management_system_testing_probabilistic:  
     article: 'Art. 9(8)'
-    verbose: 'Testing against probabilistic thresholds appropriate to intended purpose'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included testing against probabilistic thresholds appropriate to intended purpose'
     value: !!bool false
-
-technical_documentation:
-  pre_trained_elements: 
+  technical_documentation_pre_trained_elements: 
     article: 'Art. 11; Annex IV(2)(a)'
     verbose: 'Model has technical documentation that describes pre-trained elements of model provided by third parties and how used, integrated or modified'
     value: !!bool false 
-  logic: 
+  technical_documentation_logic: 
     article: 'Art. 11; Annex IV(2)(b)'
     verbose: 'Model has technical documentation that describes general logic of model'
     value: !!bool false
-  design_choices: 
+  technical_documentation_design_choices: 
     article: 'Art. 11; Annex IV(2)(b)'
     verbose: 'Model has technical documentation that describes key design choices including rationale and assumptions made, including with regard to persons or groups on which model intended to be used'
     value: !!bool false
-  classification_choices: 
+  technical_documentation_classification_choices: 
     article: 'Art. 11; Annex IV(2)(b)'
     verbose: 'Model has technical documentation that describes main classification choices'
     value: !!bool false
-  parameters: 
+  technical_documentation_parameters: 
     article: 'Art. 11; Annex IV(2)(b)'
-    verbose: 'What model is designed to optimise for and relevance of its different parameters'
+    verbose: 'Model has technical documentation that describes what model is designed to optimise for and relevance of its different parameters'
     value: !!bool false
-  expected_output: 
+  technical_documentation_expected_output: 
     article: 'Art. 11; Annex IV(2)(b)'
-    verbose: 'Description of the expected output and output quality of the system'
+    verbose: 'Model has technical documentation that the expected output and output quality of the system'
     value: !!bool false
-  act_compliance: 
+  technical_documentation_act_compliance: 
     article: 'Art. 11; Annex IV(2)'
-    verbose: 'Decisions about any possible trade-off made regarding the technical solutions adopted to comply with the requirements set out in Title III, Chapter 2'
+    verbose: 'Model has technical documentation that describes decisions about any possible trade-off made regarding the technical solutions adopted to comply with the requirements set out in Title III, Chapter 2'
     value: !!bool false
-  human_oversight: 
+  technical_documentation_human_oversight: 
     article: 'Art. 11; Annex IV(2)(e)'
-    verbose: 'Assessment of the human oversight measures needed in accordance with Article 14, including an assessment of the technical measures needed to facilitate the interpretation of the outputs of AI systems by the deployers, in accordance with Articles 13(3)(d)'
+    verbose: 'Model has technical documentation that describes an assessment of the human oversight measures needed in accordance with Article 14, including an assessment of the technical measures needed to facilitate the interpretation of the outputs of AI systems by the deployers, in accordance with Articles 13(3)(d)'
     value: !!bool false
-  validation: 
+  technical_documentation_validation: 
     article: 'Art. 11; Annex IV(2)(g)'
-    verbose: 'Validation and testing procedures used, including information about the validation and testing data used and their main characteristics; metrics used to measure accuracy, robustness and compliance with other relevant requirements set out in Title III, Chapter 2 as well as potentially discriminatory impacts; test logs and all test reports dated and signed by the responsible persons, including with regard to predetermined changes as referred to under point (f)' 
+    verbose: 'Model has technical documentation that describes validation and testing procedures used, including information about the validation and testing data used and their main characteristics; metrics used to measure accuracy, robustness and compliance with other relevant requirements set out in Title III, Chapter 2 as well as potentially discriminatory impacts; test logs and all test reports dated and signed by the responsible persons, including with regard to predetermined changes as referred to under point (f)' 
     value: !!bool false
-  cybersecurity: 
+  technical_documentation_cybersecurity: 
     article: 'Art. 11; Annex IV(2)(h)'
-    verbose: 'Cybersecurity measures put in place'
+    verbose: 'Model has technical documentation that describes cybersecurity measures put in place'
     value: !!bool false
-
-transparency_and_provision_of_information_to_deployers:
-  intended_purpose: 
+  transparency_to_deployers_intended_purpose: 
     article: 'Art. 13(3)(b)(i)'
-    verbose: 'Intended purpose'
+    verbose: 'Model is accompanied by instructions for use that include the characteristics, capabilities, performance limitations, and intended purpose of the model'
     value: !!bool false
-  metrics: 
+  transparency_to_deployers_metrics: 
     article: 'Art. 13(3)(b)(ii)'
-    verbose: 'Level of accuracy, including its metrics, robustness and cybersecurity referred to in Article 15 against which the high-risk AI system has been tested and validated and which can be expected, and any known and foreseeable circumstances that may have an impact on that expected level of accuracy, robustness and cybersecurity'
+    verbose: 'Model is accompanied by instructions for use that include the level of accuracy, including its metrics, robustness and cybersecurity against which the model has been tested and validated and which can be expected, and any known and foreseeable circumstances that may have an impact on that expected level of accuracy, robustness and cybersecurity'
     value: !!bool false
-  foreseeable_misuse: 
+  transparency_to_deployers_foreseeable_misuse: 
     article: 'Art. 13(3)(b)(iii)'
-    verbose: 'Any known or foreseeable circumstance, related to the use of the high-risk AI system in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, which may lead to risks to the health and safety or fundamental rights referred to in Article 9(2)' 
+    verbose: 'Model is accompanied by instructions for use that include any known or foreseeable circumstance, related to the use of the model in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, which may lead to risks to the health and safety or fundamental rights referred to in Article 9(2)' 
     value: !!bool false
-  explainability:  
+  transparency_to_deployers_explainability:  
     article: 'Art. 13(3)(b)(iv)'
-    verbose: 'Technical capabilities and characteristics of the AI system to provide information that is relevant to explain its output' 
+    verbose: 'Model is accompanied by instructions for use that include technical capabilities and characteristics of the model to provide information that is relevant to explain its output' 
     value: !!bool false
-  specific_groups: 
+  transparency_to_deployers_specific_groups: 
     article: 'Art. 13(3)(b)(v)'
-    verbose: 'Performance regarding specific persons or groups of persons on which the system is intended to be used'
+    verbose: 'Model is accompanied by instructions for use that include performance regarding specific persons or groups of persons on which the model is intended to be used'
     value: !!bool false
-  data: 
+  transparency_to_deployers_data: 
     article: 'Art. 13(3)(b)(vi)'
-    verbose: 'Specifications for the input data, or any other relevant information in terms of the training, validation and testing data sets used, taking into account the intended purpose of the AI system'
+    verbose: 'Model is accompanied by instructions for use that include specifications for the input data, or any other relevant information in terms of the training, validation and testing data sets used, taking into account the intended purpose of the model'
     value: !!bool false
-  interpretability: 
+  transparency_to_deployers_interpretability: 
     article: 'Art. 13(3)(b)(vii)'
-    verbose: 'Information to enable deployers to interpret the output of the high-risk AI system and use it appropriately'
+    verbose: 'Model is accompanied by instructions for use that include information to enable deployers to interpret the output of the model and use it appropriately'
     value: !!bool false   
-  human_oversight: 
+  transparency_to_deployers_human_oversight: 
     article: 'Art. 13(3)(d)'
-    verbose: 'Human oversight measures referred to in Article 14, including the technical measures put in place to facilitate the interpretation of the outputs of AI systems by the deployers' 
+    verbose: 'Model is accompanied by instructions for use that include human oversight measures, including the technical measures put in place to facilitate the interpretation of the outputs of model by the deployers' 
     value: !!bool false
-  hardware: 
+  transparency_to_deployers_hardware: 
     article: 'Art. 13(3)(e)'
-    verbose: 'Computational and hardware resources needed, the expected lifetime of the high-risk AI system and any necessary maintenance and care measures, including their frequency, to ensure the proper functioning of that AI system, including as regards software updates'
+    verbose: 'Model is accompanied by instructions for use that include computational and hardware resources needed, the expected lifetime of the model and any necessary maintenance and care measures, including their frequency, to ensure the proper functioning of that model, including as regards software updates'
     value: !!bool false
-
-accuracy_robustness_cybersecurity:
-  accuracy:  
+  accuracy_robustness_cybersecurity_accuracy:  # These need to be cleaned up and to match/compliment project cc
     article: 'Art. 15(1)'
     verbose: 'Model is designed and developed to achieve appropriate level of accuracy'
     value: !!bool false
-  robustiness: 
+  accuracy_robustness_cybersecurity_robustiness: 
     article: 'Art. 15(1)'
     verbose: 'Model is designed and developed to achieve appropriate level of robustness'
     value: !!bool false
-  cybersecurity:  
+  accuracy_robustness_cybersecurity_cybersecurity:  
     article: 'Art. 15(1)'
     verbose: 'Model is designed and developed to achieve appropriate level of cybersecurity'
     value: !!bool false
-  accuracy_metrics: 
+  accuracy_robustness_cybersecurity_accuracy_metrics: 
     article: 'Art. 15(2)'
     verbose: 'Use of relevant accuracy metrics'
     value: !!bool false
-  fault_resilience: 
+  accuracy_robustness_cybersecurity_fault_resilience: 
     article: 'Art. 15(4)'
     verbose: 'Maximum possible resilience regarding errors, faults or inconsistencies that may occur within the system or the environment in which the system operates, in particular due to their interaction with natural persons or other systems. Technical and organisational measures shall be taken towards this regard'
     value: !!bool false
-  attacks: 
+  accuracy_robustness_cybersecurity_attacks: 
     article: 'Art. 15(5)'
     verbose: 'Measures were taken to prevent, detect, respond to, resolve and control for model poisoning attacks, adversarial examples or model evasion attacks (attacks using inputs designed to cause the model to make a mistake), and confidentiality attacks or model flaws'
     value: !!bool false
-
-quality_management_system:
-  quality_management_system: 
+  quality_management_system:
     article: 'Art. 17(1)(d)'
     verbose: 'Examination, test and validation procedures to be carried out before, during and after the development of the high-risk AI system, and the frequency with which they have to be carried out'
-    value: !!bool false
-
-transparency_obligations:
-  generates_media: 
-    article: 'Art. 50(2)'
-    verbose: 'AI project generates synthetic audio, image, video or text content'
-    value: !!bool false
-  marked_as_generated: 
-    article: 'Art. 50(2)'
-    verbose: 'outputs are marked in a machine-readable format and detectable as artificially generated or manipulated'
-    value: !!bool false
-  interoperability: 
-    article: 'Art. 50(2)'
-    verbose: 'Providers shall ensure their technical solutions are effective, interoperable, robust and reliable as far as this is technically feasible, taking into account specificities and limitations of different types of content, costs of implementation and the generally acknowledged state-of-the-art, as may be reflected in relevant technical standards'
     value: !!bool false
 
 classification_of_gpai_models:
@@ -318,4 +300,18 @@ obligations_for_providers_of_gpai_models_with_systemic_risk:
   cybersecurity: 
     article: 'Art. 55(1)(d)'
     verbose: 'Ensure an adequate level of cybersecurity protection for the GPAI model with systemic risk and the physical infrastructure of the mode'
+    value: !!bool false
+
+transparency_obligations:
+  generates_media: # clean this up
+    article: 'Art. 50(2)'
+    verbose: 'If the AI project generates synthetic audio, image, video or text content'
+    value: !!bool false
+  marked_as_generated: 
+    article: 'Art. 50(2)'
+    verbose: 'If outputs are marked in a machine-readable format and detectable as artificially generated or manipulated'
+    value: !!bool false
+  interoperability: 
+    article: 'Art. 50(2)'
+    verbose: 'Providers shall ensure their technical solutions are effective, interoperable, robust and reliable as far as this is technically feasible, taking into account specificities and limitations of different types of content, costs of implementation and the generally acknowledged state-of-the-art, as may be reflected in relevant technical standards'
     value: !!bool false
