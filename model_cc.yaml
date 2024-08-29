@@ -1,5 +1,7 @@
 card_type: "model" # "project", "data" or "model"
 
+# Metadata related to intended purpose(s) of model 
+
 intended_purpose:
   safety_component: 
     article: 'Art. 6(1)(a)'
@@ -53,6 +55,20 @@ intended_purpose:
     article: 'Art. 6(2); Annex III(8)(a)'
     verbose: 'This model is appropriate to use for AI projects intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
+
+# Metadata that will help us determine if the model itself is a GPAI and, therefore, must satisfy the requirements of GPAI models
+
+classification_of_gpai_models:
+  high_impact_capabilities: 
+    article: 'Art. 51(1)(a)'
+    verbose: 'The model has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks'
+    value: !!bool false
+  flops: 
+    article: 'Art. 51(2)'
+    verbose: 'The cumulative compute used for training the model, as measured in floating point operations (FLOPs), was greater than 10^25.'
+    value: !!bool false
+
+# Metadata related to model-related requirements for high-risk AI systems
 
 high_risk_ai_models:
   risk_management_system_general:
@@ -192,15 +208,7 @@ high_risk_ai_models:
     verbose: 'Examination, test and validation procedures to be carried out before, during and after the development of the high-risk AI system, and the frequency with which they have to be carried out'
     value: !!bool false
 
-classification_of_gpai_models:
-  high_impact_capabilities: 
-    article: 'Art. 51(1)(a)'
-    verbose: 'Whether model has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks'
-    value: !!bool false
-  flops: 
-    article: 'Art. 51(2)'
-    verbose: 'Cumulative compute used for training measured in floating point operations (FLOPs)'
-    value: !!bool false
+# Meta data related to model-related requirements for GPAI models 
 
 obligations_for_providers_of_gpai_models:
   task:  
@@ -302,10 +310,12 @@ obligations_for_providers_of_gpai_models_with_systemic_risk:
     verbose: 'Ensure an adequate level of cybersecurity protection for the GPAI model with systemic risk and the physical infrastructure of the mode'
     value: !!bool false
 
+# Metadata related to transparency requirements for some AI systems (Article 50)
+
 transparency_obligations:
   generates_media: # clean this up
     article: 'Art. 50(2)'
-    verbose: 'If the AI project generates synthetic audio, image, video or text content'
+    verbose: 'If the model generates synthetic audio, image, video or text content'
     value: !!bool false
   marked_as_generated: 
     article: 'Art. 50(2)'
