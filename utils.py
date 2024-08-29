@@ -66,7 +66,11 @@ def check_within_scope_act(project_cc_yaml):
         return False
 
 def check_excepted(project_cc_yaml):
-    if project_cc_yaml['excepted']['scientific'] or project_cc_yaml['excepted']['pre_market'] or (ai_system and project_cc_yaml['excepted']['open_source_ai_system']) or (gpai_model and project_cc_yaml['excepted']['open_source_gpai_system']):
+    if (project_cc_yaml['excepted']['scientific'] or 
+        project_cc_yaml['excepted']['pre_market'] or 
+        (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['open_source_ai_system']) or 
+        (project_cc_yaml['gpai_model']['gpai_model']['value'] == True and project_cc_yaml['excepted']['open_source_gpai_system'])
+    ):
         print("Your project falls into one of the exemptions from the Act.")   
         return True
     else:
