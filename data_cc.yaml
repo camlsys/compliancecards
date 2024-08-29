@@ -26,7 +26,7 @@ intended_purpose:
   emotion_recognition: 
     article: 'Art. 6(2); Annex III(1)(c)'
     verbose: 'This dataset is appropriate to use for AI projects involving emotion recognition'
-    value: !!bool false 
+    value: !!bool true 
   critical_infrastructure: 
     article: 'Art. 6(2); Annex III(2)'
     verbose: 'This dataset is appropriate to use for AI projects involving safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'

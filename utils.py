@@ -1,5 +1,3 @@
-import yaml
-   
 # We could probably combine set_type, set_operator_role_and_location, and set_eu_market_status into a single function that sets all project_variables
 # We will have to add a couple other things to that function as well 
 

@@ -254,7 +254,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
 
         for purpose in project_intended_purposes:
             if purpose not in dataset_intended_purposes:
-                dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose")
+                dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for the dataset")
 
     # Now do the exact same thing for all models
 
@@ -266,7 +266,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
 
         for purpose in project_intended_purposes:
             if purpose not in model_intended_purposes:
-                dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose")
+                dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for the model")
 
     dispositive_variables['intended_purposes'] = project_intended_purposes
 
