@@ -31,24 +31,30 @@ def check_overall_compliance(cards):
     
     with open(cards['project_file'], 'r') as project_filepath:
         project_cc = yaml.safe_load(project_filepath.read())
+   
+    # check intended purposes 
+    for card in cards['data_files']:
+        with open(card, 'r') as data_filepath:
+            data_cc = yaml.safe_load(data_filepath.read())
+            dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, data_cc)
+        
+    for card in cards['model_files']:
+        with open(card, 'r') as model_filepath:
+            model_cc = yaml.safe_load(model_filepath.read())
+            dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, model_cc)
+   
+    # for each model_cc and data_cc - run analysis with ref to project_cc
+    dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc)
 
-    
-    # # check intended purposes 
     # for card in cards['data_files']:
     #     with open(card, 'r') as data_filepath:
     #         data_cc = yaml.safe_load(data_filepath.read())
-    #         dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, data_cc)
-        
+    #         dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml)
+            
     # for card in cards['model_files']:
-    #     dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, card)
-        
-   
-    # for each model_cc and data_cc - run analysis with ref to project_cc
-    
-    dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc)
-    
-    # dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml)
-    # dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml)
+    #     with open(card, 'r') as model_filepath:
+    #         model_cc = yaml.safe_load(model_filepath.read())
+    #         dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml)
 
     return dispositive_variables
 
@@ -150,64 +156,56 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
 
 def run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml): 
     
-    # TODO: we probably have to pass ai_project_type and project_intended_purpose into this function
-    if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
-        for key, value in data_cc_yaml['data_and_data_governance']:
-            if not value:
-                msg = (f"Because of the dataset represented by , this high-risk AI system fails the data and data governance requirements under Article 10.")
-        for key, value in data_cc_yaml['technical_documentation']:
-            if not value:
-                msg = (f"Because of the dataset represented by , this high-risk AI system fails the technical documentation requirements under Article 11.")
-        for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
-            if not value:
-                msg = (f"Because of the dataset represented by , this high-risk  AI system fails the transparency requirements under Article 13.")
-        for key, value in data_cc_yaml['quality_management_system']:
-            if not value:
-                msg = (f"Because of the dataset represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
+    # # TODO: we probably have to pass ai_project_type and project_intended_purpose into this function
+    # if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
+    #     for value in data_cc_yaml['high_risk_ai_systems']['data_and_data_governance']:
+    #         if not value:
+    #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk AI system fails the data and data governance requirements under Article 10.")
+    #     for key, value in data_cc_yaml['technical_documentation']:
+    #         if not value:
+    #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk AI system fails the technical documentation requirements under Article 11.")
+    #     for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
+    #         if not value:
+    #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk  AI system fails the transparency requirements under Article 13.")
+    #     for key, value in data_cc_yaml['quality_management_system']:
+    #         if not value:
+    #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
 
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
-        for key, value in data_cc_yaml['gpai_requirements']['gpai_requirements']:
-            if not value:
-                msg = (f"Because of the dataset represented by {filename}, this GPAI fails the transparency requirements under Article 53.")
-
-
-    # TODO: No matter where we land with an orchestrator function, this function must also check to the value that has been set for both
-    # GPAI models with and without systemic risk and then check to see if the relevant requirements have met if either of these values applies.
-    # Right now it is only checking high-risk AI system requirements. Another thing that we likely have to add here is the cross-comparison of the 
-    # intended purposes. That might look like this:
-    # if data_cc_yaml['intended_purpose'] not in intended_purposes:
-    #   return false 
+        for value in data_cc_yaml['gpai_requirements']:
+            if data_cc_yaml['gpai_requirements'][f'{value}'] == True:
+                dispositive_variables['msg'].append(f"")
 
     return dispositive_variables
     
 def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):  
     
-    # TODO: we probably have to pass ai_project_type and project_intended_purpose into this function
-    # if high risk
-        # for key, value in model_cc_yaml['risk_management_system']:
-        #     if not value:
-        #         msg = (f"Because of the model represented by , this high-risk AI system fails the risk management requirements under Article 9.")
-        # for key, value in data_cc_yaml['technical_documentation']:
-        #     if not value:
-        #         msg = (f"Because of the model represented by , this high-risk AI system fails the technical documentation requirements under Article 11.")
-        # for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
-        #     if not value:
-        #         msg = (f"Because of the model represented by , this high-risk  AI system fails the transparency requirements under Article 13.")
-        # for key, value in data_cc_yaml['accuracy_robustness_cybersecurity']:
-        #     if not value:
-        #         msg = (f"Because of the model represented by , this high-risk  AI system fails the quality management requirements under Article 15.")
-        # for key, value in data_cc_yaml['quality_management_system']:
-        #     if not value:
-        #         msg = (f"Because of the model represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
+    # # TODO: we probably have to pass ai_project_type and project_intended_purpose into this function
+    # if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
+    #     for key, value in model_cc_yaml['risk_management_system']:
+    #         if not value:
+    #             msg = (f"Because of the model represented by , this high-risk AI system fails the risk management requirements under Article 9.")
+    #     for key, value in data_cc_yaml['technical_documentation']:
+    #         if not value:
+    #             msg = (f"Because of the model represented by , this high-risk AI system fails the technical documentation requirements under Article 11.")
+    #     for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
+    #         if not value:
+    #             msg = (f"Because of the model represented by , this high-risk  AI system fails the transparency requirements under Article 13.")
+    #     for key, value in data_cc_yaml['accuracy_robustness_cybersecurity']:
+    #         if not value:
+    #             msg = (f"Because of the model represented by , this high-risk  AI system fails the quality management requirements under Article 15.")
+    #     for key, value in data_cc_yaml['quality_management_system']:
+    #         if not value:
+    #             msg = (f"Because of the model represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
 
-    # if gpai
+    # if dispositive_variables['ai_project_type']["gpai_model"] == True:
     #     for key, value in model_cc_yaml['obligations_for_providers_of_gpai_models']:
-    # #                 if not value:
-    # #                     msg = (f"Because of the model represented by {filename}, this GPAI fails the transparency requirements under Article 53.")
+    #                 if not value:
+    #                     msg = (f"Because of the model represented by {filename}, this GPAI fails the transparency requirements under Article 53.")
 
-    # #             for key, value in model_cc_yaml['obligations_for_providers_of_gpai_models_with_systemic_risk']:
-    # #                 if not value:
-    # #                     msg = (f"Because of the model represented by {filename}, this GPAI model with systematic risk fails the transparency requirements under Article 55.")
+    #             for key, value in model_cc_yaml['obligations_for_providers_of_gpai_models_with_systemic_risk']:
+    #                 if not value:
+    #                     msg = (f"Because of the model represented by {filename}, this GPAI model with systematic risk fails the transparency requirements under Article 55.")
    
     # # TODO: No matter where we land with an orchestrator function, this function must also check to the value that has been set for both
     # # GPAI models with and without systemic risk and then check to see if the relevant requirements have met if either of these values applies.
@@ -239,39 +237,38 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
     #                     "judicial"]
     
     project_intended_purposes = []
+    dataset_intended_purposes = []
+    model_intended_purposes = []
+    
     for key in project_cc['high_risk_ai_system']:
         if project_cc['high_risk_ai_system'][f'{key}']['value']:
             project_intended_purposes.append(key) 
     
     # For each Data CC, put the intended uses in a set and then make sure the Project's intended use is in the set
-
-    msg = ''
-    
+   
     if other_cc['card_type'] == 'data':
-        data_cc = other_cc
-        dataset_intended_purposes = []
-        for key in data_cc['high_risk_ai_system']:
-            if data_cc['high_risk_ai_system'][f'{key}']['value']:
+        data_cc = other_cc        
+        for key in data_cc['intended_purpose']:
+            if data_cc['intended_purpose'][f'{key}']['value']:
                 dataset_intended_purposes.append(key) 
 
         for purpose in project_intended_purposes:
             if purpose not in dataset_intended_purposes:
-                msg = f"You are not compliant because {purpose} is not a valid purpose"
+                dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose")
 
     # Now do the exact same thing for all models
 
     if other_cc['card_type'] == 'model':
-        model_cc = other_cc
-        model_intended_purposes = []
-        for key in model_cc['high_risk_ai_system']:
-            if model_cc['high_risk_ai_system'][f'{key}']['value']:
+        model_cc = other_cc        
+        for key in model_cc['intended_purpose']:
+            if model_cc['intended_purpose'][f'{key}']['value']:
                 model_intended_purposes.append(key) 
 
         for purpose in project_intended_purposes:
             if purpose not in model_intended_purposes:
-                msg = f"You are not compliant because {purpose} is not a valid purpose"
+                dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose")
 
-    # TODO return list of intended purpose 
+    dispositive_variables['intended_purposes'] = project_intended_purposes
 
     return dispositive_variables
 
