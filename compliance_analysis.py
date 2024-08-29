@@ -3,7 +3,14 @@ from utils import set_operator_role_and_location, set_eu_market_status, check_wi
 
 # Create some variables we will use throughout our analysis
 
-dispositive_variables = {
+
+
+# TODO tells the user where the compliance analysis failed
+# TODO cite article from yaml file as explanation
+
+def check_overall_compliance(cards):
+    
+    dispositive_variables = {
     "ai_project_type": {
         "ai_system": False,
         "gpai_model": False,
@@ -24,61 +31,75 @@ dispositive_variables = {
     "data_cc_pass": False,
     "model_cc_pass": False,
     "msg": []
-}
+    }
+    
+    with open(cards['project_file'], 'r') as project_filepath:
+        project_cc = yaml.safe_load(project_filepath.read())
 
-# TODO tells the user where the compliance analysis failed
-# TODO cite article from yaml file as explanation
-
-def check_overall_compliance(dispositive_variables, cc_files):
-
-
+    
     # check intended purposes 
-    # dispositive_variables = check_intended_purpose(dispositive_variables, cc_files)
+    for card in cards['data_file']:
+        dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, card)
+        
+    for card in cards['model_file']:
+        dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, card)
+        
    
     # for each model_cc and data_cc - run analysis with ref to project_cc
     
+    dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc)
+    
     # dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml)
     # dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml)
-    
-    dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml)
 
     return dispositive_variables
 
-def run_compliance_analysis_on_project(project_cc_yaml): 
+def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
     
     # Project Type    
     if project_cc_yaml['ai_system']['ai_system']['value']:
         dispositive_variables['ai_project_type']['ai_system'] = True
     if project_cc_yaml['gpai_model']['gpai_model']['value']:
         dispositive_variables['ai_project_type']['gpai_model'] = True
-    if dispositive_variables['ai_project_type']['ai_system'] and dispositive_variables['ai_project_type']['gpai_model']:
+    if project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['gpai_model']['gpai_model']['value'] == True:
         dispositive_variables['msg'] = "Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly."
         return dispositive_variables
     
-    if ai_system == True:
-        for key, value in project_cc_yaml['high_risk_ai_system']:
-            if value and sum(map(bool, [project_cc_yaml['high_risk_ai_system']['filter_exception_rights'],project_cc_yaml['high_risk_ai_system']['filter_exception_narrow'],project_cc_yaml['high_risk_ai_system']['filter_exception_human'],project_cc_yaml['high_risk_ai_system']['filter_exception_deviation'], project_cc_yaml['high_risk_ai_system']['filter_exception_prep']])) < 1:
-                project_type = "high_risk_ai_system"
+    # TODO - move file_exceptions to separate section in project_cc?
+    # if dispositive_variables['ai_project_type']['ai_system'] == True:
+    #     for value in project_cc_yaml['high_risk_ai_system']:   
+                     
+    #         if value and sum(map(bool, [
+    #                 project_cc_yaml['high_risk_ai_system']['filter_exception_rights'], 
+    #                 project_cc_yaml['high_risk_ai_system']['filter_exception_narrow'],
+    #                 project_cc_yaml['high_risk_ai_system']['filter_exception_human'],
+    #                 project_cc_yaml['high_risk_ai_system']['filter_exception_deviation'], 
+    #                 project_cc_yaml['high_risk_ai_system']['filter_exception_prep']])
+    #                 ) < 1:
                 
-    if gpai_model == True:
+    #             dispositive_variables['ai_project_type']["high_risk_ai_system"] = True
+               
+    if dispositive_variables['ai_project_type']['gpai_model'] == True:
         if project_cc_yaml['gpai_model_systematic_risk']['evaluation'] or project_cc_yaml['gpai_model_systematic_risk']['flops']:
-            project_type = "gpai_model_systematic_risk"
+            dispositive_variables['ai_project_type']["gpai_model_systematic_risk"] = True
     
     # Operator Type
-    set_operator_role_and_location(dispositive_variables, project_cc_yaml)
-    set_eu_market_status(dispositive_variables, project_cc_yaml)
+    dispositive_variables = set_operator_role_and_location(dispositive_variables, project_cc_yaml)
+    dispositive_variables = set_eu_market_status(dispositive_variables, project_cc_yaml)
 
     # Check if project is within scope of the Compliance Cards project. If not, inform user.
-    if check_within_scope_cc(dispositive_variables):
-        msg = ("Project is within the scope of the Compliance Cards system. Let's continue...") 
+    if check_within_scope_cc(project_cc_yaml):
+        dispositive_variables['msg'].append("Project is within the scope of the Compliance Cards system. Let's continue...") 
     else: 
-        msg = ("Project is not within the scope of the initial version of the Compliance Cards system.")
+        dispositive_variables['msg'].append("Project is not within the scope of the initial version of the Compliance Cards system.")
     
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
-    if check_within_scope_act(dispositive_variables, project_cc_yaml):
-        msg = ("Project is within the scope of Act. Let's continue...") 
+    if check_within_scope_act(project_cc_yaml):
+        dispositive_variables['msg'].append("Project is within the scope of Act. Let's continue...") 
     else: 
-        msg = ("Project is not within the scope of what is regulated by the Act.")
+        dispositive_variables['msg'].append("Project is not within the scope of what is regulated by the Act.")
+
+
 
     # TODO: reactivate the prohibited practices check below 
 
@@ -92,7 +113,7 @@ def run_compliance_analysis_on_project(project_cc_yaml):
 
     # If project is high-risk AI system, check that is has met all the requirements for such systems: 
 
-    if project_type == "high_risk_ai_system":
+    if dispositive_variables['ai_project_type']["high_risk_ai_system"]:
 
     # Do this by examining the Project CC
 
@@ -122,7 +143,7 @@ def run_compliance_analysis_on_project(project_cc_yaml):
     # TODO
     # # If the project is a GPAI model, check that is has met all the requirements for such systems: 
 
-    if gpai_model:
+    if dispositive_variables['ai_project_type']["gpai_model"]:
 
         # # If the project is a GPAI model with systematic risk, check that is has additionally met all the requirements for such systems: 
 
@@ -224,7 +245,7 @@ def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):
     
     return dispositive_variables
 
-def check_intended_purpose(dispositive_variables, cc_files):
+def check_intended_purpose(dispositive_variables, project_cc, other_cc):
     
     # We want to run this function for everything classified as a high_risk_ai_system
     # We also need to run it for all 
@@ -245,32 +266,37 @@ def check_intended_purpose(dispositive_variables, cc_files):
     #                     "judicial"]
     
     project_intended_purposes = []
-    for key in project_cc_yaml['high_risk_ai_system']:
-        if project_cc_yaml['high_risk_ai_system'][f'{key}']['value']:
+    for key in project_cc['high_risk_ai_system']:
+        if project_cc['high_risk_ai_system'][f'{key}']['value']:
             project_intended_purposes.append(key) 
     
     # For each Data CC, put the intended uses in a set and then make sure the Project's intended use is in the set
 
     msg = ''
-    dataset_intended_purposes = []
-    for key in data_cc_yaml['high_risk_ai_system']:
-        if data_cc_yaml['high_risk_ai_system'][f'{key}']['value']:
-            dataset_intended_purposes.append(key) 
+    
+    if other_cc['card_type'] == 'data':
+        data_cc = other_cc
+        dataset_intended_purposes = []
+        for key in data_cc['high_risk_ai_system']:
+            if data_cc['high_risk_ai_system'][f'{key}']['value']:
+                dataset_intended_purposes.append(key) 
 
-    for purpose in project_intended_purposes:
-        if purpose not in dataset_intended_purposes:
-            msg = f"You are not compliant because {purpose} is not a valid purpose"
+        for purpose in project_intended_purposes:
+            if purpose not in dataset_intended_purposes:
+                msg = f"You are not compliant because {purpose} is not a valid purpose"
 
     # Now do the exact same thing for all models
 
-    model_intended_purposes = []
-    for key in model_cc_yaml['high_risk_ai_system']:
-        if model_cc_yaml['high_risk_ai_system'][f'{key}']['value']:
-            model_intended_purposes.append(key) 
+    if other_cc['card_type'] == 'model':
+        model_cc = other_cc
+        model_intended_purposes = []
+        for key in model_cc['high_risk_ai_system']:
+            if model_cc['high_risk_ai_system'][f'{key}']['value']:
+                model_intended_purposes.append(key) 
 
-    for purpose in project_intended_purposes:
-        if purpose not in model_intended_purposes:
-            msg = f"You are not compliant because {purpose} is not a valid purpose"
+        for purpose in project_intended_purposes:
+            if purpose not in model_intended_purposes:
+                msg = f"You are not compliant because {purpose} is not a valid purpose"
 
     # TODO return list of intended purpose 
 

@@ -30,13 +30,13 @@ ai_system:
   ai_system: 
     article: 'Art. 3(1)'
     verbose: 'AI project is a machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments'
-    value: !!bool true 
+    value: !!bool false 
 
 gpai_model:
   gpai_model: 
     article: 'Art. 3(63)'
     verbose: 'AI project is an AI model, including where such an AI model is trained with a large amount of data using self-supervision at scale, that displays significant generality and is capable of competently performing a wide range of distinct tasks regardless of the way the model is placed on the market and that can be integrated into a variety of downstream systems or applications, except AI models that are used for research, development or prototyping activities before they are placed on the market'
-    value: !!bool true  
+    value: !!bool false  
 
 # Information related to whether or not the project, if an AI system, is a high-risk AI system
 

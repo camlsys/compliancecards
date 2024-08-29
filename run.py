@@ -2,7 +2,7 @@ import yaml
 import json
 from pathlib import Path
 import pandas as pd
-from compliance_analysis import run_compliance_analysis_on_project, run_compliance_analysis_on_data, run_compliance_analysis_on_model
+from compliance_analysis import check_overall_compliance
 
 pd.set_option('display.max_columns', None)  
 pd.set_option('display.max_rows', None)
@@ -50,7 +50,6 @@ def gather_cards(files):
     return cards
 
 cards = gather_cards(files)
-print(cards)
 
 # def load_data(files):
 #     cards = []
@@ -58,7 +57,7 @@ print(cards)
 #         with open(file, 'r') as f:
 #             if Path(f.name).name == "project_cc.yaml":
 #                 content = f.read()
-#                 project_cc_yaml = yaml.safe_load(content)
+#                 pcrojet_cc_yaml = yaml.safe_load(content)
 #                 data = project_cc_yaml
 #                 card_type = "project"
 #                 cards.append((card_type, data))
@@ -74,15 +73,11 @@ print(cards)
 #                 cards.append((card_type, data))
 #     return cards
 
-# def process_files(data):
-#     results = []
-#     dispositive_variables = check_overall_compliance(yaml.safe_load(data))
-#     results.append(dispositive_variables['msg'])
-#     return results
+def compliance_analysis(cards):
+    results = []
+    dispositive_variables = check_overall_compliance(cards)
+    results.append(dispositive_variables)#['msg'])
+    return results
 
-# for card in cards:    
-#     data = card[1]
-#     yaml_data = yaml.dump(data, sort_keys=False)
-#     process_files(yaml_data)
-#     print(process_files(yaml_data))
+print(json.dumps(compliance_analysis(cards), indent=4,))
     
