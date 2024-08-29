@@ -590,7 +590,7 @@ gpai_model_obligations:
     model_architecture: 
       article: 'Art. 53(1)(a); Annex XI(1)(1)(d)'
       verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model that includes the architecture and number of parameters'
-      value: !!bool false 
+      value: !!bool true 
     modality: 
       article: 'Art. 53(1)(a); Annex XI(1)(1)(e)'
       verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model that includes the modality (e.g. text, image) and format of inputs and outputs'
@@ -682,6 +682,7 @@ gpai_models_with_systemic_risk_obligations:
   notification: 
     article: 'Art 52(1)'
     verbose: 'Within two weeks of it being known that the AI project should be classified as a GPAI model with systemtic ris, tkhe Commission was notified and provided with the information that supports this finding'
+    value: false
   evaluation: 
     article: 'Art. 55(1)(a)'
     verbose: 'The AI project was subject to a model evaluation using standardized protocols'
