@@ -139,6 +139,10 @@ gpai_model_systematic_risk:
 # Information related to the Act's exceptions for scientific research, open-source AI, and more
 
 excepted:
+  military: # only applies to AI systems, must implement that in the logic
+    article: 'Art. 2(3)'
+    verbose: 'AI project is placed on the market, put into service, or used with or without modification exclusively for military, defence or national security purposes'
+    value: !!bool false 
   scientific: 
     article: 'Art. 2(6)'
     verbose: 'AI project is or was specifically developed and put into service for the sole purpose of scientific research and development'
@@ -252,11 +256,7 @@ risk_management_system:
     value: !!bool false 
   vulnerable_groups: 
     article: 'Art. 9(9)'
-    verbose: 'Adverse impacts in the view of intended purpose the high-risk AI system on individuals under 18 and other vulnerable groups have been considered'
-    value: !!bool true
-  integration_with_other_laws: 
-    article: 'Art. 9(10)'
-    description: 'For providers subject to other Union law requirements, risk management procedures may be integrated or combined with those established under such law.'
+    verbose: 'The risk management system for the AI project considers impacts in the view of intended purpose the AI project on individuals under 18 and other vulnerable groups have been considered'
     value: !!bool true
 
 # Information related to the risk management system requirements for high-risk AI systems (Article 11)
@@ -292,7 +292,7 @@ technical_documentation:
     value: !!bool false 
   external_features:  
     article: 'Art. 11(1); Annex IV(1)(f)'
-    verbose: 'Technical Documentation includes a general description of the AI project that includes, where the AI system is a component of products, photographs or illustrations showing external features, the marking and internal layout of those products'
+    verbose: 'Technical Documentation includes a general description of the AI project that includes, where it is a component of products, photographs or illustrations showing external features, the marking and internal layout of those products'
     value: !!bool false 
   user_interface:  
     article: 'Art. 11(1); Annex IV(1)(g)'
@@ -583,7 +583,7 @@ gpai_model_obligations:
   documentation:
     intended_uses: 
       article: 'Art. 53(1)(a); Annex XI(1)(1)(a)'
-      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model includes a description of the tasks that the model is intended to perform and the type and nature of AI systems in which it can be integrated'
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a general description of the model includes a description of the tasks that the model is intended to perform and the type and nature of AI projects in which it can be integrated'
       value: !!bool false 
     accepable_use_policies: 
       article: 'Art. 53(1)(a); Annex XI(1)(1)(b)'
@@ -607,7 +607,7 @@ gpai_model_obligations:
       value: !!bool false 
     technical_means: 
       article: 'Art. 53(1)(a); Annex XI(1)(2)(a)'
-      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a detailed description of the model that includes the technical means (e.g. instructions of use, infrastructure, tools) required for the AI project to be integrated in AI systems'
+      verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that include a detailed description of the model that includes the technical means (e.g. instructions of use, infrastructure, tools) required for the AI project to be integrated into other AI projects'
       value: !!bool false 
     design_specs: 
       article: 'Art. 53(1)(a); Annex XI(1)(2)(b)'
@@ -632,39 +632,39 @@ gpai_model_obligations:
   provider_documentation:
     general: 
       article:
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulation'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulation'
       value: !!bool false 
     tasks: 
       article: 'ANNEX XII(1)(a)'
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the tasks that the model is intended to perform and the type and nature of AI systems into which it can be integrated;'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the tasks that the model is intended to perform and the type and nature of AI systems into which it can be integrated;'
       value: !!bool false 
     acceptable_use: 
       article: 'ANNEX XII(1)(b)'
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the acceptable use policies applicable;'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their other AI projects, documentation that enables providers of other AI projects to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the acceptable use policies applicable;'
       value: !!bool false 
     release_date: 
       article: 'ANNEX XII(1)(c)'
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the date of release and methods of distribution;'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their other AI projects, documentation that enables providers of other AI projects to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the date of release and methods of distribution;'
       value: !!bool false 
     hardware: 
       article: 'ANNEX XII(1)(d)'
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including how the model interacts, or can be used to interact, with hardware or software that is not part of the model itself, where applicable;'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their other AI projects, documentation that enables providers of other AI projects to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including how the model interacts, or can be used to interact, with hardware or software that is not part of the model itself, where applicable;'
       value: !!bool false 
     versions: 
       article: 'ANNEX XII(1)(e)'
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the versions of relevant software related to the use of the general-purpose AI model, where applicable'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their other AI projects, documentation that enables providers of other AI projects to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the versions of relevant software related to the use of the general-purpose AI model, where applicable'
       value: !!bool false 
     architecture: 
       article: 'ANNEX XII(1)(f)'
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the architecture and number of parameters;'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their other AI projects, documentation that enables providers of other AI projects to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the architecture and number of parameters;'
       value: !!bool false 
     modality:  
       article: 'ANNEX XII(1)(g)'
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the modality (e.g. text, image) and format of inputs and outputs;'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their other AI projects, documentation that enables providers of other AI projects to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the modality (e.g. text, image) and format of inputs and outputs;'
       value: !!bool false 
     license: 
       article: 'ANNEX XII(1)(h)'
-      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of AI systems who intend to integrate the AI project into their AI systems, documentation that enables providers of AI systems to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the licence for the model.;'
+      verbose: 'Provider has draw up and will keep up-to-date and make available to providers of other AI projects who intend to integrate the AI project into their other AI projects, documentation that enables providers of other AI projects to have a good understanding of the capabilities and limitations of the general-purpose AI model and to comply with their obligations pursuant to this Regulatio, that includes general description of the AI project including the licence for the model.;'
       value: !!bool false 
   other:
     policy: 
@@ -753,6 +753,8 @@ additional_provider_obligations:
     value: !!bool false 
 
 # Information related to the additional transparency requirements in Article 50, if applicable
+
+# TODO the requirements seem to be missing from the below. We also need to work on the logic, which is complex. 
 
 transparency_related: 
   direct_user_interaction: 
