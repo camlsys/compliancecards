@@ -13,9 +13,9 @@ def set_operator_role_and_location(dispositive_variables, project_cc_yaml):
             operators += 1 
         
     if ai_system and gpai_model:
-        dispositive_variables['msg'] = ("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
+        dispositive_variables['msg'].append("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
     if operators != 1:
-        dispositive_variables['msg'] = ("Please specify exactly one operator role.")
+        dispositive_variables['msg'].append("Please specify exactly one operator role.")
     
     return dispositive_variables
 
