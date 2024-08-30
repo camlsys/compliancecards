@@ -155,6 +155,7 @@ high_risk_ai_system_requirements:
     article: 'Art. 10(5)(f)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the records of processing activities pursuant to Regulations (EU) 2016/679 and (EU) 2018/1725 and Directive (EU) 2016/680 include the reasons why the processing of special categories of personal data was strictly necessary to detect and correct biases, and why that objective could not be achieved by processing other data'
     value: !!bool false
+    
   technical_documentation_general_description: 
     article: 'Art. 11; Annex IV(2)(d)'
     verbose: 'Dataset carries technical documention, such as a dataseet, including a general description of the dataset.'
@@ -183,6 +184,7 @@ high_risk_ai_system_requirements:
     article: 'Art. 11; Annex IV(2)(h)'
     verbose: 'Cybersecurity measures were put in place as regards the data (e.g., scanning for data poisoning)'
     value: !!bool false
+    
   transparency_and_provision_of_information_to_deployers: 
     article: '# Art. 13(3)(b)(vi)'
     verbose: 'Dataset is accompanied by instructions for use that convery relevant information about it, taking into account its intended purpose'
