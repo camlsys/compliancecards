@@ -70,7 +70,7 @@ classification_of_gpai_models:
 
 # Metadata related to model-related requirements for high-risk AI systems
 
-high_risk_ai_models:
+high_risk_ai_system_requirements:
   risk_management_system_general:
     article: 'Art. 9(2)'
     verbose: 'A risk management system has been planned, run, reviewed, and updated throughout the model lifecycle' 
@@ -210,7 +210,7 @@ high_risk_ai_models:
 
 # Meta data related to model-related requirements for GPAI models 
 
-obligations_for_providers_of_gpai_models:
+gpai_model_requirements:
   task:  
     article: 'Art. 53; Annex XI(1)(1)(a)'
     verbose: 'The tasks that the model is intended to perform and the type and nature of AI systems in which it can be integrated'
@@ -296,7 +296,7 @@ obligations_for_providers_of_gpai_models:
     verbose: 'Where applicable, detailed description of the measures put in place for the purpose of conducting internal and/or external adversarial testing (e.g. red teaming), model adaptations, including alignment and fine-tuning'
     value: !!bool false
 
-obligations_for_providers_of_gpai_models_with_systemic_risk:
+gpai_model_with_systemic_risk_requirements:
   evaluation: 
     article: 'Art. 55(1)(a)'
     verbose: 'Perform model evaluation in accordance with standardised protocols and tools reflecting the state of the art, including conducting and documenting adversarial testing of the model with a view to identify and mitigate systemic risk'
@@ -312,7 +312,7 @@ obligations_for_providers_of_gpai_models_with_systemic_risk:
 
 # Metadata related to transparency requirements for some AI systems (Article 50)
 
-transparency_obligations:
+transparency_requirements:
   generates_media: # clean this up
     article: 'Art. 50(2)'
     verbose: 'If the model generates synthetic audio, image, video or text content'

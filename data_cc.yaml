@@ -194,7 +194,7 @@ high_risk_ai_system_requirements:
 
 # Meta data related to data-relaed requirements for GPAI models 
 
-gpai_requirements: 
+gpai_model_requirements: 
   data_type: 
     article: 'Art. 53(1); Annex XI(2)(c)'
     verbose: 'Documentation for the dataset is available that contains the type of data'
