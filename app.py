@@ -4,69 +4,6 @@ import json
 from pathlib import Path
 from compliance_analysis import check_overall_compliance
 
-# def process_files(files):
-#     results = []
-#     for file in files:
-#         with open(file.name, 'r') as f:
-#             content = f.read()
-#         if Path(file.name).name == "project_cc.yaml":
-#             project_cc_yaml = yaml.safe_load(content)
-#             msg = run_compliance_analysis_on_project(project_cc_yaml)
-#             results.append(msg)            
-#         # if Path(file.name).name == "data_cc.yaml":
-#         #     data_cc_yaml = yaml.safe_load(content)
-#         #     msg = run_compliance_analysis_on_data(data_cc_yaml)
-#         #     results.append(msg)        
-#         # if Path(file.name).name == "model_cc.yaml":
-#         #     model_cc_yaml = yaml.safe_load(content)
-#         #     msg = run_compliance_analysis_on_model(model_cc_yaml)
-#         #     results.append(msg)
-            
-#     return results
-
-# def extract_properties(files):
-#     for file in files:
-#         with open(file.name, 'r') as f:    
-#             content = f.read()
-#             project_cc_yaml = yaml.safe_load(content)
-#         project_cc = [key for key in project_cc_yaml]
-#     return project_cc
-
-# def sentence_builder(countries):
-#     return f"{countries}"
-
-# # # Gradio interface
-# with gr.Blocks() as demo:
-#     file_input = gr.File(label="Upload Files", file_count="multiple")
-#     output = gr.Textbox(label="Output", lines=10)
-
-#     submit_button = gr.Button("Process Files")
-#     submit_button.click(process_files, inputs=file_input, outputs=output)
-
-#     # Create the CheckboxGroup (initially empty)
-#     checkbox_group = gr.CheckboxGroup(choices=[], label="", interactive=True)
-    
-#     # Create the output Textbox
-#     output = gr.Textbox()
-
-#     # Function to update the CheckboxGroup when files are uploaded
-#     def update_checkboxes(files):
-#         choices = extract_properties(files)
-#         return gr.CheckboxGroup(choices=choices, label="", interactive=True)
-    
-#     # Create a Button to trigger the sentence builder
-#     submit_button = gr.Button("Submit")
-
-#     # Set up the interaction for file input and updating checkboxes
-#     file_input.change(update_checkboxes, inputs=file_input, outputs=checkbox_group)
-    
-#     gr.CheckboxGroup.change(update_checkboxes)
-    
-#     output = gr.Textbox()
-#     submit_button = gr.Button("Submit")
-#     submit_button.click(sentence_builder, inputs=checkbox_group, outputs=output)
-
-
 # if __name__ == "__main__":
 #     demo.launch()
 
@@ -205,8 +142,8 @@ if uploaded_files:
                             for key, details in details.items():
                                 st.subheader(key.replace('_', ' ').title())  # section header
                                 details['value'] = st.checkbox(details['verbose'], value=details['value'])
-                            st.divider()
-                    st.divider()
+                            # st.divider()
+                    # st.divider()
             # st.write("Updated Data:", data)
            
             yaml_data = yaml.dump(data, sort_keys=False)
