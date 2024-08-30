@@ -1,6 +1,6 @@
 card_type: "data" # "project", "data" or "model"
 
-# Meta data related to intended purpose(s) of data 
+# Metadata related to intended purpose(s) of data 
 
 intended_purpose:
   safety_component: 
@@ -192,7 +192,7 @@ high_risk_ai_system_requirements:
     verbose: 'Datset was subject to a quality management system that is documented in a systematic and orderly manner in the form of written policies, procedures and instructions, and includes a description of the systems and procedures for data management, including data acquisition, data collection, data analysis, data labelling, data storage, data filtration, data mining, data aggregation, data retention and any other operation regarding the data'
     value: !!bool false
 
-# Meta data related to data-relaed requirements for GPAI models 
+# Metadata related to data-related requirements for GPAI models 
 
 gpai_model_requirements: 
   data_type: 

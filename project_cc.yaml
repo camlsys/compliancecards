@@ -2,6 +2,8 @@
 # Information related to high-level characteristics of AI project, including the role of the operator, their location, and where the output is used
 card_type: "project" # "project", "data" or "model"
   
+# TODO potentially add scenarios that get the provider off the hook per Article 25 
+
 operator_details:
   provider: 
     article: 'Art. 2'
@@ -39,6 +41,8 @@ gpai_model:
     value: !!bool false  
 
 # Information related to whether or not the project, if an AI system, is a high-risk AI system
+
+# TODO Potentially add all of the use cases mentioned in Annex I below (those covered by existing regulations) rather than bundle them up as they are now
 
 high_risk_ai_system:
   safety_component: 
@@ -93,6 +97,8 @@ high_risk_ai_system:
     article: 'Art. 6(2); Annex III(8)(a)'
     verbose: 'AI project is intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
+
+# TODO potentially add military exception and/or law enforcement exception to the below
 
 high_risk_ai_system_exceptions:    
   filter_exception_rights: 
