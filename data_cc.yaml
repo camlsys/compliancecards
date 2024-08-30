@@ -59,6 +59,7 @@ intended_purpose:
 # Metadata related to data-related requirements for high-risk AI systems
 
 high_risk_ai_system_requirements:
+# data governance
   data_and_data_governance_data_governance: 
     article: 'Art. 10(1)-(2)'
     verbose: 'The dataset was subject to data governance and management practices appropriate to the intended use case'
@@ -95,6 +96,7 @@ high_risk_ai_system_requirements:
     article: 'Art. 10(2)(h)'
     verbose: 'The dataset has been subject to data governance and management practices that include identification of relevant data gaps or shortcomings that prevent compliance with this Regulation, and how those gaps and shortcomings can be addressed'
     value: !!bool false
+ #   data_characteristics   
   data_and_data_governance_data_relevance: 
     article: 'Art. 10(3); Rec. 67'
     verbose: 'Training data is relevant' 
@@ -119,6 +121,7 @@ high_risk_ai_system_requirements:
     article: 'Art. 10(4)'
     verbose: 'Training data takes into account, to the extent required by the intended purpose, the characteristics or elements that are particular to the specific geographical, contextual, behavioural or functional setting within which it is intended to be used'
     value: !!bool false
+  # special_categories_of_personal_data:
   data_and_data_governance_personal_data_necessary: 
     article: 'Art. 10(5)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the use of this data was strictly necessary'
@@ -155,7 +158,7 @@ high_risk_ai_system_requirements:
     article: 'Art. 10(5)(f)'
     verbose: 'Where special categories of personal data have been used to ensure the detection and correction of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations, the records of processing activities pursuant to Regulations (EU) 2016/679 and (EU) 2018/1725 and Directive (EU) 2016/680 include the reasons why the processing of special categories of personal data was strictly necessary to detect and correct biases, and why that objective could not be achieved by processing other data'
     value: !!bool false
-    
+  # technical_documentation:  
   technical_documentation_general_description: 
     article: 'Art. 11; Annex IV(2)(d)'
     verbose: 'Dataset carries technical documention, such as a dataseet, including a general description of the dataset.'
