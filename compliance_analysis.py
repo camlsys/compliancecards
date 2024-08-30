@@ -156,54 +156,52 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
 
 def run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml): 
     
+<<<<<<< HEAD
     if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
         for key in data_cc_yaml['high_risk_ai_systems']:
             if data_cc_yaml['high_risk_ai_systems'][f'{key}']['value'] == True:
                 dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {data_cc_yaml['high_risk_ai_systems'][f'{key}']['article']}.")
+=======
+    # If project involves a high-risk AI system, then make sure all the relevant data requirements are met (relevant attributes are positive)
+    
+    if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
+        for value in data_cc_yaml['high_risk_ai_system_requirements']:
+            if data_cc_yaml['high_risk_ai_system_requirements'][f'{value}'] == True:
+                dispositive_variables['msg'].append(f"")
+>>>>>>> fbbf69b255ab44b93558b0d31b02a679007bc061
 
+     # If project involves a GPAI model, then make sure all the relevant data requirements are met (relevant attributes are positive)
+    
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
-        for value in data_cc_yaml['gpai_requirements']:
-            if data_cc_yaml['gpai_requirements'][f'{value}'] == True:
+        for value in data_cc_yaml['gpai_model_requirements']:
+            if data_cc_yaml['gpai_model_requirements'][f'{value}'] == True: # should this be false? BM
                 dispositive_variables['msg'].append(f"")
 
     return dispositive_variables
     
 def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):  
     
-    # # TODO: we probably have to pass ai_project_type and project_intended_purpose into this function
-    # if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
-    #     for key, value in model_cc_yaml['risk_management_system']:
-    #         if not value:
-    #             msg = (f"Because of the model represented by , this high-risk AI system fails the risk management requirements under Article 9.")
-    #     for key, value in data_cc_yaml['technical_documentation']:
-    #         if not value:
-    #             msg = (f"Because of the model represented by , this high-risk AI system fails the technical documentation requirements under Article 11.")
-    #     for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
-    #         if not value:
-    #             msg = (f"Because of the model represented by , this high-risk  AI system fails the transparency requirements under Article 13.")
-    #     for key, value in data_cc_yaml['accuracy_robustness_cybersecurity']:
-    #         if not value:
-    #             msg = (f"Because of the model represented by , this high-risk  AI system fails the quality management requirements under Article 15.")
-    #     for key, value in data_cc_yaml['quality_management_system']:
-    #         if not value:
-    #             msg = (f"Because of the model represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
+    # If project involves a high-risk AI system, then make sure all the relevant model requirements are met (relevant attributes are positive)
 
-    # if dispositive_variables['ai_project_type']["gpai_model"] == True:
-    #     for key, value in model_cc_yaml['obligations_for_providers_of_gpai_models']:
-    #                 if not value:
-    #                     msg = (f"Because of the model represented by {filename}, this GPAI fails the transparency requirements under Article 53.")
+    if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
+        for value in model_cc_yaml['high_risk_ai_system_requirements']:
+            if model_cc_yaml['high_risk_ai_system_requirements'][f'{value}'] == True:
+                dispositive_variables['msg'].append(f"")
 
-    #             for key, value in model_cc_yaml['obligations_for_providers_of_gpai_models_with_systemic_risk']:
-    #                 if not value:
-    #                     msg = (f"Because of the model represented by {filename}, this GPAI model with systematic risk fails the transparency requirements under Article 55.")
-   
-    # # TODO: No matter where we land with an orchestrator function, this function must also check to the value that has been set for both
-    # # GPAI models with and without systemic risk and then check to see if the relevant requirements have met if either of these values applies.
-    # # Right now it is only checking high-risk AI system requirements. Another thing that we likely have to add here is the cross-comparison of the 
-    # # intended purposes. That might look like this:
-    # # if model_cc_yaml['intended_purpose'] not in intended_purposes:
-    # #   return false 
+    # If project involves a GPAI model, then make sure all the relevant model requirements are met (relevant attributes are positive)
     
+    if dispositive_variables['ai_project_type']["gpai_model"] == True:
+        for value in model_cc_yaml['gpai_model_requirements']:
+            if model_cc_yaml['gpai_model_requirements'][f'{value}'] == True:
+                dispositive_variables['msg'].append(f"")
+
+        # If the GPAI model additionally carries systemic risk, then make sure all the relevant model requirements are met (relevant attributes are positive)
+        
+        if dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] == True:          
+            for value in model_cc_yaml['gpai_model_with_systemic_risk_requirements']:
+                if model_cc_yaml['gpai_model_requirements'][f'{value}'] == True:
+                    dispositive_variables['msg'].append(f"")
+   
     return dispositive_variables
 
 def check_intended_purpose(dispositive_variables, project_cc, other_cc):

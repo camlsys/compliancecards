@@ -58,7 +58,7 @@ intended_purpose:
 
 # Metadata related to data-related requirements for high-risk AI systems
 
-high_risk_ai_systems:
+high_risk_ai_system_requirements:
   data_and_data_governance_data_governance: 
     article: 'Art. 10(1)-(2)'
     verbose: 'The dataset was subject to data governance and management practices appropriate to the intended use case'
@@ -194,7 +194,7 @@ high_risk_ai_systems:
 
 # Meta data related to data-relaed requirements for GPAI models 
 
-gpai_requirements: 
+gpai_model_requirements: 
   data_type: 
     article: 'Art. 53(1); Annex XI(2)(c)'
     verbose: 'Documentation for the dataset is available that contains the type of data'
