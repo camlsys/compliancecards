@@ -1,7 +1,9 @@
+import os
 import gradio as gr
 import yaml
+import json
 from pathlib import Path
-from compliance_analysis import run_compliance_analysis_on_project, run_compliance_analysis_on_data, run_compliance_analysis_on_model
+from compliance_analysis import check_overall_compliance
 
 # def process_files(files):
 #     results = []
@@ -107,11 +109,11 @@ def load_data(files):
 #                 results.append(msg)            
 #     return results
 
-def process_files(data):
-    results = []
-    msg = run_compliance_analysis_on_project(yaml.safe_load(data))
-    results.append(msg)            
-    return results
+# def process_files(data):
+#     results = []
+#     msg = run_compliance_analysis_on_project(yaml.safe_load(data))
+#     results.append(msg)            
+#     return results
 
 # def extract_properties(data):
         
@@ -129,8 +131,30 @@ def process_files(data):
     
 #     return df
 
-def sentence_builder(keys):
-    return f"Selected options: {', '.join(keys)}"
+def gather_cards(files):
+    cards = {}
+    cards['project_file'] = ''
+    cards['data_files'] = []
+    cards['model_files'] = []
+    for file in files:
+        file_path = os.path.join('/tmp', file.name)        
+        with open(file_path, 'wb') as f:
+            f.write(file.getbuffer())
+        with open(file_path, 'r') as file_path:
+            content = yaml.safe_load(file_path.read())            
+            if content['card_type'] == 'project':
+                cards['project_file'] = file_path.name
+            if content['card_type'] == "data":
+                cards['data_files'].append(file_path.name)
+            if content['card_type'] == "model":
+                cards['model_files'].append(file_path.name)
+    return cards
+
+def compliance_analysis(cards):
+    results = []
+    dispositive_variables = check_overall_compliance(cards)
+    results.append(dispositive_variables)#['msg'])
+    return results
 
 # Streamlit app
 # st.set_page_config(page_title="AI", layout="wide")
@@ -157,53 +181,43 @@ uploaded_files = st.file_uploader("Upload YAML Files", type="yaml", accept_multi
 if uploaded_files:
 
     cards = load_data(uploaded_files)
-    
     for card in cards:
         
         data = card[1]
     
         if data != None:    
-            # df = extract_properties(data)
-            # df["Value"] = df["Value"].astype(bool)
-
-            # edited_df = st.data_editor(
-            #     df,
-            #     column_config={
-            #         "Value": st.column_config.CheckboxColumn("Value"),
-            #     },
-            #     key="data_editor"
-            # )
 
             st.title("Compliance Checkboxes")
             st.title(f"{card[0]}")
 
             for section, items in data.items():
-                st.header(section.replace('_', ' ').title())  # section header
-                for key, details in items.items():
-                    if 'verbose' in details and 'value' in details:
-                        st.subheader(key.replace('_', ' ').title())  # section header
-                        # details['value'] = st.checkbox(details['verbose'], value=details['value'])
-                        if isinstance(details['value'], str):
-                            details['value'] = st.text_input(details['verbose'], value=details['value'])
-                        elif isinstance(details['value'], bool):
-                            details['value'] = st.checkbox(details['verbose'], value=details['value'])                        
-                    if 'verbose' not in details and 'value' not in details:
-                        st.subheader(key.replace('_', ' ').title())  # section header
-                        for key, details in details.items():
+                if section != 'card_type':
+                    st.header(section.replace('_', ' ').title())  # section header
+                    for key, details in items.items():
+                        if 'verbose' in details and 'value' in details:
                             st.subheader(key.replace('_', ' ').title())  # section header
-                            details['value'] = st.checkbox(details['verbose'], value=details['value'])
-                        st.divider()
-                st.divider()
-            st.write("Updated Data:", data)
+                            # details['value'] = st.checkbox(details['verbose'], value=details['value'])
+                            if isinstance(details['value'], str):
+                                details['value'] = st.text_input(details['verbose'], value=details['value'])
+                            elif isinstance(details['value'], bool):
+                                details['value'] = st.checkbox(details['verbose'], value=details['value'])                        
+                        if 'verbose' not in details and 'value' not in details:
+                            st.subheader(key.replace('_', ' ').title())  # section header
+                            for key, details in details.items():
+                                st.subheader(key.replace('_', ' ').title())  # section header
+                                details['value'] = st.checkbox(details['verbose'], value=details['value'])
+                            st.divider()
+                    st.divider()
+            # st.write("Updated Data:", data)
            
             yaml_data = yaml.dump(data, sort_keys=False)
 
-            st.download_button(
-                label=f"Download Updated Data as YAML{card[0]}",
-                data=yaml_data,
-                file_name="updated_data.yaml",
-                mime="text/yaml"
-            )
+            # st.download_button(
+            #     label=f"Download Updated Data as YAML{card[0]}",
+            #     data=yaml_data,
+            #     file_name="updated_data.yaml",
+            #     mime="text/yaml"
+            # )
 
             # json_data = json.dumps(data, indent=2)
             # st.download_button(
@@ -211,15 +225,10 @@ if uploaded_files:
             #     data=json_data,
             #     file_name="updated_data.json",
             #     mime="application/json"
-            # )
+            # )   
 
-            # selected_properties = edited_df[edited_df["Value"]]["Item"].tolist()
-        
-            # if selected_properties:
-            #     sentence = sentence_builder(selected_properties)
-            #     st.text(sentence)            
-            
-            if st.button(f"Process {card[0]}"):
-                results = process_files(yaml_data)
-                for result in results:
-                    st.text(result) 
+    cards = gather_cards(uploaded_files)    
+    if st.button(f"Run Analysis"):
+        results = compliance_analysis(cards)    
+        # st.text_area("Analysis Results", value=json.dumps(results, indent=4), height=600)
+        st.write("Analysis Results", results)
