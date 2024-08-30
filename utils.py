@@ -32,7 +32,7 @@ def set_eu_market_status(dispositive_variables, project_cc_yaml):
     return dispositive_variables
 
 
-def check_within_scope_cc(project_cc_yaml):
+def check_within_scope_cc(dispositive_variables, project_cc_yaml):
 
     # Check that the person filling out the form (the operator) is in fact a provider;
     if project_cc_yaml['operator_details']['provider']['value']:        
@@ -41,7 +41,7 @@ def check_within_scope_cc(project_cc_yaml):
         print("The initial versiton of the Compliance Cards System is for provider-side compliance analyses only.")
         return False
 
-def check_within_scope_act(project_cc_yaml):
+def check_within_scope_act(dispositive_variables, project_cc_yaml):
 
     # Check that the project is within the scope of the Act 
     
@@ -63,16 +63,19 @@ def check_within_scope_act(project_cc_yaml):
         print("Your project is not within the scope of the Act and its requirements.")      
         return False
 
-def check_excepted(project_cc_yaml):  #it would be nice to pass dispositive_variables into this function so we can run the code commented out below
+def check_excepted(dispositive_variables, project_cc_yaml):
+    
     if (project_cc_yaml['excepted']['scientific'] or 
         project_cc_yaml['excepted']['pre_market'] or 
         (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['open_source_ai_system']) or 
-        (project_cc_yaml['gpai_model']['gpai_model']['value'] == True and project_cc_yaml['excepted']['open_source_gpai_system']) #and dispositive_variables['gpai_model_systemic_risk'] == False)
+        (project_cc_yaml['gpai_model']['gpai_model']['value'] == True and 
+            project_cc_yaml['excepted']['open_source_gpai_system'] and
+            dispositive_variables['ai_project_type']['gpai_model_systemic_risk'] == False)
     ):
-        print("Your project falls into one of the exemptions from the Act.")   
+        dispositive_variables['msg'].append("Your project falls into one of the exemptions from the Act.")   
         return True
     else:
-        return False 
+        return False
 
 def check_prohibited(project_cc_yaml):
 

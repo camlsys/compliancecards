@@ -11,7 +11,7 @@ def check_overall_compliance(cards):
         "ai_system": False,
         "gpai_model": True,
         "high_risk_ai_system": True,
-        "gpai_model_systematic_risk": False
+        "gpai_model_systemic_risk": False
     },
     "operator_details": {
         "provider": False,
@@ -66,7 +66,7 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
     if project_cc_yaml['gpai_model']['gpai_model']['value']:
         dispositive_variables['ai_project_type']['gpai_model'] = True
     if project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['gpai_model']['gpai_model']['value'] == True:
-        dispositive_variables['msg'] = "Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly."
+        dispositive_variables['msg'].append("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
         return dispositive_variables
     
     # TODO check whether high risk before the below?
@@ -84,21 +84,21 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
                 dispositive_variables['ai_project_type']["high_risk_ai_system"] = False
     
     if dispositive_variables['ai_project_type']['gpai_model'] == True:
-        if project_cc_yaml['gpai_model_systematic_risk']['evaluation'] or project_cc_yaml['gpai_model_systematic_risk']['flops']:
-            dispositive_variables['ai_project_type']["gpai_model_systematic_risk"] = True
+        if project_cc_yaml['gpai_model_systemic_risk']['evaluation'] or project_cc_yaml['gpai_model_systemic_risk']['flops']:
+            dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] = True
     
     # Operator Type
     dispositive_variables = set_operator_role_and_location(dispositive_variables, project_cc_yaml)
     dispositive_variables = set_eu_market_status(dispositive_variables, project_cc_yaml)
 
     # Check if project is within scope of the Compliance Cards project. If not, inform user.
-    if check_within_scope_cc(project_cc_yaml):
+    if check_within_scope_cc(dispositive_variables, project_cc_yaml):
         dispositive_variables['msg'].append("Project is within the scope of the Compliance Cards system. Let's continue...") 
     else: 
         dispositive_variables['msg'].append("Project is not within the scope of the initial version of the Compliance Cards system.")
     
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
-    if check_within_scope_act(project_cc_yaml):
+    if check_within_scope_act(dispositive_variables, project_cc_yaml):
         dispositive_variables['msg'].append("Project is within the scope of Act. Let's continue...") 
     else: 
         dispositive_variables['msg'].append("Project is not within the scope of what is regulated by the Act.")
@@ -142,7 +142,7 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
 
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
         
-        if dispositive_variables['ai_project_type']["gpai_model_systematic_risk"] == True:
+        if dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] == True:
             for key in project_cc_yaml['gpai_models_with_systemic_risk_obligations']:
                 if project_cc_yaml['gpai_models_with_systemic_risk_obligations'][f'{key}']['value'] == True:
                     dispositive_variables['msg'].append("GPAI model with systematic risk fails the transparency requirements under Article 55.")
@@ -186,7 +186,7 @@ def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):
 
         # If the GPAI model additionally carries systemic risk, then make sure all the relevant model requirements are met (relevant attributes are positive)
         
-        if dispositive_variables['ai_project_type']["gpai_model_systematic_risk"] == True:          
+        if dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] == True:          
             for key in model_cc_yaml['gpai_model_with_systemic_risk_requirements']:
                 if model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['value'] == True:
                     dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['article']}.")
