@@ -59,7 +59,7 @@ def check_overall_compliance(cards):
     return dispositive_variables
 
 def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
-    
+        
     # Project Type    
     if project_cc_yaml['ai_system']['ai_system']['value']:
         dispositive_variables['ai_project_type']['ai_system'] = True
@@ -84,7 +84,7 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
                 dispositive_variables['ai_project_type']["high_risk_ai_system"] = False
     
     if dispositive_variables['ai_project_type']['gpai_model'] == True:
-        if project_cc_yaml['gpai_model_systemic_risk']['evaluation'] or project_cc_yaml['gpai_model_systemic_risk']['flops']:
+        if project_cc_yaml['gpai_model_systemic_risk']['evaluation']['value'] or project_cc_yaml['gpai_model_systemic_risk']['flops']['value']:
             dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] = True
     
     # Operator Type

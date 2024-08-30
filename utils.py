@@ -47,15 +47,14 @@ def check_within_scope_act(dispositive_variables, project_cc_yaml):
     
     ai_system = project_cc_yaml['ai_system']['ai_system']
     gpai_model = project_cc_yaml['gpai_model']['gpai_model']
-
     placed_on_market = project_cc_yaml['eu_market_status']['placed_on_market']
     put_into_service = project_cc_yaml['eu_market_status']['put_into_service']
     
     eu_located = project_cc_yaml['operator_details']['eu_located']
     output_used = project_cc_yaml['operator_details']['output_used']
     
-    if not check_excepted(project_cc_yaml):
-        if ((ai_system and (placed_on_market or put_into_service)) or (gpai_model and placed_on_market)):   # Article 2.1(a)
+    if not check_excepted(dispositive_variables, project_cc_yaml):
+        if ((ai_system and (placed_on_market or put_into_service)) or (gpai_model and placed_on_market)): # Article 2.1(a)
             return True
         if (ai_system and eu_located and output_used): # Article 2.1(c)
             return True
@@ -65,12 +64,13 @@ def check_within_scope_act(dispositive_variables, project_cc_yaml):
 
 def check_excepted(dispositive_variables, project_cc_yaml):
     
-    if (project_cc_yaml['excepted']['scientific'] or 
-        project_cc_yaml['excepted']['pre_market'] or 
-        (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['open_source_ai_system']) or 
+    if (project_cc_yaml['excepted']['scientific']['value'] or 
+        project_cc_yaml['excepted']['pre_market']['value'] or 
+        (project_cc_yaml['ai_system']['ai_system']['value'] == True and 
+         project_cc_yaml['excepted']['open_source_ai_system']['value']  == True) or 
         (project_cc_yaml['gpai_model']['gpai_model']['value'] == True and 
-            project_cc_yaml['excepted']['open_source_gpai_system'] and
-            dispositive_variables['ai_project_type']['gpai_model_systemic_risk'] == False)
+         project_cc_yaml['excepted']['open_source_gpai_system']['value']  == True and
+         dispositive_variables['ai_project_type']['gpai_model_systemic_risk'] == False)
     ):
         dispositive_variables['msg'].append("Your project falls into one of the exemptions from the Act.")   
         return True
@@ -79,7 +79,7 @@ def check_excepted(dispositive_variables, project_cc_yaml):
 
 def check_prohibited(project_cc_yaml):
 
-    ai_system = project_cc_yaml['ai_system']['ai_system'] 
+    ai_system = project_cc_yaml['ai_system']['ai_system']['value']
     
     if ai_system:
         for key in project_cc_yaml['prohibited_practice']['ai_system']:

@@ -122,7 +122,7 @@ high_risk_ai_system_exceptions:
     verbose: 'the AI project is intended to perform a preparatory task to an assessment relevant for the purposes of the use cases listed in Annex III.'
     value: !!bool false 
 
-gpai_model_systematic_risk:
+gpai_model_systemic_risk:
   evaluation:  
     article: 'Art. 51 (1)(a)'
     verbose: 'The AI project has high impact capabilities based on an evaluation using appropriate technical tools and methodologies, including indicators and benchmarks'
