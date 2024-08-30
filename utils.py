@@ -63,11 +63,11 @@ def check_within_scope_act(project_cc_yaml):
         print("Your project is not within the scope of the Act and its requirements.")      
         return False
 
-def check_excepted(project_cc_yaml):
+def check_excepted(project_cc_yaml):  #it would be nice to pass dispositive_variables into this function so we can run the code commented out below
     if (project_cc_yaml['excepted']['scientific'] or 
         project_cc_yaml['excepted']['pre_market'] or 
         (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['open_source_ai_system']) or 
-        (project_cc_yaml['gpai_model']['gpai_model']['value'] == True and project_cc_yaml['excepted']['open_source_gpai_system'])
+        (project_cc_yaml['gpai_model']['gpai_model']['value'] == True and project_cc_yaml['excepted']['open_source_gpai_system']) #and dispositive_variables['gpai_model_systemic_risk'] == False)
     ):
         print("Your project falls into one of the exemptions from the Act.")   
         return True

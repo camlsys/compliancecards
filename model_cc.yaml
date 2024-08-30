@@ -208,7 +208,7 @@ high_risk_ai_system_requirements:
     verbose: 'Examination, test and validation procedures to be carried out before, during and after the development of the high-risk AI system, and the frequency with which they have to be carried out'
     value: !!bool false
 
-# Meta data related to model-related requirements for GPAI models 
+# Metadata related to model-related requirements for GPAI models 
 
 gpai_model_requirements:
   task:  
@@ -308,20 +308,4 @@ gpai_model_with_systemic_risk_requirements:
   cybersecurity: 
     article: 'Art. 55(1)(d)'
     verbose: 'Ensure an adequate level of cybersecurity protection for the GPAI model with systemic risk and the physical infrastructure of the mode'
-    value: !!bool false
-
-# Metadata related to transparency requirements for some AI systems (Article 50)
-
-transparency_requirements:
-  generates_media: # clean this up
-    article: 'Art. 50(2)'
-    verbose: 'If the model generates synthetic audio, image, video or text content'
-    value: !!bool false
-  marked_as_generated: 
-    article: 'Art. 50(2)'
-    verbose: 'If outputs are marked in a machine-readable format and detectable as artificially generated or manipulated'
-    value: !!bool false
-  interoperability: 
-    article: 'Art. 50(2)'
-    verbose: 'Providers shall ensure their technical solutions are effective, interoperable, robust and reliable as far as this is technically feasible, taking into account specificities and limitations of different types of content, costs of implementation and the generally acknowledged state-of-the-art, as may be reflected in relevant technical standards'
     value: !!bool false
