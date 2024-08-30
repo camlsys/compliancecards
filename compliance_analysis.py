@@ -156,25 +156,14 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
 
 def run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml): 
     
-<<<<<<< HEAD
     if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
-        for key in data_cc_yaml['high_risk_ai_systems']:
-            if data_cc_yaml['high_risk_ai_systems'][f'{key}']['value'] == True:
-                dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {data_cc_yaml['high_risk_ai_systems'][f'{key}']['article']}.")
-=======
-    # If project involves a high-risk AI system, then make sure all the relevant data requirements are met (relevant attributes are positive)
-    
-    if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
-        for value in data_cc_yaml['high_risk_ai_system_requirements']:
-            if data_cc_yaml['high_risk_ai_system_requirements'][f'{value}'] == True:
-                dispositive_variables['msg'].append(f"")
->>>>>>> fbbf69b255ab44b93558b0d31b02a679007bc061
+        for key in data_cc_yaml['high_risk_ai_system_requirements']:
+            if data_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {data_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['article']}.")
 
-     # If project involves a GPAI model, then make sure all the relevant data requirements are met (relevant attributes are positive)
-    
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
         for value in data_cc_yaml['gpai_model_requirements']:
-            if data_cc_yaml['gpai_model_requirements'][f'{value}'] == True: # should this be false? BM
+            if data_cc_yaml['gpai_model_requirements'][f'{value}'] == True:
                 dispositive_variables['msg'].append(f"")
 
     return dispositive_variables
@@ -186,21 +175,21 @@ def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):
     if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
         for value in model_cc_yaml['high_risk_ai_system_requirements']:
             if model_cc_yaml['high_risk_ai_system_requirements'][f'{value}'] == True:
-                dispositive_variables['msg'].append(f"")
+                dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['article']}.")
 
     # If project involves a GPAI model, then make sure all the relevant model requirements are met (relevant attributes are positive)
     
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
-        for value in model_cc_yaml['gpai_model_requirements']:
-            if model_cc_yaml['gpai_model_requirements'][f'{value}'] == True:
-                dispositive_variables['msg'].append(f"")
+        for key in model_cc_yaml['gpai_model_requirements']:
+            if model_cc_yaml['gpai_model_requirements'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['gpai_model_requirements'][f'{key}']['article']}.")
 
         # If the GPAI model additionally carries systemic risk, then make sure all the relevant model requirements are met (relevant attributes are positive)
         
         if dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] == True:          
-            for value in model_cc_yaml['gpai_model_with_systemic_risk_requirements']:
-                if model_cc_yaml['gpai_model_requirements'][f'{value}'] == True:
-                    dispositive_variables['msg'].append(f"")
+            for key in model_cc_yaml['gpai_model_with_systemic_risk_requirements']:
+                if model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['value'] == True:
+                    dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['article']}.")
    
     return dispositive_variables
 
