@@ -46,10 +46,10 @@ def check_overall_compliance(cards):
     # for each model_cc and data_cc - run analysis with ref to project_cc
     dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc)
 
-    # for card in cards['data_files']:
-    #     with open(card, 'r') as data_filepath:
-    #         data_cc = yaml.safe_load(data_filepath.read())
-    #         dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml)
+    for card in cards['data_files']:
+        with open(card, 'r') as data_filepath:
+            data_cc = yaml.safe_load(data_filepath.read())
+            dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc)
             
     # for card in cards['model_files']:
     #     with open(card, 'r') as model_filepath:
@@ -156,20 +156,10 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
 
 def run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml): 
     
-    # # TODO: we probably have to pass ai_project_type and project_intended_purpose into this function
-    # if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
-    #     for value in data_cc_yaml['high_risk_ai_systems']['data_and_data_governance']:
-    #         if not value:
-    #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk AI system fails the data and data governance requirements under Article 10.")
-    #     for key, value in data_cc_yaml['technical_documentation']:
-    #         if not value:
-    #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk AI system fails the technical documentation requirements under Article 11.")
-    #     for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
-    #         if not value:
-    #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk  AI system fails the transparency requirements under Article 13.")
-    #     for key, value in data_cc_yaml['quality_management_system']:
-    #         if not value:
-    #             dispositive_variables['msg'].append(f"Because of the dataset represented by , this high-risk  AI system fails the quality management requirements under Article 17.")
+    if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
+        for key in data_cc_yaml['high_risk_ai_systems']:
+            if data_cc_yaml['high_risk_ai_systems'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {data_cc_yaml['high_risk_ai_systems'][f'{key}']['article']}.")
 
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
         for value in data_cc_yaml['gpai_requirements']:

@@ -1,5 +1,4 @@
-__pycache__
+__pycache__/
 compliancecards.code-workspace
 .ipynb_checkpoints
 *.ipynb
-__pycache__/*

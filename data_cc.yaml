@@ -83,14 +83,14 @@ high_risk_ai_systems:
     article: 'Art. 10(2)(e)'
     verbose: 'The dataset has been subject to data governance and management practices that include an assessment of the availability, quantity and suitability of the data sets that are needed'
     value: !!bool false
-  ddata_and_data_governance_ata_bias_examination: 
+  data_and_data_governance_ata_bias_examination: 
     article: 'Art. 10(2)(f)'
     verbose: 'The dataset has been subject to data governance and management practices that include an examination of possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations' 
     value: !!bool false
   data_and_data_governance_data_and_data_governance_data_bias_mitigation: 
     article: 'Art. 10(2)(g)'
     verbose: 'The dataset has been subject to data governance and management practices that include appropriate measures to detect, prevent and mitigate possible biases that are likely to affect the health and safety of persons, have a negative impact on fundamental rights or lead to discrimination prohibited under Union law, especially where data outputs influence inputs for future operations'
-    value: !!bool false
+    value: !!bool true
   data_and_data_governance_data_compliance: 
     article: 'Art. 10(2)(h)'
     verbose: 'The dataset has been subject to data governance and management practices that include identification of relevant data gaps or shortcomings that prevent compliance with this Regulation, and how those gaps and shortcomings can be addressed'
