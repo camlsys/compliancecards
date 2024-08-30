@@ -51,10 +51,10 @@ def check_overall_compliance(cards):
             data_cc = yaml.safe_load(data_filepath.read())
             dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc)
             
-    # for card in cards['model_files']:
-    #     with open(card, 'r') as model_filepath:
-    #         model_cc = yaml.safe_load(model_filepath.read())
-    #         dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml)
+    for card in cards['model_files']:
+        with open(card, 'r') as model_filepath:
+            model_cc = yaml.safe_load(model_filepath.read())
+            dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc)
 
     return dispositive_variables
 
@@ -186,7 +186,7 @@ def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):
 
         # If the GPAI model additionally carries systemic risk, then make sure all the relevant model requirements are met (relevant attributes are positive)
         
-        if dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] == True:          
+        if dispositive_variables['ai_project_type']["gpai_model_systematic_risk"] == True:          
             for key in model_cc_yaml['gpai_model_with_systemic_risk_requirements']:
                 if model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['value'] == True:
                     dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['article']}.")

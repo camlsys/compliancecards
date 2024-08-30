@@ -2,3 +2,4 @@ __pycache__/
 compliancecards.code-workspace
 .ipynb_checkpoints
 *.ipynb
+__pycache__/compliance_analysis.cpython-310.pyc
