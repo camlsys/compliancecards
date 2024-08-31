@@ -268,36 +268,41 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
     project_intended_purposes = []
     dataset_intended_purposes = []
     model_intended_purposes = []
+
+    if dispositive_variables['high_risk_ai_system'] == False:
+        dispositive_variables['msg'].append(f"Not high-risk")
+        return dispositive_variables
     
-    for key in project_cc['high_risk_ai_system']:
-        if project_cc['high_risk_ai_system'][f'{key}']['value']:
-            project_intended_purposes.append(key) 
+    if dispositive_variables['high_risk_ai_system'] == True:
+        for key in project_cc['high_risk_ai_system']:
+            if project_cc['high_risk_ai_system'][f'{key}']['value']:
+                project_intended_purposes.append(key) 
+        
+        # For each Data CC, put the intended uses in a set and then make sure the Project's intended use is in the set
     
-    # For each Data CC, put the intended uses in a set and then make sure the Project's intended use is in the set
-   
-    if other_cc['card_details']['card_type'] == 'data':
-        data_cc = other_cc        
-        for key in data_cc['intended_purpose']:
-            if data_cc['intended_purpose'][f'{key}']['value']:
-                dataset_intended_purposes.append(key) 
+        if other_cc['card_details']['card_type'] == 'data':
+            data_cc = other_cc        
+            for key in data_cc['intended_purpose']:
+                if data_cc['intended_purpose'][f'{key}']['value']:
+                    dataset_intended_purposes.append(key) 
 
-        for purpose in project_intended_purposes:
-            if purpose not in dataset_intended_purposes:
-                dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for the dataset")
+            for purpose in project_intended_purposes:
+                if purpose not in dataset_intended_purposes:
+                    dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for the dataset")
 
-    # Now do the exact same thing for all models
+        # Now do the exact same thing for all models
 
-    if other_cc['card_details']['card_type'] == 'model':
-        model_cc = other_cc        
-        for key in model_cc['intended_purpose']:
-            if model_cc['intended_purpose'][f'{key}']['value']:
-                model_intended_purposes.append(key) 
+        if other_cc['card_details']['card_type'] == 'model':
+            model_cc = other_cc        
+            for key in model_cc['intended_purpose']:
+                if model_cc['intended_purpose'][f'{key}']['value']:
+                    model_intended_purposes.append(key) 
 
-        for purpose in project_intended_purposes:
-            if purpose not in model_intended_purposes:
-                dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for the model")
+            for purpose in project_intended_purposes:
+                if purpose not in model_intended_purposes:
+                    dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for the model")
 
-    dispositive_variables['project_intended_purposes'] = project_intended_purposes
+        dispositive_variables['project_intended_purposes'] = project_intended_purposes
 
     return dispositive_variables
 
