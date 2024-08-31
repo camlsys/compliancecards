@@ -119,7 +119,8 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
         dispositive_variables['msg'].append("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
         return dispositive_variables
     
-    # TODO check whether high risk before the below?
+    if any(item['value'] for item in project_cc_yaml['high_risk_ai_system'].values()) == True:
+        dispositive_variables['ai_project_type']["high_risk_ai_system"] = True
     
     if dispositive_variables['ai_project_type']['ai_system'] == True:
         for value in project_cc_yaml['high_risk_ai_system']:
