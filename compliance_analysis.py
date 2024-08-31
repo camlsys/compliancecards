@@ -30,6 +30,9 @@ def check_overall_compliance_ui(cards):
     "model_cc_pass": False,
     "msg": []
     }
+
+    if any(item['value'] for item in project_cc['high_risk_ai_system'].values()) == True:
+        dispositive_variables['ai_project_type']["high_risk_ai_system"] = True
    
     # check intended purposes 
     for card in cards['data_files']:
@@ -118,9 +121,6 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
     if project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['gpai_model']['gpai_model']['value'] == True:
         dispositive_variables['msg'].append("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
         return dispositive_variables
-    
-    if any(item['value'] for item in project_cc_yaml['high_risk_ai_system'].values()) == True:
-        dispositive_variables['ai_project_type']["high_risk_ai_system"] = True
     
     if dispositive_variables['ai_project_type']['ai_system'] == True:
         for value in project_cc_yaml['high_risk_ai_system']:
