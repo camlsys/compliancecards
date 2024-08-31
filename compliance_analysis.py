@@ -9,8 +9,8 @@ def check_overall_compliance(cards):
     dispositive_variables = {
     "ai_project_type": {
         "ai_system": False,
-        "gpai_model": True,
-        "high_risk_ai_system": True,
+        "gpai_model": False,
+        "high_risk_ai_system": False,
         "gpai_model_systemic_risk": False
     },
     "operator_details": {
