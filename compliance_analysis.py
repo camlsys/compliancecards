@@ -269,11 +269,11 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
     dataset_intended_purposes = []
     model_intended_purposes = []
 
-    if dispositive_variables['high_risk_ai_system'] == False:
+    if dispositive_variables['ai_project_type']['high_risk_ai_system'] == False:
         dispositive_variables['msg'].append(f"Not high-risk")
         return dispositive_variables
     
-    if dispositive_variables['high_risk_ai_system'] == True:
+    if dispositive_variables['ai_project_type']['high_risk_ai_system'] == True:
         for key in project_cc['high_risk_ai_system']:
             if project_cc['high_risk_ai_system'][f'{key}']['value']:
                 project_intended_purposes.append(key) 

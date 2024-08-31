@@ -59,35 +59,37 @@ with project_col:
     
     if cards["project_file"]:
         project_cc = cards["project_file"]
-   
-        for section, items in project_cc.items():
-            if section != 'card_details':
-                st.header(section.replace('_', ' ').title())  # section header
-                for key, details in items.items():
-                    if 'verbose' in details and 'value' in details:
-                        st.subheader(key.replace('_', ' ').title())  # section header
-                        # details['value'] = st.checkbox(details['verbose'], value=details['value'])
-                        if isinstance(details['value'], str):
-                            details['value'] = st.text_input(details['verbose'], value=details['value'])
-                        elif isinstance(details['value'], bool):
-                            details['value'] = st.checkbox(details['verbose'], value=details['value'])                        
-                    if 'verbose' not in details and 'value' not in details:
-                        st.subheader(key.replace('_', ' ').title())  # section header
-                        for key, details in details.items():
+        with st.expander("project details"):
+            for section, items in project_cc.items():
+                if section != 'card_details':
+                    st.header(section.replace('_', ' ').title())  # section header
+                    for key, details in items.items():
+                        if 'verbose' in details and 'value' in details:
                             st.subheader(key.replace('_', ' ').title())  # section header
-                            details['value'] = st.checkbox(details['verbose'], value=details['value'])
-                        st.divider()
-                st.divider()
-        # st.write("Updated Data:", project_cc)
-                
-        updated_project_cc = yaml.dump(project_cc, sort_keys=False)
-        
-        st.download_button(
-            label=f"Download Updated Project CC as YAML",
-            data=updated_project_cc,
-            file_name="updated_project.yaml",
-            mime="text/yaml"
-        )  
+                            # details['value'] = st.checkbox(details['verbose'], value=details['value'])
+                            if isinstance(details['value'], str):
+                                details['value'] = st.text_input(details['verbose'], value=details['value'])
+                            elif isinstance(details['value'], bool):
+                                details['value'] = st.checkbox(details['verbose'], value=details['value'])                        
+                        if 'verbose' not in details and 'value' not in details:
+                            st.subheader(key.replace('_', ' ').title())  # section header
+                            for key, details in details.items():
+                                st.subheader(key.replace('_', ' ').title())  # section header
+                                details['value'] = st.checkbox(details['verbose'], value=details['value'])
+                            st.divider()
+                    st.divider()
+            # st.write("Updated Data:", project_cc)
+                    
+            updated_project_cc = yaml.dump(project_cc, sort_keys=False)
+            
+            st.download_button(
+                label=f"Download Updated Project CC as YAML",
+                data=updated_project_cc,
+                file_name="updated_project.yaml",
+                mime="text/yaml"
+            )  
+    # else:
+    #     st.write("Missing project file")
 
 with data_col:
 
@@ -97,35 +99,37 @@ with data_col:
         # data_cc = selected_data_file[1]
         for card in cards['data_files']:
             data_cc = card[1]
-            st.title(f"{card[0]}")
-            for section, items in data_cc.items():
-                if section != 'card_details':
-                    st.header(section.replace('_', ' ').title())  # section header
-                    for key, details in items.items():
-                        if 'verbose' in details and 'value' in details:
-                            st.subheader(key.replace('_', ' ').title())  # section header
-                            # details['value'] = st.checkbox(details['verbose'], value=details['value'])
-                            if isinstance(details['value'], str):
-                                details['value'] = st.text_input(details['verbose'], value=details['value'], key=f"data_{card[0]}_{key}")
-                            elif isinstance(details['value'], bool):                                
-                                details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"data_{card[0]}_{details}_{key}")                        
-                        if 'verbose' not in details and 'value' not in details:
-                            st.subheader(key.replace('_', ' ').title())  # section header
-                            for key, details in details.items():
+            with st.expander(f"{card[0]}"):
+                for section, items in data_cc.items():
+                    if section != 'card_details':
+                        st.header(section.replace('_', ' ').title())  # section header
+                        for key, details in items.items():
+                            if 'verbose' in details and 'value' in details:
                                 st.subheader(key.replace('_', ' ').title())  # section header
-                                details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"data_{card[0]}_{details}_{key}")
-                            st.divider()
-                    st.divider()
-            # st.write("Updated Data:", data_cc)
-        
-            data_cc_yaml_data = yaml.dump(data_cc, sort_keys=False)
+                                # details['value'] = st.checkbox(details['verbose'], value=details['value'])
+                                if isinstance(details['value'], str):
+                                    details['value'] = st.text_input(details['verbose'], value=details['value'], key=f"data_{card[0]}_{key}")
+                                elif isinstance(details['value'], bool):                                
+                                    details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"data_{card[0]}_{details}_{key}")                        
+                            if 'verbose' not in details and 'value' not in details:
+                                st.subheader(key.replace('_', ' ').title())  # section header
+                                for key, details in details.items():
+                                    st.subheader(key.replace('_', ' ').title())  # section header
+                                    details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"data_{card[0]}_{details}_{key}")
+                                st.divider()
+                        st.divider()
+                # st.write("Updated Data:", data_cc)
+            
+                data_cc_yaml_data = yaml.dump(data_cc, sort_keys=False)
 
-            st.download_button(
-                label=f"Download Updated {card[0]} CC as YAML",
-                data=data_cc_yaml_data,
-                file_name="updated_data.yaml",
-                mime="text/yaml"
-            )
+                st.download_button(
+                    label=f"Download Updated {card[0]} CC as YAML",
+                    data=data_cc_yaml_data,
+                    file_name="updated_data.yaml",
+                    mime="text/yaml"
+                )
+    # else:
+    #     st.write("Missing data file")
 
 with model_col:
             
@@ -135,35 +139,37 @@ with model_col:
         # model_cc = selected_data_file[1]
         for card in cards['model_files']:
             model_cc = card[1]
-            st.title(f"{card[0]}")        
-            for section, items in model_cc.items():
-                if section != 'card_details':
-                    st.header(section.replace('_', ' ').title())  # section header
-                    for key, details in items.items():
-                        if 'verbose' in details and 'value' in details:
-                            st.subheader(key.replace('_', ' ').title())  # section header
-                            # details['value'] = st.checkbox(details['verbose'], value=details['value'])
-                            if isinstance(details['value'], str):
-                                details['value'] = st.text_input(details['verbose'], value=details['value'], key=f"model_{card[0]}_{key}")
-                            elif isinstance(details['value'], bool):
-                                details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"model_{card[0]}_{details}_{key}")                        
-                        if 'verbose' not in details and 'value' not in details:
-                            st.subheader(key.replace('_', ' ').title())  # section header
-                            for key, details in details.items():
+            with st.expander(f"{card[0]}"):       
+                for section, items in model_cc.items():
+                    if section != 'card_details':
+                        st.header(section.replace('_', ' ').title())  # section header
+                        for key, details in items.items():
+                            if 'verbose' in details and 'value' in details:
                                 st.subheader(key.replace('_', ' ').title())  # section header
-                                details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"model_{card[0]}_{details}_{key}")
-                            st.divider()
-                    st.divider()
-            # st.write("Updated Data:", model_cc)
-        
-            model_cc_yaml_data = yaml.dump(model_cc, sort_keys=False)
+                                # details['value'] = st.checkbox(details['verbose'], value=details['value'])
+                                if isinstance(details['value'], str):
+                                    details['value'] = st.text_input(details['verbose'], value=details['value'], key=f"model_{card[0]}_{key}")
+                                elif isinstance(details['value'], bool):
+                                    details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"model_{card[0]}_{details}_{key}")                        
+                            if 'verbose' not in details and 'value' not in details:
+                                st.subheader(key.replace('_', ' ').title())  # section header
+                                for key, details in details.items():
+                                    st.subheader(key.replace('_', ' ').title())  # section header
+                                    details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"model_{card[0]}_{details}_{key}")
+                                st.divider()
+                        st.divider()
+                # st.write("Updated Data:", model_cc)
+            
+                model_cc_yaml_data = yaml.dump(model_cc, sort_keys=False)
 
-            st.download_button(
-                label=f"Download Updated {card[0]} CC as YAML",
-                data=model_cc_yaml_data,
-                file_name="updated_model.yaml",
-                mime="text/yaml"
-            )
+                st.download_button(
+                    label=f"Download Updated {card[0]} CC as YAML",
+                    data=model_cc_yaml_data,
+                    file_name="updated_model.yaml",
+                    mime="text/yaml"
+                )
+    # else:
+    #     st.write("Missing data file")
 
 # # #         # json_data = json.dumps(data, indent=2)
 # # #         # st.download_button(
