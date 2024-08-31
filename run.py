@@ -2,7 +2,7 @@ import yaml
 import json
 from pathlib import Path
 import pandas as pd
-from compliance_analysis import check_overall_compliance
+from src.compliance_analysis import check_overall_compliance
 
 pd.set_option('display.max_columns', None)  
 pd.set_option('display.max_rows', None)

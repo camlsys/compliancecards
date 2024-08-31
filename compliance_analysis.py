@@ -1,36 +1,86 @@
 import yaml
-from utils import set_operator_role_and_location, set_eu_market_status, check_within_scope_cc, check_within_scope_act, check_prohibited
+from utils import set_operator_role_and_location, set_eu_market_status, check_within_scope_act, check_prohibited
 
 # TODO tells the user where the compliance analysis failed
 # TODO cite article from yaml file as explanation
 
-def check_overall_compliance(cards):
-    
+def check_overall_compliance_ui(cards):
+   
+    project_cc = cards['project_file']
+
     dispositive_variables = {
     "ai_project_type": {
-        "ai_system": False,
-        "gpai_model": True,
-        "high_risk_ai_system": True,
+        "ai_system": project_cc['ai_system']['ai_system']['value'],
+        "gpai_model": project_cc['gpai_model']['gpai_model']['value'],
+        "high_risk_ai_system": False,
         "gpai_model_systemic_risk": False
     },
     "operator_details": {
-        "provider": False,
-        "eu_located": False,
-        "output_used": False
+        "provider": project_cc['operator_details']['provider']['value'],
+        "eu_located": project_cc['operator_details']['eu_located']['value'],
+        "output_used": project_cc['operator_details']['output_used']['value']
     },
     "eu_market_status": {
-        "placed_on_market": False,
-        "put_into_service": False
+        "placed_on_market": project_cc['eu_market_status']['placed_on_market']['value'],
+        "put_into_service": project_cc['eu_market_status']['put_into_service']['value']
     },
-    "intended_purposes": [],
+    "project_intended_purposes": [],
     "project_cc_pass": False,
     "data_cc_pass": False,
     "model_cc_pass": False,
     "msg": []
     }
-    
+   
+    # check intended purposes 
+    for card in cards['data_files']:
+        data_cc = card[1]
+        dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, data_cc)
+        
+    for card in cards['model_files']:
+        model_cc = card[1]
+        dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, model_cc)
+   
+    # for each model_cc and data_cc - run analysis with ref to project_cc
+    dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc)
+
+    for card in cards['data_files']:
+        data_cc = card[1]
+        dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc)
+            
+    for card in cards['model_files']:
+        model_cc = card[1]
+        dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc)
+
+    return dispositive_variables
+
+def check_overall_compliance(cards):
+   
     with open(cards['project_file'], 'r') as project_filepath:
+        print(project_filepath)
         project_cc = yaml.safe_load(project_filepath.read())
+
+    dispositive_variables = {
+    "ai_project_type": {
+        "ai_system": project_cc['ai_system']['ai_system']['value'],
+        "gpai_model": project_cc['gpai_model']['gpai_model']['value'],
+        "high_risk_ai_system": False,
+        "gpai_model_systemic_risk": False
+    },
+    "operator_details": {
+        "provider": project_cc['operator_details']['provider']['value'],
+        "eu_located": project_cc['operator_details']['eu_located']['value'],
+        "output_used": project_cc['operator_details']['output_used']['value']
+    },
+    "eu_market_status": {
+        "placed_on_market": project_cc['eu_market_status']['placed_on_market']['value'],
+        "put_into_service": project_cc['eu_market_status']['put_into_service']['value']
+    },
+    "project_intended_purposes": [],
+    "project_cc_pass": False,
+    "data_cc_pass": False,
+    "model_cc_pass": False,
+    "msg": []
+    }
    
     # check intended purposes 
     for card in cards['data_files']:
@@ -92,21 +142,23 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
     dispositive_variables = set_eu_market_status(dispositive_variables, project_cc_yaml)
 
     # Check if project is within scope of the Compliance Cards project. If not, inform user.
-    if check_within_scope_cc(dispositive_variables, project_cc_yaml):
+    if project_cc_yaml['operator_details']['provider']['value'] == True:
         dispositive_variables['msg'].append("Project is within the scope of the Compliance Cards system. Let's continue...") 
     else: 
         dispositive_variables['msg'].append("Project is not within the scope of the initial version of the Compliance Cards system.")
+        return dispositive_variables
     
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
     if check_within_scope_act(dispositive_variables, project_cc_yaml):
         dispositive_variables['msg'].append("Project is within the scope of Act. Let's continue...") 
     else: 
         dispositive_variables['msg'].append("Project is not within the scope of what is regulated by the Act.")
+        return dispositive_variables
 
     # Check for prohibited practices. If any exist, the analysis is over.
     if check_prohibited(project_cc_yaml) == True: 
-        print("Project contains prohibited practices and is therefore non-compliant.")
         dispositive_variables['msg'].append("Project is non-compliant due to a prohibited practice.")
+        return dispositive_variables
     else: 
         print("Project does not contain prohibited practies. Let's continue...")
 
@@ -223,7 +275,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
     
     # For each Data CC, put the intended uses in a set and then make sure the Project's intended use is in the set
    
-    if other_cc['card_type'] == 'data':
+    if other_cc['card_details']['card_type'] == 'data':
         data_cc = other_cc        
         for key in data_cc['intended_purpose']:
             if data_cc['intended_purpose'][f'{key}']['value']:
@@ -235,7 +287,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
 
     # Now do the exact same thing for all models
 
-    if other_cc['card_type'] == 'model':
+    if other_cc['card_details']['card_type'] == 'model':
         model_cc = other_cc        
         for key in model_cc['intended_purpose']:
             if model_cc['intended_purpose'][f'{key}']['value']:
@@ -245,7 +297,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
             if purpose not in model_intended_purposes:
                 dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for the model")
 
-    dispositive_variables['intended_purposes'] = project_intended_purposes
+    dispositive_variables['project_intended_purposes'] = project_intended_purposes
 
     return dispositive_variables
 

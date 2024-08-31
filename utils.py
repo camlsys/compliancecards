@@ -31,16 +31,6 @@ def set_eu_market_status(dispositive_variables, project_cc_yaml):
         
     return dispositive_variables
 
-
-def check_within_scope_cc(dispositive_variables, project_cc_yaml):
-
-    # Check that the person filling out the form (the operator) is in fact a provider;
-    if project_cc_yaml['operator_details']['provider']['value']:        
-        return True
-    else:
-        print("The initial versiton of the Compliance Cards System is for provider-side compliance analyses only.")
-        return False
-
 def check_within_scope_act(dispositive_variables, project_cc_yaml):
 
     # Check that the project is within the scope of the Act 

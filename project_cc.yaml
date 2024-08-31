@@ -1,6 +1,8 @@
 
 # Information related to high-level characteristics of AI project, including the role of the operator, their location, and where the output is used
-card_type: "project" # "project", "data" or "model"
+card_details: 
+  card_type: "project" # "project", "data" or "model"
+  card_label: "project"
   
 # TODO potentially add scenarios that get the provider off the hook per Article 25 
 
