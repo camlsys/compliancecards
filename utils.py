@@ -57,9 +57,9 @@ def check_excepted(dispositive_variables, project_cc_yaml):
     if (project_cc_yaml['excepted']['scientific']['value'] or 
         project_cc_yaml['excepted']['pre_market']['value'] or 
         (project_cc_yaml['ai_system']['ai_system']['value'] == True and 
-         project_cc_yaml['excepted']['open_source_ai_system']['value']  == True) or 
+         project_cc_yaml['excepted']['open_source_ai_model']['value']  == True) or 
         (project_cc_yaml['gpai_model']['gpai_model']['value'] == True and 
-         project_cc_yaml['excepted']['open_source_gpai_system']['value']  == True and
+         project_cc_yaml['excepted']['open_source_gpai_model']['value']  == True and
          dispositive_variables['ai_project_type']['gpai_model_systemic_risk'] == False)
     ):
         dispositive_variables['msg'].append("Your project falls into one of the exemptions from the Act.")   
