@@ -1,6 +1,6 @@
 card_details: 
   card_type: "model" # "project", "data" or "model"
-  card_label: "model_01"
+  card_label: "model_02"
 
 # Metadata related to intended purpose(s) of model 
 

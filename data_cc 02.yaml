@@ -1,6 +1,6 @@
 card_details: 
   card_type: "data" # "project", "data" or "model"
-  card_label: "data_01"
+  card_label: "data_02"
 
 # Metadata related to intended purpose(s) of data 
 
@@ -8,7 +8,7 @@ intended_purpose:
   safety_component: 
     article: 'Art. 6(1)(a)'
     verbose: 'This dataset is appropriate to use for AI projects involving product safety components'
-    value: !!bool false 
+    value: !!bool true 
   product_regulated_machinery: 
     article: 'Art. 6(1)(b); Annex I'
     verbose: 'This dataset is appropriate to use for AI projects involving products covered by Directive 2006/42/EC of the European Parliament and of the Council of 17 May 2006 on machinery, and amending Directive 95/16/EC (OJ L 157, 9.6.2006, p. 24) [as repealed by the Machinery Regulation]'
