@@ -2,7 +2,7 @@ card_details:
   card_type: "data" # "project", "data" or "model"
   card_label: "data_01"
 
-# Metadata related to intended purpose(s) of data 
+# Metadata related to intended purpose(s) of data (which must align with those of overall AI project, if overall AI project is a high-risk AI system)
 
 intended_purpose:
   safety_component: 
@@ -58,7 +58,7 @@ intended_purpose:
     verbose: 'This dataset is appropriate to use for AI projects intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
 
-# Metadata related to data-related requirements for high-risk AI systems
+# Metadata related to model-related requirements when AI project is a high-risk AI system
 
 high_risk_ai_system_requirements:
 # data governance
@@ -188,10 +188,9 @@ high_risk_ai_system_requirements:
   technical_documentation_cybersecurity:  
     article: 'Art. 11; Annex IV(2)(h)'
     verbose: 'Cybersecurity measures were put in place as regards the data (e.g., scanning for data poisoning)'
-    value: !!bool false
-    
+    value: !!bool false  
   transparency_and_provision_of_information_to_deployers: 
-    article: '# Art. 13(3)(b)(vi)'
+    article: 'Art. 13(3)(b)(vi)'
     verbose: 'Dataset is accompanied by instructions for use that convery relevant information about it, taking into account its intended purpose'
     value: !!bool false
   quality_management_system: 
@@ -199,7 +198,7 @@ high_risk_ai_system_requirements:
     verbose: 'Datset was subject to a quality management system that is documented in a systematic and orderly manner in the form of written policies, procedures and instructions, and includes a description of the systems and procedures for data management, including data acquisition, data collection, data analysis, data labelling, data storage, data filtration, data mining, data aggregation, data retention and any other operation regarding the data'
     value: !!bool false
 
-# Metadata related to data-related requirements for GPAI models 
+# Metadata related to data-related requirements when AI project is a GPAI model 
 
 gpai_model_requirements: 
   data_type: 

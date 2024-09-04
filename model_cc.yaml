@@ -2,7 +2,7 @@ card_details:
   card_type: "model" # "project", "data" or "model"
   card_label: "model_01"
 
-# Metadata related to intended purpose(s) of model 
+# Metadata related to intended purpose(s) of model (which must align with those of overall AI project, if overall AI project is a high-risk AI system)
 
 intended_purpose:
   safety_component: 
@@ -58,19 +58,7 @@ intended_purpose:
     verbose: 'This model is appropriate to use for AI projects intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
 
-# Metadata that will help us determine if the model itself is a GPAI and, therefore, must satisfy the requirements of GPAI models
-
-classification_of_gpai_models:
-  high_impact_capabilities: 
-    article: 'Art. 51(1)(a)'
-    verbose: 'The model has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks'
-    value: !!bool false
-  flops: 
-    article: 'Art. 51(2)'
-    verbose: 'The cumulative compute used for training the model, as measured in floating point operations (FLOPs), was greater than 10^25.'
-    value: !!bool false
-
-# Metadata related to model-related requirements for high-risk AI systems
+# Metadata related to model-related requirements when AI project is a high-risk AI system
 
 high_risk_ai_system_requirements:
   risk_management_system_general:
@@ -181,7 +169,7 @@ high_risk_ai_system_requirements:
     article: 'Art. 13(3)(e)'
     verbose: 'Model is accompanied by instructions for use that include computational and hardware resources needed, the expected lifetime of the model and any necessary maintenance and care measures, including their frequency, to ensure the proper functioning of that model, including as regards software updates'
     value: !!bool false
-  accuracy_robustness_cybersecurity_accuracy:  # These need to be cleaned up and to match/compliment project cc
+  accuracy_robustness_cybersecurity_accuracy:  # These must match/compliment project cc
     article: 'Art. 15(1)'
     verbose: 'Model is designed and developed to achieve appropriate level of accuracy'
     value: !!bool false
@@ -210,7 +198,7 @@ high_risk_ai_system_requirements:
     verbose: 'Examination, test and validation procedures to be carried out before, during and after the development of the high-risk AI system, and the frequency with which they have to be carried out'
     value: !!bool false
 
-# Metadata related to model-related requirements for GPAI models 
+# Metadata related to model-related requirements when AI project is a GPAI model 
 
 gpai_model_requirements:
   task:  
@@ -297,6 +285,8 @@ gpai_model_requirements:
     article: 'Art. 53; Annex XI(2)(2)'
     verbose: 'Where applicable, detailed description of the measures put in place for the purpose of conducting internal and/or external adversarial testing (e.g. red teaming), model adaptations, including alignment and fine-tuning'
     value: !!bool false
+
+# Metadata related to model-related requirements when AI project is a GPAI model with systemic risk
 
 gpai_model_with_systemic_risk_requirements:
   evaluation: 

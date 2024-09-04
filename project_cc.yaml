@@ -1,10 +1,10 @@
-
-# Information related to high-level characteristics of AI project, including the role of the operator, their location, and where the output is used
 card_details: 
   card_type: "project" # "project", "data" or "model"
   card_label: "project"
-  
-# TODO potentially add scenarios that get the provider off the hook per Article 25 
+
+# Information related to high-level characteristics of AI project, including the role of the operator, their location, and where the output is used
+
+# TODO add some attributes related to Article 25, which captures scenarios where the provider is no longer responsible for some requirements 
 
 operator_details:
   provider: 
@@ -44,7 +44,7 @@ gpai_model:
 
 # Information related to whether or not the project, if an AI system, is a high-risk AI system
 
-# TODO Potentially add all of the use cases mentioned in Annex I below (those covered by existing regulations) rather than bundle them up as they are now
+# TODO Unbundle the use cases mentioned in Annex I 
 
 high_risk_ai_system:
   safety_component: 
@@ -100,8 +100,6 @@ high_risk_ai_system:
     verbose: 'AI project is intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
     value: !!bool false 
 
-# TODO potentially add military exception and/or law enforcement exception to the below
-
 high_risk_ai_system_exceptions:    
   filter_exception_rights: 
     article: 'Art. 6(3)'
@@ -141,9 +139,13 @@ gpai_model_systemic_risk:
 # Information related to the Act's exceptions for scientific research, open-source AI, and more
 
 excepted:
-  military: # only applies to AI systems, must implement that in the logic
+  military: # only applies to AI systems, must implement that in logic
     article: 'Art. 2(3)'
     verbose: 'AI project is placed on the market, put into service, or used with or without modification exclusively for military, defence or national security purposes'
+    value: !!bool false 
+  military_use: # only applies to AI systems, must implement that in logic
+    article: 'Art. 2(3)'
+    verbose: 'AI project is not placed on the market or put into service in the Union, but the output is used in the Union exclusively for military, defence or national security purposes, regardless of the type of entity carrying out those activities.'
     value: !!bool false 
   scientific: 
     article: 'Art. 2(6)'
@@ -161,11 +163,6 @@ excepted:
     article: 'Art. 53(2)'
     verbose: 'AI project involves AI models that are released under a free and open-source licence that allows for the access, usage, modification, and distribution of the model, and whose parameters, including the weights, the information on the model architecture, and the information on model usage, are made publicly available. This exception shall not apply to general purpose AI models with systemic risks'
     value: !!bool false  
-
-    # We have to remember that even when open_source_gpai_model == true, the exception does not exist if gpai_model_with_systemic_risk == true
-    # Also, even when open_source_gpai_model == true, the project must still satisfy [Article 53(1)(c), 53(1)(d)]:
-    # In other words, project_cc_yaml['gpai_model_obligations']['other']['policy'] and project_cc_yaml['gpai_model_obligations']['other']['content'] must be true
-    # This logic has to be added to compliance_analysis.py 
 
 # Information related to practices prohibited by the Act
 
@@ -333,12 +330,6 @@ technical_documentation:
     verbose: 'The AI project is either not related to a product covered by the Union harmonisation legislation listed in Section A of Annex I and placed on the market or put into service or, if it is, a single set of technical documentation has been drawn up containing all the information set out in paragraph 1, as well as the information required under those legal acts'
     value: !!bool false 
 
-
-### ypi: add   Annex IV(1)(h)
-###  instructions_for_use:
-###    verbose: 'The Technical Documentation includes a general description of the AI project that covers instructions for use for the deployer and a basic description of the user-interface provided, where applicable.'
- ###   value: !!bool false
-
 # Information related to the record keeping requirements for high-risk AI systems (Article 12)
 
 record_keeping:
@@ -388,7 +379,7 @@ transparency_and_provision_of_information_to_deployers:
     value: !!bool false 
   compliance: 
     article: 'Art. 13(1)'
-    verbose: 'AI project is designed and developed with transparency to ensure compliance with provider and deployer obligations in Section 3'
+    verbose: 'AI project is designed and developed with transparency to ensure compliance with provider and deployer obligations in Section 3' # replace reference to section with text
     value: !!bool false 
   instructions: 
     article: 'Art. 13(2)'
@@ -540,7 +531,7 @@ quality_management_system:
 fundamental_rights_assessment:
   process: 
     article: 'Art. 27(1)(a)'
-    verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the deployer’s processes in which the AI project will be used in line with its intended purpose'
+    verbose: 'AI project has been subject to a fundamental rights impact assessment that includes a description of the deployer processes in which the AI project will be used in line with its intended purpose'
     value: !!bool false 
   time_period: 
     article: 'Art. 27(1)(b)'
@@ -682,8 +673,6 @@ gpai_model_obligations:
       verbose: 'Prior to placing the AI project on the Union market, the provider, if established in a third country, has, by written mandate, appointed an authorised representative which is established in the Union.'
       value: !!bool false 
 
-    # Add other obligations of domestic represenatitives 
-
 # Information related to the Act's requirements for GPAI models with systematic risk 
 
 gpai_models_with_systemic_risk_obligations:
@@ -756,7 +745,7 @@ additional_provider_obligations:
 
 # Information related to the additional transparency requirements in Article 50, if applicable
 
-# TODO the requirements seem to be missing from the below. We also need to work on the logic, which is complex. 
+# TODO add requirements below and then implement logic elsewhere
 
 transparency_related: 
   direct_user_interaction: 
