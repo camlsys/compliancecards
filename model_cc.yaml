@@ -169,26 +169,22 @@ high_risk_ai_system_requirements:
     article: 'Art. 13(3)(e)'
     verbose: 'Model is accompanied by instructions for use that include computational and hardware resources needed, the expected lifetime of the model and any necessary maintenance and care measures, including their frequency, to ensure the proper functioning of that model, including as regards software updates'
     value: !!bool false
-  accuracy_robustness_cybersecurity_accuracy:  # These must match/compliment project cc
+  accuracy_robustness_cybersecurity: 
     article: 'Art. 15(1)'
-    verbose: 'Model is designed and developed to achieve appropriate level of accuracy'
-    value: !!bool false
-  accuracy_robustness_cybersecurity_robustiness: 
-    article: 'Art. 15(1)'
-    verbose: 'Model is designed and developed to achieve appropriate level of robustness'
-    value: !!bool false
-  accuracy_robustness_cybersecurity_cybersecurity:  
-    article: 'Art. 15(1)'
-    verbose: 'Model is designed and developed to achieve appropriate level of cybersecurity'
-    value: !!bool false
-  accuracy_robustness_cybersecurity_accuracy_metrics: 
-    article: 'Art. 15(2)'
-    verbose: 'Use of relevant accuracy metrics'
-    value: !!bool false
-  accuracy_robustness_cybersecurity_fault_resilience: 
+    verbose: 'The AI model is designed and developed to achieve appropriate levels of accuracy, robustness, and cybersecurity, performing consistently throughout its lifecycle'
+    value: !!bool false 
+  accuracy_robustness_cybersecurity_metrics: 
+    article: 'Art. 15(3)'
+    verbose: 'Accuracy levels and relevant metrics are declared in instructions of use that accompany the model'
+    value: !!bool false 
+  accuracy_robustness_cybersecurity_errors: 
     article: 'Art. 15(4)'
-    verbose: 'Maximum possible resilience regarding errors, faults or inconsistencies that may occur within the system or the environment in which the system operates, in particular due to their interaction with natural persons or other systems. Technical and organisational measures shall be taken towards this regard'
+    verbose: 'Maximum possible resilience regarding errors, faults or inconsistencies that may occur within the model or the environment in which the model operates, in particular due to their interaction with natural persons or other models. Technical and organisational measures shall be taken towards this regard'
     value: !!bool false
+  accuracy_robustness_cybersecurity_bias: 
+    article: 'Art. 15(4)'
+    verbose: 'The model, if it continues learning after deployment, is designed to eliminate or reduce risk of biased outputs influencing future operations'
+    value: !!bool false 
   accuracy_robustness_cybersecurity_attacks: 
     article: 'Art. 15(5)'
     verbose: 'Measures were taken to prevent, detect, respond to, resolve and control for model poisoning attacks, adversarial examples or model evasion attacks (attacks using inputs designed to cause the model to make a mistake), and confidentiality attacks or model flaws'

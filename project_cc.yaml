@@ -773,6 +773,8 @@ gpai_models_with_systemic_risk_obligations:
     verbose: 'The provider has drawn up and will keep up-to-date technical documentation of the model that includes, where applicable, a detailed description of the system architecture explaining how software components build or feed into each other and integrate into the overall processing.'
     value: !!bool false
 
+# Information related to the requirements for all AI systems (whether high-risk or not)
+
 ai_systems_obligations: 
   ai_literacy:
     article: 'Article 4'
@@ -857,6 +859,8 @@ article_50:
     article: 'Art. 50(4)'
     verbose: 'AI project generates or manipulates image, audio or video content constituting a deep fake but the content forms part of an evidently artistic, creative, satirical, fictional or analogous work or programme.'
     value: !!bool false 
+
+# Information related to whether the additional transparency requirements in Article 50 are met, if applicable
 
 article_50_obligations:
   informed_ai:  
