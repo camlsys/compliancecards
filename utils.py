@@ -1,5 +1,4 @@
-# We could probably combine set_type, set_operator_role_and_location, and set_eu_market_status into a single function that sets all project_variables
-# We will have to add a couple other things to that function as well 
+
 
 def set_operator_role_and_location(dispositive_variables, project_cc_yaml):
     operators = 0
@@ -91,19 +90,19 @@ def check_prohibited(project_cc_yaml):
         print("You are not engaged in any prohibited practices.")
         return False
 
-def check_article_50():
-    If (project_cc_yaml['article_50']['direct_user_interaction'] == True and project_cc_yaml['article_50']['exception_obvious'] == False and project_cc_yaml['article_50']['exception_law'] == False) and  project_cc_yaml['article_50_obligations']['notice'] == False:
-        print("You are not are not compliance with Article 50(1).")
-        return False  
+# def check_article_50():
+#     If (project_cc_yaml['article_50']['direct_user_interaction'] == True and project_cc_yaml['article_50']['exception_obvious'] == False and project_cc_yaml['article_50']['exception_law'] == False) and  project_cc_yaml['article_50_obligations']['notice'] == False:
+#         print("You are not are not compliance with Article 50(1).")
+#         return False  
 
-    If (project_cc_yaml['article_50']['synthetic_content'] == True and project_cc_yaml['article_50']['exception_assistive'] == False and project_cc_yaml['article_50']['exception_insubstantial'] == False) and project_cc_yaml['article_50_obligations']['marked'] == False: 
-        print("You are not are not compliance with Article 50(2).")
-        return False  
+#     If (project_cc_yaml['article_50']['synthetic_content'] == True and project_cc_yaml['article_50']['exception_assistive'] == False and project_cc_yaml['article_50']['exception_insubstantial'] == False) and project_cc_yaml['article_50_obligations']['marked'] == False: 
+#         print("You are not are not compliance with Article 50(2).")
+#         return False  
 
-    If (((project_cc_yaml['article_50']['emotion_reconition'] == True and project_cc_yaml['article_50']['emotion_reconition_law'] == False) or (project_cc_yaml['article_50']['biometric_categorization'] == True and project_cc_yaml['article_50']['biometric_categorization'] == False))) and project_cc_yaml['article_50_obligations']['informed_biometric'] == False:
-        print("You are not are not compliance with Article 50(3).")
-        return False  
+#     If (((project_cc_yaml['article_50']['emotion_reconition'] == True and project_cc_yaml['article_50']['emotion_reconition_law'] == False) or (project_cc_yaml['article_50']['biometric_categorization'] == True and project_cc_yaml['article_50']['biometric_categorization'] == False))) and project_cc_yaml['article_50_obligations']['informed_biometric'] == False:
+#         print("You are not are not compliance with Article 50(3).")
+#         return False  
 
-    If ((project_cc_yaml['article_50']['deepfake_not_art'] == True and project_cc_yaml['article_50']['deepfake_law'] == False and ['article_50_obligations']['deepfake_disclosure'] == False) or (project_cc_yaml['article_50']['deepfake_art'] == True and project_cc_yaml['article_50']['deepfake_law'] == False and project_cc_yaml['article_50_obligations']['deepfake_disclosure_art'] == False)):
-        print("You are not are not compliance with Article 50(4).")
-        return False  
+#     If ((project_cc_yaml['article_50']['deepfake_not_art'] == True and project_cc_yaml['article_50']['deepfake_law'] == False and ['article_50_obligations']['deepfake_disclosure'] == False) or (project_cc_yaml['article_50']['deepfake_art'] == True and project_cc_yaml['article_50']['deepfake_law'] == False and project_cc_yaml['article_50_obligations']['deepfake_disclosure_art'] == False)):
+#         print("You are not are not compliance with Article 50(4).")
+#         return False  
