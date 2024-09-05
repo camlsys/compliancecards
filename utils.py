@@ -54,7 +54,9 @@ def check_within_scope_act(dispositive_variables, project_cc_yaml):
 
 def check_excepted(dispositive_variables, project_cc_yaml):
     
-    if (project_cc_yaml['excepted']['scientific']['value'] or 
+    if (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['military']['value']) or
+        (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['military_use']['value']) or
+        project_cc_yaml['excepted']['scientific']['value'] or 
         project_cc_yaml['excepted']['pre_market']['value'] or 
         (project_cc_yaml['ai_system']['ai_system']['value'] == True and 
          project_cc_yaml['excepted']['open_source_ai_model']['value']  == True) or 
@@ -88,4 +90,20 @@ def check_prohibited(project_cc_yaml):
     else: 
         print("You are not engaged in any prohibited practices.")
         return False
-            
+
+def check_article_50():
+    If (project_cc_yaml['article_50']['direct_user_interaction'] == True and project_cc_yaml['article_50']['exception_obvious'] == False and project_cc_yaml['article_50']['exception_law'] == False) and  project_cc_yaml['article_50_obligations']['notice'] == False:
+        print("You are not are not compliance with Article 50(1).")
+        return False  
+
+    If (project_cc_yaml['article_50']['synthetic_content'] == True and project_cc_yaml['article_50']['exception_assistive'] == False and project_cc_yaml['article_50']['exception_insubstantial'] == False) and project_cc_yaml['article_50_obligations']['marked'] == False: 
+        print("You are not are not compliance with Article 50(2).")
+        return False  
+
+    If (((project_cc_yaml['article_50']['emotion_reconition'] == True and project_cc_yaml['article_50']['emotion_reconition_law'] == False) or (project_cc_yaml['article_50']['biometric_categorization'] == True and project_cc_yaml['article_50']['biometric_categorization'] == False))) and project_cc_yaml['article_50_obligations']['informed_biometric'] == False:
+        print("You are not are not compliance with Article 50(3).")
+        return False  
+
+    If ((project_cc_yaml['article_50']['deepfake_not_art'] == True and project_cc_yaml['article_50']['deepfake_law'] == False and ['article_50_obligations']['deepfake_disclosure'] == False) or (project_cc_yaml['article_50']['deepfake_art'] == True and project_cc_yaml['article_50']['deepfake_law'] == False and project_cc_yaml['article_50_obligations']['deepfake_disclosure_art'] == False)):
+        print("You are not are not compliance with Article 50(4).")
+        return False  
