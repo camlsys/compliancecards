@@ -53,7 +53,7 @@ def check_within_scope_act(dispositive_variables, project_cc_yaml):
 
 def check_excepted(dispositive_variables, project_cc_yaml):
     
-    if (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['military']['value']) or
+    if( (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['military']['value']) or
         (project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['excepted']['military_use']['value']) or
         project_cc_yaml['excepted']['scientific']['value'] or 
         project_cc_yaml['excepted']['pre_market']['value'] or 
