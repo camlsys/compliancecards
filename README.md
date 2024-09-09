@@ -1,3 +1,14 @@
+---
+title: {{title}}
+emoji: {{emoji}}
+colorFrom: {{colorFrom}}
+colorTo: {{colorTo}}
+sdk: {{sdk}}
+sdk_version: "{{sdkVersion}}"
+app_file: app.py
+pinned: false
+---
+
 # compliancecards
 
 This is a Python implementation of the Compliance Cards system described in: [Paper](https://arxiv.org/abs/2406.14758)
