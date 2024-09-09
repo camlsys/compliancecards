@@ -1,330 +1,289 @@
-import os
 import yaml
-from enum import Enum
+from utils import set_operator_role_and_location, set_eu_market_status, check_within_scope_act, check_prohibited
 
-# Create some variables we will use throughout our analysis
+def check_overall_compliance_ui(cards):
+   
+    project_cc = cards['project_file']
 
-# Type of AI project (AI system vs GPAI model)
-ai_system = False
-gpai_model = False
-high_risk_ai_system = False
-gpai_model_systematic_risk == False
+    dispositive_variables = {
+    "ai_project_type": {
+        "ai_system": project_cc['ai_system']['ai_system']['value'],
+        "gpai_model": project_cc['gpai_model']['gpai_model']['value'],
+        "high_risk_ai_system": False,
+        "gpai_model_systemic_risk": False
+    },
+    "operator_details": {
+        "provider": project_cc['operator_details']['provider']['value'],
+        "eu_located": project_cc['operator_details']['eu_located']['value'],
+        "output_used": project_cc['operator_details']['output_used']['value']
+    },
+    "eu_market_status": {
+        "placed_on_market": project_cc['eu_market_status']['placed_on_market']['value'],
+        "put_into_service": project_cc['eu_market_status']['put_into_service']['value']
+    },
+    "project_intended_purposes": [],
+    "project_cc_pass": False,
+    "data_cc_pass": False,
+    "model_cc_pass": False,
+    "msg": []
+    }
 
-# Role and location of AI project operator
-provider = False
-deployer = False
-importer = False
-distributor = False
-product_manufacturer = False
-eu_located = False 
+    if any(item['value'] for item in project_cc['high_risk_ai_system'].values()) == True:
+        dispositive_variables['ai_project_type']["high_risk_ai_system"] = True
+   
+    # check intended purposes 
+    for card in cards['data_files']:
+        data_cc = card[1]
+        dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, data_cc)
+        
+    for card in cards['model_files']:
+        model_cc = card[1]
+        dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, model_cc)
+   
+    # for each model_cc and data_cc - run analysis with ref to project_cc
+    dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc)
 
-#EU market status
-placed_on_market = False
-put_into_service = False 
-output_used = False
+    for card in cards['data_files']:
+        data_cc = card[1]
+        dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc)
+            
+    for card in cards['model_files']:
+        model_cc = card[1]
+        dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc)
 
-#Define a function that creates a list of all the files in a provided folder. We will use this list for different things.
-def create_list_of_files(folder_path):
-    for root, dirs, files in os.walk(folder_path):
-        for filename in files:
-            found_files.append(os.path.join(root, filename))
+    return dispositive_variables
 
-#Define a function that checks for a Project CC. Without this, there simply cannot be an analysis.
-def check_for_project_cc(folder_path):
-    found_files = []
+def check_overall_compliance(cards):
+   
+    with open(cards['project_file'], 'r') as project_filepath:
+        print(project_filepath)
+        project_cc = yaml.safe_load(project_filepath.read())
 
-    # Walk through the directory
-    for root, dirs, files in os.walk(folder_path):
-        for filename in files:
-            if filename.lower() == 'project_cc.yaml':
-                found_files.append(os.path.join(root, filename))
+    dispositive_variables = {
+    "ai_project_type": {
+        "ai_system": project_cc['ai_system']['ai_system']['value'],
+        "gpai_model": project_cc['gpai_model']['gpai_model']['value'],
+        "high_risk_ai_system": False,
+        "gpai_model_systemic_risk": False
+    },
+    "operator_details": {
+        "provider": project_cc['operator_details']['provider']['value'],
+        "eu_located": project_cc['operator_details']['eu_located']['value'],
+        "output_used": project_cc['operator_details']['output_used']['value']
+    },
+    "eu_market_status": {
+        "placed_on_market": project_cc['eu_market_status']['placed_on_market']['value'],
+        "put_into_service": project_cc['eu_market_status']['put_into_service']['value']
+    },
+    "project_intended_purposes": [],
+    "project_cc_pass": False,
+    "data_cc_pass": False,
+    "model_cc_pass": False,
+    "msg": []
+    }
+   
+    # check intended purposes 
+    for card in cards['data_files']:
+        with open(card, 'r') as data_filepath:
+            data_cc = yaml.safe_load(data_filepath.read())
+            dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, data_cc)
+        
+    for card in cards['model_files']:
+        with open(card, 'r') as model_filepath:
+            model_cc = yaml.safe_load(model_filepath.read())
+            dispositive_variables = check_intended_purpose(dispositive_variables, project_cc, model_cc)
+   
+    # for each model_cc and data_cc - run analysis with ref to project_cc
+    dispositive_variables = run_compliance_analysis_on_project(dispositive_variables, project_cc)
 
-    # Check the results
-    if len(found_files) == 0:
-        print(f"We did not find a Project CC in your folder. We cannot run a compliance analysis without a Project CC.")
-        sys.exit()
-    elif len(found_files) == 1:
-        print(f"We found exactly one Project CC in your folder. Great job!:")
-        print(f"  - {found_files[0]}")
-        run_compliance_analysis(folder_path)
-    else:
-        print(f"Multiple Project CCs found:")
-        for file_path in found_files:
-            print(f"  - {file_path}")
-        print("We found multiple Project CCs in your folder. There should only be one Project CC per project.")
+    for card in cards['data_files']:
+        with open(card, 'r') as data_filepath:
+            data_cc = yaml.safe_load(data_filepath.read())
+            dispositive_variables = run_compliance_analysis_on_data(dispositive_variables, data_cc)
+            
+    for card in cards['model_files']:
+        with open(card, 'r') as model_filepath:
+            model_cc = yaml.safe_load(model_filepath.read())
+            dispositive_variables = run_compliance_analysis_on_model(dispositive_variables, model_cc)
 
-def run_compliance_analysis(folder_path):
+    return dispositive_variables
 
-    # Load the Project CC YAML file from the supplied folder. This will be our starting point. 
-    with open(folder_path + 'project_cc.yaml', 'r') as file:
-        project_cc_yaml = yaml.safe_load(file)
+def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
+        
+    # Project Type    
+    if project_cc_yaml['ai_system']['ai_system']['value']:
+        dispositive_variables['ai_project_type']['ai_system'] = True
+    if project_cc_yaml['gpai_model']['gpai_model']['value']:
+        dispositive_variables['ai_project_type']['gpai_model'] = True
+    if project_cc_yaml['ai_system']['ai_system']['value'] == True and project_cc_yaml['gpai_model']['gpai_model']['value'] == True:
+        dispositive_variables['msg'].append("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
+        return dispositive_variables
+    
+    if dispositive_variables['ai_project_type']['ai_system'] == True:
+        for value in project_cc_yaml['high_risk_ai_system']:
+            if value and sum(map(bool, [
+                    project_cc_yaml['high_risk_ai_system_exceptions']['filter_exception_rights']['value'], 
+                    project_cc_yaml['high_risk_ai_system_exceptions']['filter_exception_narrow']['value'],
+                    project_cc_yaml['high_risk_ai_system_exceptions']['filter_exception_human']['value'],
+                    project_cc_yaml['high_risk_ai_system_exceptions']['filter_exception_deviation']['value'], 
+                    project_cc_yaml['high_risk_ai_system_exceptions']['filter_exception_prep']['value']])
+                    ) >= 1:
+                
+                dispositive_variables['ai_project_type']["high_risk_ai_system"] = False
+    
+    if dispositive_variables['ai_project_type']['gpai_model'] == True:
+        if project_cc_yaml['gpai_model_systemic_risk']['evaluation']['value'] or project_cc_yaml['gpai_model_systemic_risk']['flops']['value']:
+            dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] = True
+    
+    # Operator Type
+    dispositive_variables = set_operator_role_and_location(dispositive_variables, project_cc_yaml)
+    dispositive_variables = set_eu_market_status(dispositive_variables, project_cc_yaml)
 
-    # Determine project type (AI system vs. GPAI model) as well as operator type. We will use these for different things.
-    set_type(project_cc_yaml)
-    set_operator_role_and_location(projec_cc_yaml)
-    set_eu_market_status(project_cc_yaml)
-
-    # Check if the project is within scope of the Act. If it's not, the analysis is over.
-    if check_within_scope(project_cc_yaml):
-        print("Project is within the scope of Act. Let's continue...") 
+    # Check if project is within scope of the Compliance Cards project. If not, inform user.
+    if project_cc_yaml['operator_details']['provider']['value'] == True:
+        dispositive_variables['msg'].append("Project is within the scope of the Compliance Cards system. Let's continue...") 
     else: 
-        sys.exit("Project is not within the scope of what is regulated by the Act.")
+        dispositive_variables['msg'].append("Project is not within the scope of the initial version of the Compliance Cards system.")
+        return dispositive_variables
+    
+    # Check if the project is within scope of the Act. If it's not, the analysis is over.
+    if check_within_scope_act(dispositive_variables, project_cc_yaml):
+        dispositive_variables['msg'].append("Project is within the scope of Act. Let's continue...") 
+    else: 
+        dispositive_variables['msg'].append("Project is not within the scope of what is regulated by the Act.")
+        return dispositive_variables
 
     # Check for prohibited practices. If any exist, the analysis is over.
     if check_prohibited(project_cc_yaml) == True: 
-        print("Project contains prohibited practices and is therefore non-compliant.")
-        sys.exit("Project is non-compliant due to a prohibited practice.")
+        dispositive_variables['msg'].append("Project is non-compliant due to a prohibited practice.")
+        return dispositive_variables
     else: 
         print("Project does not contain prohibited practies. Let's continue...")
 
     # If project is high-risk AI system, check that is has met all the requirements for such systems: 
+    if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
 
-    if high_risk_ai_system:
+        for key in project_cc_yaml['risk_management_system']:
+            if project_cc_yaml['risk_management_system'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append("Because of project-level characteristics, this high-risk AI system fails the risk management requirements under Article 9.")
+        for key in project_cc_yaml['technical_documentation']:
+            if project_cc_yaml['technical_documentation'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append("Because of project-level characteristics, this high-risk AI system fails the risk management requirements under Article 11.")            
+        
+        for key in project_cc_yaml['record_keeping']:
+            if project_cc_yaml['record_keeping'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append("Because of project-level characteristics, this high-risk AI system fails the risk management requirements under Article 12.")     
+        
+        for key in project_cc_yaml['transparency_and_provision_of_information_to_deployers']:
+            if project_cc_yaml['transparency_and_provision_of_information_to_deployers'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append("Because of project-level characteristics, this high-risk AI system fails the transparency requirements under Article 13.")  
+        
+        for key in project_cc_yaml['human_oversight']:
+            if project_cc_yaml['human_oversight'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append("Because of project-level characteristics, this high-risk AI system fails the human oversight requirements under Article 14.")  
+        
+        for key in project_cc_yaml['accuracy_robustness_cybersecurity']:
+            if project_cc_yaml['accuracy_robustness_cybersecurity'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append("Because of project-level characteristics, this high-risk AI system fails the accuracy, robustness, and cybersecurity requirements under Article 15.")  
+        
+        for key in project_cc_yaml['quality_management_system']:
+            if project_cc_yaml['quality_management_system'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append("Because of project-level characteristics, this high-risk AI system fails the accuracy, robustness, and cybersecurity requirements under Article 17.") 
 
-    # Do this by examining the Project CC
+    if dispositive_variables['ai_project_type']["gpai_model"] == True:
+        
+        if dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] == True:
+            for key in project_cc_yaml['gpai_models_with_systemic_risk_obligations']:
+                if project_cc_yaml['gpai_models_with_systemic_risk_obligations'][f'{key}']['value'] == True:
+                    dispositive_variables['msg'].append("GPAI model with systematic risk fails the transparency requirements under Article 55.")
 
-        for key, value in project_cc_yaml['risk_management_system']:
-            if not value:
-                sys.exit("Because of project-level characteristics, this high-risk AI system fails the risk management requirements under Article 9.")
-        for key, value in project_cc_yaml['technical_documentation']:
-            if not value:
-                sys.exit("Because of project-level characteristics, this high-risk AI system fails the risk management requirements under Article 11.")            
-        for key, value in project_cc_yaml['record_keeping']:
-            if not value:
-                sys.exit("Because of project-level characteristics, this high-risk AI system fails the risk management requirements under Article 12.")     
-        for key, value in project_cc_yaml['transparency_and_provision_of_information_to_deployers']:
-            if not value:
-                sys.exit("Because of project-level characteristics, this high-risk AI system fails the transparency requirements under Article 13.")  
-        for key, value in project_cc_yaml['human_oversight']:
-            if not value:
-                sys.exit("Because of project-level characteristics, this high-risk AI system fails the human oversight requirements under Article 14.")  
-        for key, value in project_cc_yaml['accuracy_robustness_cybersecurity']:
-            if not value:
-                sys.exit("Because of project-level characteristics, this high-risk AI system fails the accuracy, robustness, and cybersecurity requirements under Article 15.")  
-        for key, value in project_cc_yaml['quality_management_system']:
-            if not value:
-                sys.exit("Because of project-level characteristics, this high-risk AI system fails the accuracy, robustness, and cybersecurity requirements under Article 17.") 
-
-    # Do this by examining any and all Data CCs too
-
-        for filename in os.listdir(folder_path):
-            # Check if the search word is in the filename
-            if "data_cc.md" in filename.lower():
-
-                # If it is, load the yaml
-
-                with open(folder_path + filename, 'r') as file:
-                    data_cc_yaml = yaml.safe_load(file)
-
-                for key, value in data_cc_yaml['data_and_data_governance']:
-                    if not value:
-                        sys.exit(f"Because of the dataset represented by {filename}, this high-risk AI system fails the data and data governance requirements under Article 10.")
-                for key, value in data_cc_yaml['technical_documentation']:
-                    if not value:
-                        sys.exit(f"Because of the dataset represented by {filename}, this high-risk AI system fails the technical documentation requirements under Article 11.")
-                for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
-                    if not value:
-                        sys.exit(f"Because of the dataset represented by {filename}, this high-risk  AI system fails the transparency requirements under Article 13.")
-                for key, value in data_cc_yaml['quality_management_system']:
-                    if not value:
-                        sys.exit(f"Because of the dataset represented by {filename}, this high-risk  AI system fails the quality management requirements under Article 17.")
-
-    # Do this by examining any and all Model CCs too
-
-        for filename in os.listdir(folder_path):
-            # Check if the search word is in the filename
-            if "model_cc.md" in filename.lower():
-
-                # If it is, load the yaml
-
-                with open(folder_path + filename, 'r') as file:
-                    model_cc_yaml = yaml.safe_load(file)
-
-                for key, value in model_cc_yaml['risk_management_system']:
-                    if not value:
-                        sys.exit(f"Because of the model represented by {filename}, this high-risk AI system fails the risk management requirements under Article 9.")
-                for key, value in data_cc_yaml['technical_documentation']:
-                    if not value:
-                        sys.exit(f"Because of the model represented by {filename}, this high-risk AI system fails the technical documentation requirements under Article 11.")
-                for key, value in data_cc_yaml['transparency_and_provision_of_information_to_deployers']:
-                    if not value:
-                        sys.exit(f"Because of the model represented by {filename}, this high-risk  AI system fails the transparency requirements under Article 13.")
-                for key, value in data_cc_yaml['accuracy_robustness_cybersecurity']:
-                    if not value:
-                        sys.exit(f"Because of the model represented by {filename}, this high-risk  AI system fails the quality management requirements under Article 15.")
-                for key, value in data_cc_yaml['quality_management_system']:
-                    if not value:
-                        sys.exit(f"Because of the model represented by {filename}, this high-risk  AI system fails the quality management requirements under Article 17.")
-
-    # If the project is a GPAI model, check that is has met all the requirements for such systems: 
-
-    if gpai_model:
-
-    # Do this by examining the Project CC
-
-        for key, value in project_cc_yaml['gpai_model_provider_obligations']:
-            if not value:
-                sys.exit("GPAI model fails the transparency requirements under Article 53.")
-
-    # Do this by examining any and all Data CCs too
-
-        for filename in os.listdir(folder_path):
-            # Check if the search word is in the filename
-            if "data_cc.md" in filename.lower():
-
-                # If it is, load the yaml
-
-                with open(folder_path + filename, 'r') as file:
-                    data_cc_yaml = yaml.safe_load(file)
-
-                for key, value in data_cc_yaml['gpai_requirements']['gpai_requirements']:
-                    if not value:
-                        sys.exit(f"Because of the dataset represented by {filename}, this GPAI fails the transparency requirements under Article 53.")
-
-    # Do this by examining any and all Model CCs too
+        for obligation_cat in project_cc_yaml['gpai_model_obligations']:
+            for obligation in project_cc_yaml['gpai_model_obligations'][f'{obligation_cat}']:
+                if project_cc_yaml['gpai_model_obligations'][f'{obligation_cat}'][f'{obligation}']['value'] == True:
+                    dispositive_variables['msg'].append("GPAI model fails the transparency requirements under Article 53.")
     
-        for filename in os.listdir(folder_path):
-            # Check if the search word is in the filename
-            if "model_cc.md" in filename.lower():
+    return dispositive_variables
 
-                # If it is, load the yaml
-
-                with open(folder_path + filename, 'r') as file:
-                    model_cc_yaml = yaml.safe_load(file)
-
-                for key, value in model_cc_yaml['obligations_for_providers_of_gpai_models']:
-                    if not value:
-                        sys.exit(f"Because of the model represented by {filename}, this GPAI fails the transparency requirements under Article 53.")
-
-    # If the project is a GPAI model with systematic risk, check that is has additionally met all the requirements for such systems: 
-
-    if gpai_model_systematic_risk:
-
-    # Do this by examining the Project CC
-
-        for key, value in project_cc_yaml['gpai_obligations_for_systemic_risk_models']:
-            if not value:
-                sys.exit("GPAI model with systematic risk fails the transparency requirements under Article 55.")
-
-    # Do this by examining any and all Model CCs too
-
-       for filename in os.listdir(folder_path):
-            # Check if the search word is in the filename
-            if "model_cc.md" in filename.lower():
-
-                # If it is, load the yaml
-
-                with open(folder_path + filename, 'r') as file:
-                    model_cc_yaml = yaml.safe_load(file)
-
-                for key, value in model_cc_yaml['obligations_for_providers_of_gpai_models_with_systemic_risk']:
-                    if not value:
-                        sys.exit(f"Because of the model represented by {filename}, this GPAI model with systematic risk fails the transparency requirements under Article 55.")
-
-def set_type(project_cc_yaml):
-    if project_cc_yaml['ai_system']['ai_system']['value']:
-        ai_system = True
-    if project_cc_yaml['gpai_model']['ai_system']['value']:
-        gpai_model = True
-    if ai_system and gpai_model:
-        sys.exit("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
-    if ai_system == True:
-        for key, value in project_cc_yaml['high_risk_ai_system']:
-            if value and sum(map(bool, [project_cc_yaml['high_risk_ai_system']['filter_exception_rights'],project_cc_yaml['high_risk_ai_system']['filter_exception_narrow'],project_cc_yaml['high_risk_ai_system']['filter_exception_human'],project_cc_yaml['high_risk_ai_system']['filter_exception_deviation'], project_cc_yaml['high_risk_ai_system']['filter_exception_prep']])) < 1:
-                high_risk_ai_system == True
-    if gpai_model == True:
-        if project_cc_yaml['gpai_model_systematic_risk']['evaluation'] or project_cc_yaml['gpai_model_systematic_risk']['flops']:
-            gpai_model_systematic_risk == True
-
-def set_operator_role_and_location(project_cc):
-    if project_cc_yaml['operator_role']['eu_located']['value']:
-        eu_located = True
-    if project_cc_yaml['operator_role']['provider']['value']:
-        provider = True
-    if project_cc_yaml['operator_role']['deployer']['value']:
-        deployer = True
-    if project_cc_yaml['operator_role']['importer']['value']:
-        importer = True
-    if project_cc_yaml['operator_role']['distributor']['value']:
-        distributor = True
-    if project_cc_yaml['operator_role']['product_manufacturer']['value']:
-        product_manufacturer = True
-    if ai_system and gpai_model:
-        sys.exit("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
-    if sum(map(bool, [provider,deployer,importer,distributor, product_manufacturer])) != 1:
-        sys.exit("Please specify exactly one operator role.")
-
-def set_eu_market_status(project_cc):
-    if project_cc_yaml['eu_market']['placed_on_market']['value']:
-        placed_on_market = True
-    if project_cc_yaml['eu_market']['put_into_service']['value']: 
-        put_into_service = True
-    if project_cc_yaml['operator_role']['output_used']['value']:
-        output_used == True
-
-def check_within_scope(project_cc):
-    if not check_excepted(project_cc):
-        if provider and ((ai_system and (placed_on_market or put_into_service)) or (gpai_model and placed_on_market)):   # Article 2.1(a)
-            return True
-        if deployer and eu_located: # Article 2.1(b)
-            return True
-        if (provider or deployer) and (ai_system and eu_located and output_used): # Article 2.1(c)
-            return True
-        if (importer or distributor) and ai_system: # Article 2.1(d)
-            return True
-        if product_manufacturer and ai_system and (placed_on_market or put_into_service): # Article 2.1(e)
-            return True
-    else   
-        return False
-
-def check_excepted(project_cc):
-    if project_cc_yaml['excepted']['scientific'] or project_cc_yaml['excepted']['pre_market'] or (ai_system and project_cc_yaml['excepted']['open_source_ai_system']) or (gpai_model and project_cc_yaml['excepted']['open_source_gpai_system']):
-        return True
-    else:
-        return False 
-
-def check_prohibited (project_cc):
-    if ai_system:
-        for key in project_cc_yaml['prohibited_practice']['ai_system']:
-            if key[value]: 
-                print("You are engaged in a prohibited practice and thus the project is non-compliant.")
-                return True
-    if project_cc_yaml['prohibited_practice']['biometric']['categorization']:
-        print("You are engaged in a prohibited practice and thus the project is non-compliant.")
-        return True
-    if project_cc_yaml['prohibited_practice']['biometric']['real_time'] and sum(map(bool, [project_cc['prohibited_practice']['biometric']['real_time_exception_victim'],project_cc['prohibited_practice']['biometric']['real_time_exception_threat'], project_cc['prohibited_practice']['biometric']['real_time_exception_investigation']])) == 0:
-        print("You are engaged in a prohibited practice and thus the project is non-compliant.")
-        return True
-    else: 
-        print("You are not engaged in any prohibited practices.")
-        return False
-
-
-
-
-
-def check_all_true(file_path):
-        # Load the YAML file
-    with open(project_cc, 'r') as file:
-        data = yaml.safe_load(file)
+def run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml): 
     
-    # Iterate through top-level keys
-    for top_key, top_value in data.items():
-        if isinstance(top_value, dict):
-            # Iterate through second-level keys
-            for second_key, second_value in top_value.items():
-                if not second_value:
-                    print("You are non-compliant with the Act")
-                    break
-            else:
-                print("No problems here")
+    if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
+        for key in data_cc_yaml['high_risk_ai_system_requirements']:
+            if data_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {data_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['article']}.")
 
-def main():
-    # Prompt the user to enter a filename
-    file_path = input("Please enter a file path to the folder containing all your AI project's Compliance Cards: ")
+    if dispositive_variables['ai_project_type']["gpai_model"] == True:
+        for value in data_cc_yaml['gpai_model_requirements']:
+            if data_cc_yaml['gpai_model_requirements'][f'{value}'] == True:
+                dispositive_variables['msg'].append(f"")
 
-    # Call the function with the entered filename
-    check_for_project_cc(file_path)
+    return dispositive_variables
+    
+def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):  
+    
+    # If project involves a high-risk AI system, then make sure all the relevant model requirements are met (relevant attributes are positive)
 
-if __name__ == "__main__":
-    main()
+    if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
+        for value in model_cc_yaml['high_risk_ai_system_requirements']:
+            if model_cc_yaml['high_risk_ai_system_requirements'][f'{value}'] == True:
+                dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['article']}.")
+
+    # If project involves a GPAI model, then make sure all the relevant model requirements are met (relevant attributes are positive)
+    
+    if dispositive_variables['ai_project_type']["gpai_model"] == True:
+        for key in model_cc_yaml['gpai_model_requirements']:
+            if model_cc_yaml['gpai_model_requirements'][f'{key}']['value'] == True:
+                dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['gpai_model_requirements'][f'{key}']['article']}.")
+
+        # If the GPAI model additionally carries systemic risk, then make sure all the relevant model requirements are met (relevant attributes are positive)
+        
+        if dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] == True:          
+            for key in model_cc_yaml['gpai_model_with_systemic_risk_requirements']:
+                if model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['value'] == True:
+                    dispositive_variables['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['article']}.")
+   
+    return dispositive_variables
+
+def check_intended_purpose(dispositive_variables, project_cc, other_cc):
+    
+    project_intended_purposes = []
+    dataset_intended_purposes = []
+    model_intended_purposes = []
+
+    if dispositive_variables['ai_project_type']['high_risk_ai_system'] == False:
+        dispositive_variables['msg'].append(f"Not high-risk")
+        return dispositive_variables
+    
+    if dispositive_variables['ai_project_type']['high_risk_ai_system'] == True:
+        for key in project_cc['high_risk_ai_system']:
+            if project_cc['high_risk_ai_system'][f'{key}']['value']:
+                project_intended_purposes.append(key) 
+        
+        # data intended purposes 
+    
+        if other_cc['card_details']['card_type'] == 'data':
+            data_cc = other_cc
+            for key in data_cc['intended_purpose']:
+                if data_cc['intended_purpose'][f'{key}']['value']:
+                    dataset_intended_purposes.append(key) 
+
+            for purpose in project_intended_purposes:
+                if purpose not in dataset_intended_purposes:
+                    dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for {data_cc['card_details']['card_label']}")
+
+        # model intended purposes
+
+        if other_cc['card_details']['card_type'] == 'model':
+            model_cc = other_cc        
+            for key in model_cc['intended_purpose']:
+                if model_cc['intended_purpose'][f'{key}']['value']:
+                    model_intended_purposes.append(key) 
+
+            for purpose in project_intended_purposes:
+                if purpose not in model_intended_purposes:
+                    dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for {model_cc['card_details']['card_label']}")
+
+        dispositive_variables['project_intended_purposes'] = project_intended_purposes
+
+    return dispositive_variables
+
+
