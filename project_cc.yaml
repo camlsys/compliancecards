@@ -878,7 +878,7 @@ article_50_obligations:
   deepfake_disclosure_non_art:
    article: 'Art. 50(4)'
    verbose: 'AI project disclose that the content has been artificially generated or manipulated.'
-  value: false 
+   value: false 
   deepfake_disclosure_art:
    article: 'Art. 50(4)' 
    verbose: 'AI project discloses that the content has been artificially generated or manipulated in an appropriate manner that does not hamper the display or enjoyment of the work.'
