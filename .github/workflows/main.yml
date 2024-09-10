@@ -1,9 +1,10 @@
-name: Sync to Hugging Face hub
+name: Sync to Hugging Face Hub
+
 on:
   push:
-    branches: main
+    branches: [main, dev]
 
-  # to run this workflow manually from the Actions tab
+  # To run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -14,7 +15,15 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: Push to hub
+
+      - name: Push main branch to Hugging Face
+        if: github.ref == 'refs/heads/main'
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: git push https://billmarino:$HF_TOKEN@huggingface.co/spaces/camlsys/compliancecards main
+
+      - name: Push dev branch to Hugging Face
+        if: github.ref == 'refs/heads/dev'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: git push https://billmarino:$HF_TOKEN@huggingface.co/spaces/camlsys/compliancecards dev
