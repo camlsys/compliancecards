@@ -22,8 +22,8 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: git push https://billmarino:$HF_TOKEN@huggingface.co/spaces/camlsys/compliancecards main
 
-      - name: Push dev branch to Hugging Face
-        if: github.ref == 'refs/heads/dev'
+      - name: Push test branch to Hugging Face
+        if: github.ref == 'refs/heads/test'
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: git push https://billmarino:$HF_TOKEN@huggingface.co/spaces/camlsys/compliancecards test
