@@ -871,15 +871,15 @@ article_50_obligations:
     article: 'Art. 50(2)'
     verbose: 'The outputs of the AI project are marked in a machine-readable format and detectable as artificially generated or manipulated.'
     value: false 
- informed_biometric: 
+  informed_biometric: 
     article: 'Art. 50(2)'
     verbose: 'The AI project informs the natural persons exposed thereto of the operation of the system, and processes the personal data in accordance with Regulations (EU) 2016/679 and (EU) 2018/1725 and Directive (EU) 2016/680, as applicable.'
     value: false 
- deepfake_disclosure_non_art:
+  deepfake_disclosure_non_art:
    article: 'Art. 50(4)'
    verbose: 'AI project disclose that the content has been artificially generated or manipulated.'
-  value: false 
- deepfake_disclosure_art:
+   value: false 
+  deepfake_disclosure_art:
    article: 'Art. 50(4)' 
    verbose: 'AI project discloses that the content has been artificially generated or manipulated in an appropriate manner that does not hamper the display or enjoyment of the work.'
    value: false 

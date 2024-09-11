@@ -24,7 +24,7 @@ def load_yaml_files_from_directory(directory_path):
 
 directories = {
     'None': './examples',
-    'Template': './examples/templates',
+    'Template': './examples/cc_templates',
     'Example Project ': './examples/example1'
 }
 
