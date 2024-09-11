@@ -49,6 +49,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.title("Compliance Cards")
 st.title(":flag-eu: AI ACTCELERATE :scales: :rocket:")
 
 selected_example = st.selectbox("Select an example project", list(directories.keys()))
@@ -115,7 +116,7 @@ with project_col:
             updated_project_cc = yaml.dump(project_cc, sort_keys=False)
             
         st.download_button(
-            label=f"Download Updated Project CC as YAML",
+            label=f"Download updated Project CC as YAML",
             data=updated_project_cc,
             file_name="updated_project.yaml",
             mime="text/yaml",
@@ -162,7 +163,7 @@ with data_col:
                 data_cc_yaml_data = yaml.dump(data_cc, sort_keys=False)
 
             st.download_button(
-                label=f"Download Updated {card[0]} CC as YAML",
+                label=f"Download pdated {card[0]} CC as YAML",
                 data=data_cc_yaml_data,
                 file_name=f"updated_{card[0]}.yaml",
                 mime="text/yaml",
@@ -203,7 +204,7 @@ with model_col:
                 model_cc_yaml_data = yaml.dump(model_cc, sort_keys=False)
 
             st.download_button(
-                label=f"Download Updated {card[0]} CC as YAML",
+                label=f"Download updated {card[0]} CC as YAML",
                 data=model_cc_yaml_data,
                 file_name=f"updated_{card[0]}.yaml",
                 mime="text/yaml",
