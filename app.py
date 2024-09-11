@@ -25,7 +25,8 @@ def load_yaml_files_from_directory(directory_path):
 directories = {
     'None': './examples',
     'Template': './examples/cc_templates',
-    'Example Project ': './examples/example1'
+    'Example Compliant Project ': './examples/compliant_project',
+    'Example Non-Compliant Project ': './examples/non-compliant_project'
 }
 
 def format_card_label(card):
