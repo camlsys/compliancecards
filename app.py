@@ -23,6 +23,7 @@ def load_yaml_files_from_directory(directory_path):
     return yaml_files
 
 directories = {
+    'None': './examples',
     'Template': './examples/templates',
     'Example Project ': './examples/example1'
 }
@@ -116,8 +117,8 @@ with project_col:
                 file_name="updated_project.yaml",
                 mime="text/yaml"
             )  
-    # else:
-    #     st.write("Missing project file")
+    else:
+        st.write("Missing project file")
 
 with data_col:
 
@@ -156,8 +157,8 @@ with data_col:
                     file_name="updated_data.yaml",
                     mime="text/yaml"
                 )
-    # else:
-    #     st.write("Missing data file")
+    else:
+        st.write("Missing data file")
 
 with model_col:
             
@@ -196,8 +197,8 @@ with model_col:
                     file_name="updated_model.yaml",
                     mime="text/yaml"
                 )
-    # else:
-    #     st.write("Missing data file")
+    else:
+        st.write("Missing data file")
 
 # # #         # json_data = json.dumps(data, indent=2)
 # # #         # st.download_button(
