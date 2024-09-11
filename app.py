@@ -90,6 +90,8 @@ with project_col:
         project_cc = cards["project_file"]
         with st.expander("project details"):
             for section, items in project_cc.items():
+                if section == 'card_details':
+                    items['card_label'] = st.text_input("card_label", value=items['card_label'])
                 if section != 'card_details':
                     st.header(section.replace('_', ' ').title())  # section header
                     for key, details in items.items():
@@ -124,12 +126,12 @@ with data_col:
 
     st.title("Data Card")
     if cards['data_files']:
-        # selected_data_file = st.selectbox("Select a Data CC", cards['data_files'], format_func=format_card_label)
-        # data_cc = selected_data_file[1]
         for card in cards['data_files']:
             data_cc = card[1]
             with st.expander(f"{card[0]}"):
                 for section, items in data_cc.items():
+                    if section == 'card_details':
+                        items['card_label'] = st.text_input('card_label', value=items['card_label'], key=f"data_{card[0]}_{key}")
                     if section != 'card_details':
                         st.header(section.replace('_', ' ').title())  # section header
                         for key, details in items.items():
@@ -164,12 +166,12 @@ with model_col:
             
     st.title("Model Card")
     if cards['model_files']:
-        # selected_data_file = st.selectbox("Select a Modle CC", cards['model_files'], format_func=format_card_label)
-        # model_cc = selected_data_file[1]
         for card in cards['model_files']:
             model_cc = card[1]
             with st.expander(f"{card[0]}"):       
                 for section, items in model_cc.items():
+                    if section == 'card_details':
+                        items['card_label'] = st.text_input('card_label', value=items['card_label'], key=f"data_{card[0]}_{key}")
                     if section != 'card_details':
                         st.header(section.replace('_', ' ').title())  # section header
                         for key, details in items.items():
