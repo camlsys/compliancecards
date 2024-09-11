@@ -215,7 +215,7 @@ excepted:
     article: 'Art. 2(8) '
     verbose: 'AI project strictly consists of research, testing or development activity of the sort that takes place prior to their being placed on the market or put into service'
     value: false 
-  open_source_ai_model: 
+  open_source_ai_system: 
     article: 'Art. 2(11)'
     verbose: 'AI project is released under free and open-source licences'
     value: false  

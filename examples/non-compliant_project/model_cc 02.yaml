@@ -1,0 +1,313 @@
+card_details: 
+  card_type: "model" # "project", "data" or "model"
+  card_label: "private_model"
+
+# Metadata related to intended purpose(s) of model 
+
+intended_purpose:
+  safety_component: 
+    article: 'Art. 6(1)(a)'
+    verbose: 'This model is appropriate to use for AI projects involving product safety components'
+    value: !!bool false 
+  product_regulated_machinery: 
+    article: 'Art. 6(1)(b); Annex I'
+    verbose: 'This model is appropriate to use for AI projects involving products covered by Directive 2006/42/EC of the European Parliament and of the Council of 17 May 2006 on machinery, and amending Directive 95/16/EC (OJ L 157, 9.6.2006, p. 24) [as repealed by the Machinery Regulation]'
+    value: !!bool false 
+  product_regulated_toy: 
+    article: 'Art. 6(1)(b); Annex I'
+    verbose: 'This model is appropriate to use for AI projects involving products covered by Directive 2009/48/EC of the European Parliament and of the Council of 18 June 2009 on the safety of toys (OJ L 170, 30.6.2009, p. 1)'
+    value: !!bool false 
+  product_regulated_watercraft: 
+    article: 'Art. 6(1)(b); Annex I'
+    verbose: 'This model is appropriate to use for AI projects involving products covered by Directive 2013/53/EU of the European Parliament and of the Council of 20 November 2013 on recreational craft and personal watercraft and repealing Directive 94/25/EC (OJ L 354, 28.12.2013, p. 90)'
+    value: !!bool false 
+  biometric_categorization: 
+    article: 'Art. 6(2); Annex III(1)(b)'
+    verbose: 'This model is appropriate to use for AI projects involving biometric categorisation, according to sensitive or protected attributes or characteristics based on the inference of those attributes or characteristics'
+    value: !!bool false 
+  emotion_recognition: 
+    article: 'Art. 6(2); Annex III(1)(c)'
+    verbose: 'This model is appropriate to use for AI projects involving emotion recognition'
+    value: !!bool true 
+  critical_infrastructure: 
+    article: 'Art. 6(2); Annex III(2)'
+    verbose: 'This model is appropriate to use for AI projects involving safety components in the management and operation of critical digital infrastructure, road traffic, or in the supply of water, gas, heating or electricity'
+    value: !!bool true 
+  admission: 
+    article: 'Art. 6(2); Annex III(3)(a)'
+    verbose: 'This model is appropriate to use for AI projects involving the determination of access or admission or to assigning natural persons to educational and vocational training institutions at all levels'
+    value: !!bool false 
+  recruitment: 
+    article: 'Art. 6(2); Annex III(4)(a)'
+    verbose: 'This model is appropriate to use for AI projects involving the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates'
+    value: !!bool false 
+  public_assistance: 
+    article: 'Art. 6(2); Annex III(5)(a)'
+    verbose: 'This model is appropriate to use for AI projects intended to be used by public authorities or on behalf of public authorities to evaluate the eligibility of natural persons for essential public assistance benefits and services, including healthcare services, as well as to grant, reduce, revoke, or reclaim such benefits and services'
+    value: !!bool false 
+  victim_assessment: 
+    article: 'Art. 6(2); Annex III(6)(a)'
+    verbose: 'This model is appropriate to use for AI projects intended to be used by or on behalf of law enforcement authorities, or by Union institutions, bodies, offices or agencies in support of law enforcement authorities or on their behalf to assess the risk of a natural person becoming the victim of criminal offences'
+    value: !!bool false 
+  polygraph: 
+    article: 'Art. 6(2); Annex III(7)(a)'
+    verbose: 'This model is appropriate to use for AI projects intended to be used by or on behalf of competent public authorities or by Union institutions, bodies, offices or agencies as polygraphs or similar tools'
+    value: !!bool false 
+  judicial: 
+    article: 'Art. 6(2); Annex III(8)(a)'
+    verbose: 'This model is appropriate to use for AI projects intended to be used by a judicial authority or on their behalf to assist a judicial authority in researching and interpreting facts and the law and in applying the law to a concrete set of facts, or to be used in a similar way in alternative dispute resolution'
+    value: !!bool false 
+
+# Metadata that will help us determine if the model itself is a GPAI and, therefore, must satisfy the requirements of GPAI models
+
+classification_of_gpai_models:
+  high_impact_capabilities: 
+    article: 'Art. 51(1)(a)'
+    verbose: 'The model has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks'
+    value: !!bool false
+  flops: 
+    article: 'Art. 51(2)'
+    verbose: 'The cumulative compute used for training the model, as measured in floating point operations (FLOPs), was greater than 10^25.'
+    value: !!bool false
+
+# Metadata related to model-related requirements for high-risk AI systems
+
+high_risk_ai_system_requirements:
+  risk_management_system_general:
+    article: 'Art. 9(2)'
+    verbose: 'A risk management system has been planned, run, reviewed, and updated throughout the model lifecycle' 
+    value: !!bool false 
+  risk_management_system_foreseeable_risks: 
+    article: 'Art. 9(2)(a)'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included the identification and analysis of any known or reasonably foreseeable risks the model can pose to health or safety when used for intended purpose'
+    value: !!bool false
+  risk_management_system_evaluation: 
+    article: 'Art. 9(2)(b)'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included the estimation and evaluation of risks when model used for intended purpose'
+    value: !!bool false
+  risk_management_system_misuse: 
+    article: 'Art. 9(2)(b)'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included the estimation and evaluation of risks when model used under conditions of reasonably foreseeable misuse' 
+    value: !!bool false
+  risk_management_system_testing_performance: 
+    article: 'Art. 9(6)'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included testing to ensure model performs consistently for intended purpose'
+    value: !!bool false
+  risk_management_system_testing_compliance: 
+    article: 'Art. 9(6)'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included testing to ensure model complies with Act'
+    value: !!bool false
+  risk_management_system_testing_benchmark: 
+    article: 'Art. 9(8)'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included testing against prior defined metrics appropriate to intended purpose'
+    value: !!bool false
+  risk_management_system_testing_probabilistic:  
+    article: 'Art. 9(8)'
+    verbose: 'The risk management system that was established, implemented, documented and maintained througout the model lifecycle included testing against probabilistic thresholds appropriate to intended purpose'
+    value: !!bool false
+  technical_documentation_pre_trained_elements: 
+    article: 'Art. 11; Annex IV(2)(a)'
+    verbose: 'Model has technical documentation that describes pre-trained elements of model provided by third parties and how used, integrated or modified'
+    value: !!bool false 
+  technical_documentation_logic: 
+    article: 'Art. 11; Annex IV(2)(b)'
+    verbose: 'Model has technical documentation that describes general logic of model'
+    value: !!bool false
+  technical_documentation_design_choices: 
+    article: 'Art. 11; Annex IV(2)(b)'
+    verbose: 'Model has technical documentation that describes key design choices including rationale and assumptions made, including with regard to persons or groups on which model intended to be used'
+    value: !!bool false
+  technical_documentation_classification_choices: 
+    article: 'Art. 11; Annex IV(2)(b)'
+    verbose: 'Model has technical documentation that describes main classification choices'
+    value: !!bool false
+  technical_documentation_parameters: 
+    article: 'Art. 11; Annex IV(2)(b)'
+    verbose: 'Model has technical documentation that describes what model is designed to optimise for and relevance of its different parameters'
+    value: !!bool false
+  technical_documentation_expected_output: 
+    article: 'Art. 11; Annex IV(2)(b)'
+    verbose: 'Model has technical documentation that the expected output and output quality of the system'
+    value: !!bool false
+  technical_documentation_act_compliance: 
+    article: 'Art. 11; Annex IV(2)'
+    verbose: 'Model has technical documentation that describes decisions about any possible trade-off made regarding the technical solutions adopted to comply with the requirements set out in Title III, Chapter 2'
+    value: !!bool false
+  technical_documentation_human_oversight: 
+    article: 'Art. 11; Annex IV(2)(e)'
+    verbose: 'Model has technical documentation that describes an assessment of the human oversight measures needed in accordance with Article 14, including an assessment of the technical measures needed to facilitate the interpretation of the outputs of AI systems by the deployers, in accordance with Articles 13(3)(d)'
+    value: !!bool false
+  technical_documentation_validation: 
+    article: 'Art. 11; Annex IV(2)(g)'
+    verbose: 'Model has technical documentation that describes validation and testing procedures used, including information about the validation and testing data used and their main characteristics; metrics used to measure accuracy, robustness and compliance with other relevant requirements set out in Title III, Chapter 2 as well as potentially discriminatory impacts; test logs and all test reports dated and signed by the responsible persons, including with regard to predetermined changes as referred to under point (f)' 
+    value: !!bool false
+  technical_documentation_cybersecurity: 
+    article: 'Art. 11; Annex IV(2)(h)'
+    verbose: 'Model has technical documentation that describes cybersecurity measures put in place'
+    value: !!bool false
+  transparency_to_deployers_intended_purpose: 
+    article: 'Art. 13(3)(b)(i)'
+    verbose: 'Model is accompanied by instructions for use that include the characteristics, capabilities, performance limitations, and intended purpose of the model'
+    value: !!bool false
+  transparency_to_deployers_metrics: 
+    article: 'Art. 13(3)(b)(ii)'
+    verbose: 'Model is accompanied by instructions for use that include the level of accuracy, including its metrics, robustness and cybersecurity against which the model has been tested and validated and which can be expected, and any known and foreseeable circumstances that may have an impact on that expected level of accuracy, robustness and cybersecurity'
+    value: !!bool false
+  transparency_to_deployers_foreseeable_misuse: 
+    article: 'Art. 13(3)(b)(iii)'
+    verbose: 'Model is accompanied by instructions for use that include any known or foreseeable circumstance, related to the use of the model in accordance with its intended purpose or under conditions of reasonably foreseeable misuse, which may lead to risks to the health and safety or fundamental rights referred to in Article 9(2)' 
+    value: !!bool false
+  transparency_to_deployers_explainability:  
+    article: 'Art. 13(3)(b)(iv)'
+    verbose: 'Model is accompanied by instructions for use that include technical capabilities and characteristics of the model to provide information that is relevant to explain its output' 
+    value: !!bool false
+  transparency_to_deployers_specific_groups: 
+    article: 'Art. 13(3)(b)(v)'
+    verbose: 'Model is accompanied by instructions for use that include performance regarding specific persons or groups of persons on which the model is intended to be used'
+    value: !!bool false
+  transparency_to_deployers_data: 
+    article: 'Art. 13(3)(b)(vi)'
+    verbose: 'Model is accompanied by instructions for use that include specifications for the input data, or any other relevant information in terms of the training, validation and testing data sets used, taking into account the intended purpose of the model'
+    value: !!bool false
+  transparency_to_deployers_interpretability: 
+    article: 'Art. 13(3)(b)(vii)'
+    verbose: 'Model is accompanied by instructions for use that include information to enable deployers to interpret the output of the model and use it appropriately'
+    value: !!bool false   
+  transparency_to_deployers_human_oversight: 
+    article: 'Art. 13(3)(d)'
+    verbose: 'Model is accompanied by instructions for use that include human oversight measures, including the technical measures put in place to facilitate the interpretation of the outputs of model by the deployers' 
+    value: !!bool false
+  transparency_to_deployers_hardware: 
+    article: 'Art. 13(3)(e)'
+    verbose: 'Model is accompanied by instructions for use that include computational and hardware resources needed, the expected lifetime of the model and any necessary maintenance and care measures, including their frequency, to ensure the proper functioning of that model, including as regards software updates'
+    value: !!bool false
+  accuracy_robustness_cybersecurity_accuracy:  # These need to be cleaned up and to match/compliment project cc
+    article: 'Art. 15(1)'
+    verbose: 'Model is designed and developed to achieve appropriate level of accuracy'
+    value: !!bool false
+  accuracy_robustness_cybersecurity_robustiness: 
+    article: 'Art. 15(1)'
+    verbose: 'Model is designed and developed to achieve appropriate level of robustness'
+    value: !!bool false
+  accuracy_robustness_cybersecurity_cybersecurity:  
+    article: 'Art. 15(1)'
+    verbose: 'Model is designed and developed to achieve appropriate level of cybersecurity'
+    value: !!bool false
+  accuracy_robustness_cybersecurity_accuracy_metrics: 
+    article: 'Art. 15(2)'
+    verbose: 'Use of relevant accuracy metrics'
+    value: !!bool false
+  accuracy_robustness_cybersecurity_fault_resilience: 
+    article: 'Art. 15(4)'
+    verbose: 'Maximum possible resilience regarding errors, faults or inconsistencies that may occur within the system or the environment in which the system operates, in particular due to their interaction with natural persons or other systems. Technical and organisational measures shall be taken towards this regard'
+    value: !!bool false
+  accuracy_robustness_cybersecurity_attacks: 
+    article: 'Art. 15(5)'
+    verbose: 'Measures were taken to prevent, detect, respond to, resolve and control for model poisoning attacks, adversarial examples or model evasion attacks (attacks using inputs designed to cause the model to make a mistake), and confidentiality attacks or model flaws'
+    value: !!bool false
+  quality_management_system:
+    article: 'Art. 17(1)(d)'
+    verbose: 'Examination, test and validation procedures to be carried out before, during and after the development of the high-risk AI system, and the frequency with which they have to be carried out'
+    value: !!bool false
+
+# Metadata related to model-related requirements for GPAI models 
+
+gpai_model_requirements:
+  task:  
+    article: 'Art. 53; Annex XI(1)(1)(a)'
+    verbose: 'The tasks that the model is intended to perform and the type and nature of AI systems in which it can be integrated'
+    value: !!bool false
+  acceptable_use: 
+    article: 'Art. 53; Annex XI(1)(1)(b)'
+    verbose: 'Acceptable use policies applicable'
+    value: !!bool false
+  release_date: 
+    article: 'Art. 53; Annex XI(1)(1)(c)'
+    verbose: 'The date of release and methods of distribution'
+    value: !!bool false
+  architecture: 
+    article: 'Art. 53; Annex XI(1)(1)(d)'
+    verbose: 'The architecture and number of parameters'
+    value: !!bool false
+  input_output_modality: 
+    article: 'Art. 53; Annex XI(1)(1)(e)'
+    verbos: 'Modality (e.g. text, image) and format of inputs and outputs'
+    value: !!bool false
+  license: 
+    article: 'Art. 53; Annex XI(1)(1)(f)'
+    verbose: 'The license'
+    value: !!bool false
+  training: 
+    article: 'Art. 53; Annex XI(1)(2)(b)'
+    verbose: 'Training methodologies and techniques'
+    value: !!bool false
+  design_choices: 
+    article: 'Art. 53; Annex XI(1)(2)(b)'
+    verbose: 'Key design choices including the rationale and assumptions made'
+    value: !!bool false
+  optimized_for:  
+    article: 'Art. 53; Annex XI(1)(2)(b)'
+    verbose: 'What the model is designed to optimise for'
+    value: !!bool false
+  parameters: 
+    article: 'Art. 53; Annex XI(1)(2)(b)'
+    verbose: 'The relevance of the different parameters, as applicable'
+    value: !!bool false
+  data_type: 
+    article: 'Art. 53; Annex XI(1)(2)(c)'
+    verbose: 'Information on the data used for training, testing and validation: type of data' 
+    value: !!bool false
+  data_provenance: 
+    article: 'Art. 53; Annex XI(1)(2)(c)'
+    verbose: 'Information on the data used for training, testing and validation: provenance of data'
+    value: !!bool false
+  data_curation: 
+    article: 'Art. 53; Annex XI(1)(2)(c)'
+    verbose: 'Information on the data used for training: curation methodologies (e.g. cleaning, filtering etc)'
+    value: !!bool false
+  data_number: 
+    article: 'Art. 53; Annex XI(1)(2)(c)'
+    verbose: 'Information on the data used for training: the number of data points'
+    value: !!bool false
+  data_characteristics: 
+    article: 'Art. 53; Annex XI(1)(2)(c)'
+    verbose: 'Information on the data used for training: data points scope and main characteristics applicable'
+    value: !!bool false
+  data_origin: 
+    article: 'Art. 53; Annex XI(1)(2)(c)'
+    verbose: 'Information on the data used for training: how the data was obtained and selected'
+    value: !!bool false
+  data_bias: 
+    article: 'Art. 53; Annex XI(1)(2)(c)'
+    verbose: 'Information on the data used for training: all other measures to detect the unsuitability of data sources and methods to detect identifiable biases, where applicable'
+    value: !!bool false
+  computation: 
+    article: 'Art. 53; Annex XI(1)(2)(d)'
+    verbose: 'The computational resources used to train the model (e.g. number of floating point operations – FLOPs), training time, and other relevant details related to the training'
+    value: !!bool false
+  energy_consumption: 
+    article: 'Art. 53; Annex XI(1)(2)(e)'
+    verbose: 'Known or estimated energy consumption of the model; in case not known, this could be based on information about computational resources used'
+    value: !!bool false
+  evaluation: 
+    article: 'Art. 53; Annex XI(2)(1)'
+    verbose: 'Detailed description of the evaluation strategies, including evaluation results, on the basis of available public evaluation protocols and tools or otherwise of other evaluation methodologies. Evaluation strategies shall include evaluation criteria, metrics and the methodology on the identification of limitations'
+    value: !!bool false
+  adversarial_testing: 
+    article: 'Art. 53; Annex XI(2)(2)'
+    verbose: 'Where applicable, detailed description of the measures put in place for the purpose of conducting internal and/or external adversarial testing (e.g. red teaming), model adaptations, including alignment and fine-tuning'
+    value: !!bool false
+
+gpai_model_with_systemic_risk_requirements:
+  evaluation: 
+    article: 'Art. 55(1)(a)'
+    verbose: 'Perform model evaluation in accordance with standardised protocols and tools reflecting the state of the art, including conducting and documenting adversarial testing of the model with a view to identify and mitigate systemic risk'
+    value: !!bool false
+  systematic_risk:  
+    article: 'Art. 55(1)(b)'
+    verbose: 'Assess and mitigate possible systemic risks at Union level, including their sources, that may stem from the development'
+    value: !!bool false
+  cybersecurity: 
+    article: 'Art. 55(1)(d)'
+    verbose: 'Ensure an adequate level of cybersecurity protection for the GPAI model with systemic risk and the physical infrastructure of the mode'
+    value: !!bool false

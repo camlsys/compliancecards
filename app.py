@@ -25,7 +25,8 @@ def load_yaml_files_from_directory(directory_path):
 directories = {
     'None': './examples',
     'Template': './examples/cc_templates',
-    'Example Project ': './examples/example1'
+    'Example Compliant Project ': './examples/compliant_project',
+    'Example Non-Compliant Project ': './examples/non-compliant_project'
 }
 
 def format_card_label(card):
@@ -113,11 +114,12 @@ with project_col:
                     
             updated_project_cc = yaml.dump(project_cc, sort_keys=False)
             
-            st.download_button(
-                label=f"Download Updated Project CC as YAML",
-                data=updated_project_cc,
-                file_name="updated_project.yaml",
-                mime="text/yaml"
+        st.download_button(
+            label=f"Download Updated Project CC as YAML",
+            data=updated_project_cc,
+            file_name="updated_project.yaml",
+            mime="text/yaml",
+            use_container_width = True
             )  
     else:
         st.write("Missing project file")
@@ -159,11 +161,12 @@ with data_col:
             
                 data_cc_yaml_data = yaml.dump(data_cc, sort_keys=False)
 
-                st.download_button(
-                    label=f"Download Updated {card[0]} CC as YAML",
-                    data=data_cc_yaml_data,
-                    file_name="updated_data.yaml",
-                    mime="text/yaml"
+            st.download_button(
+                label=f"Download Updated {card[0]} CC as YAML",
+                data=data_cc_yaml_data,
+                file_name=f"updated_{card[0]}.yaml",
+                mime="text/yaml",
+                use_container_width = True
                 )
     else:
         st.write("Missing data file")
@@ -199,11 +202,12 @@ with model_col:
             
                 model_cc_yaml_data = yaml.dump(model_cc, sort_keys=False)
 
-                st.download_button(
-                    label=f"Download Updated {card[0]} CC as YAML",
-                    data=model_cc_yaml_data,
-                    file_name="updated_model.yaml",
-                    mime="text/yaml"
+            st.download_button(
+                label=f"Download Updated {card[0]} CC as YAML",
+                data=model_cc_yaml_data,
+                file_name=f"updated_{card[0]}.yaml",
+                mime="text/yaml",
+                use_container_width = True
                 )
     else:
         st.write("Missing data file")
