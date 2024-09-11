@@ -13,11 +13,25 @@ def load_yaml(file_path):
     with open(file_path, 'r') as file:
         return yaml.safe_load(file)
 
+def load_yaml_files_from_directory(directory_path):
+    yaml_files = []
+    for file_name in os.listdir(directory_path):
+        if file_name.endswith('.yaml'):
+            file_path = os.path.join(directory_path, file_name)
+            with open(file_path, 'r') as file:
+                yaml_files.append(yaml.safe_load(file))
+    return yaml_files
+
+directories = {
+    'Template': './examples/templates',
+    'Example Project ': './examples/example1'
+}
+
 def format_card_label(card):
     return card[0]
     
 # Streamlit app
-st.set_page_config(page_title="AI", layout="wide")
+st.set_page_config(page_title="Compliance Cards", layout="wide")
 st.markdown(
     """
     <style>
@@ -33,18 +47,32 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("AI")
+st.title("AI ACTCELERATE")
 
-uploaded_files = st.file_uploader("Upload YAML Files", type="yaml", accept_multiple_files=True)
-# project_files = st.file_uploader("Upload Project Files", type="yaml", accept_multiple_files=True)
+selected_example = st.selectbox("Select an example project", list(directories.keys()))
+uploaded_files = st.file_uploader("or upload Compliance Cards", type="yaml", accept_multiple_files=True)
 
 cards = {"project_file": None, "data_files": [], "model_files": []}
 
-if uploaded_files:
-
-    for uploaded_file in uploaded_files:
-        cc = load_yaml(uploaded_file.name)
+if selected_example:
+    directory_path = directories[selected_example]
+    yaml_files = load_yaml_files_from_directory(directory_path)
+    
+    for cc in yaml_files:
         card_type = cc['card_details'].get('card_type', '').lower()
+        
+        if card_type == 'project':
+            cards["project_file"] = cc
+        elif card_type == 'data':
+            cards["data_files"].append((cc['card_details']['card_label'], cc))
+        elif card_type == 'model':
+            cards["model_files"].append((cc['card_details']['card_label'], cc))
+
+if uploaded_files:
+    for uploaded_file in uploaded_files:
+        cc = yaml.safe_load(uploaded_file)
+        card_type = cc['card_details'].get('card_type', '').lower()
+
         if card_type == 'project':
             cards["project_file"] = cc
         elif card_type == 'data':
@@ -55,7 +83,7 @@ if uploaded_files:
 project_col, data_col, model_col = st.columns(3)
 
 with project_col:
-    st.title("Project CC")
+    st.title("Project Card")
     
     if cards["project_file"]:
         project_cc = cards["project_file"]
@@ -93,7 +121,7 @@ with project_col:
 
 with data_col:
 
-    st.title("Data CC")
+    st.title("Data Card")
     if cards['data_files']:
         # selected_data_file = st.selectbox("Select a Data CC", cards['data_files'], format_func=format_card_label)
         # data_cc = selected_data_file[1]
@@ -133,7 +161,7 @@ with data_col:
 
 with model_col:
             
-    st.title("Model CC")
+    st.title("Model Card")
     if cards['model_files']:
         # selected_data_file = st.selectbox("Select a Modle CC", cards['model_files'], format_func=format_card_label)
         # model_cc = selected_data_file[1]
