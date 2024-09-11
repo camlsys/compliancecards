@@ -48,7 +48,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("AI ACTCELERATE")
+cards = {"project_file": None, "data_files": [], "model_files": []}
 
 selected_example = st.selectbox("Select an example project", list(directories.keys()))
 uploaded_files = st.file_uploader("or upload Compliance Cards", type="yaml", accept_multiple_files=True)
