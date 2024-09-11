@@ -2,6 +2,11 @@ import yaml
 from utils import set_operator_role_and_location, set_eu_market_status, check_within_scope_act, check_prohibited
 
 def check_overall_compliance_ui(cards):
+    # {"project_file": None, "data_files": [], "model_files": []}
+    if cards["project_file"] == None:
+       return "no project compliance card loaded"
+    if len(cards["data_files"]) == 0 or len(cards["model_files"]) == 0:
+       return "missing data or model compliance card"
    
     project_cc = cards['project_file']
 
@@ -23,8 +28,10 @@ def check_overall_compliance_ui(cards):
     },
     "project_intended_purposes": [],
     "project_cc_pass": False,
-    "data_cc_pass": False,
-    "model_cc_pass": False,
+    "data_cc_compliant": [],
+    "model_cc_compliant": [],
+    "data_cc_non-compliant": {},
+    "model_cc_non-compliant": {},    
     "msg": []
     }
 
@@ -262,6 +269,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
     
         if other_cc['card_details']['card_type'] == 'data':
             data_cc = other_cc
+            card_label = data_cc['card_details']['card_label']
             for key in data_cc['intended_purpose']:
                 if data_cc['intended_purpose'][f'{key}']['value']:
                     dataset_intended_purposes.append(key) 
@@ -269,11 +277,19 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
             for purpose in project_intended_purposes:
                 if purpose not in dataset_intended_purposes:
                     dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for {data_cc['card_details']['card_label']}")
-
+                    if not card_label in dispositive_variables['data_cc_non-compliant']:
+                        dispositive_variables['data_cc_non-compliant'][card_label] = {
+                                                                                        "intended_purpose": []
+                                                                                    }
+                        dispositive_variables['data_cc_non-compliant'][card_label]['intended_purpose'].append((f"{purpose}"))
+                else:
+                    dispositive_variables['data_cc_compliant'].append(data_cc['card_details']['card_label'])
+                    
         # model intended purposes
 
         if other_cc['card_details']['card_type'] == 'model':
-            model_cc = other_cc        
+            model_cc = other_cc
+            card_label = model_cc['card_details']['card_label']
             for key in model_cc['intended_purpose']:
                 if model_cc['intended_purpose'][f'{key}']['value']:
                     model_intended_purposes.append(key) 
@@ -281,6 +297,14 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
             for purpose in project_intended_purposes:
                 if purpose not in model_intended_purposes:
                     dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for {model_cc['card_details']['card_label']}")
+                    if not card_label in dispositive_variables['data_cc_non-compliant']:
+                        dispositive_variables['model_cc_non-compliant'][card_label] = {
+                                                                                        "intended_purpose": []
+                                                                                    }
+                        dispositive_variables['model_cc_non-compliant'][card_label]['intended_purpose'].append((f"{purpose}"))
+                    dispositive_variables['model_cc_non-compliant'].append(f"{model_cc['card_details']['card_label']}, intended_purpose: {purpose}")
+                else:
+                    dispositive_variables['model_cc_compliant'].append(model_cc['card_details']['card_label'])
 
         dispositive_variables['project_intended_purposes'] = project_intended_purposes
 

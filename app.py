@@ -125,6 +125,12 @@ with project_col:
 with data_col:
 
     st.title("Data Card")
+    # if st.button(f"Add Data Card"):
+    #     cc = load_yaml('./examples/cc_templates/data_cc.yaml')
+    #     print(cc)
+    #     card_type = cc['card_details'].get('card_type', '').lower()
+    #     cards["data_files"].append((cc['card_details']['card_label'], cc))
+        
     if cards['data_files']:
         for card in cards['data_files']:
             data_cc = card[1]
@@ -212,4 +218,4 @@ with model_col:
 
 if st.button(f"Run Analysis"):
     results = compliance_analysis(cards)
-    st.write("Analysis Results", results)
+    st.write("Analysis Results:", results)
