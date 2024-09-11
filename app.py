@@ -49,8 +49,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("Compliance Cards")
-st.title(":flag-eu: AI ACTCELERATE :scales: :rocket:")
+st.subheader(":flag-eu: AI _ACTCELERATE_ :scales: :rocket:")
+st.header("Compliance Cards")
 
 selected_example = st.selectbox("Select an example project", list(directories.keys()))
 uploaded_files = st.file_uploader("or upload Compliance Cards", type="yaml", accept_multiple_files=True)
@@ -95,7 +95,7 @@ with project_col:
                 if section == 'card_details':
                     items['card_label'] = st.text_input("card_label", value=items['card_label'])
                 if section != 'card_details':
-                    st.header(section.replace('_', ' ').title())  # section header
+                    st.header(section.replace('_', ' ').title(), divider=True)  # section header
                     for key, details in items.items():
                         if 'verbose' in details and 'value' in details:
                             st.subheader(key.replace('_', ' ').title())  # section header
@@ -110,7 +110,7 @@ with project_col:
                                 st.subheader(key.replace('_', ' ').title())  # section header
                                 details['value'] = st.checkbox(details['verbose'], value=details['value'])
                             st.divider()
-                    st.divider()
+                    # st.divider()
             # st.write("Updated Data:", project_cc)
                     
             updated_project_cc = yaml.dump(project_cc, sort_keys=False)
@@ -142,7 +142,7 @@ with data_col:
                     if section == 'card_details':
                         items['card_label'] = st.text_input('card_label', value=items['card_label'], key=f"data_{card[0]}_{key}")
                     if section != 'card_details':
-                        st.header(section.replace('_', ' ').title())  # section header
+                        st.header(section.replace('_', ' ').title(), divider=True)  # section header
                         for key, details in items.items():
                             if 'verbose' in details and 'value' in details:
                                 st.subheader(key.replace('_', ' ').title())  # section header
@@ -157,7 +157,7 @@ with data_col:
                                     st.subheader(key.replace('_', ' ').title())  # section header
                                     details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"data_{card[0]}_{details}_{key}")
                                 st.divider()
-                        st.divider()
+                        # st.divider()
                 # st.write("Updated Data:", data_cc)
             
                 data_cc_yaml_data = yaml.dump(data_cc, sort_keys=False)
@@ -183,7 +183,7 @@ with model_col:
                     if section == 'card_details':
                         items['card_label'] = st.text_input('card_label', value=items['card_label'], key=f"data_{card[0]}_{key}")
                     if section != 'card_details':
-                        st.header(section.replace('_', ' ').title())  # section header
+                        st.header(section.replace('_', ' ').title(), divider=True)  # section header
                         for key, details in items.items():
                             if 'verbose' in details and 'value' in details:
                                 st.subheader(key.replace('_', ' ').title())  # section header
@@ -198,7 +198,7 @@ with model_col:
                                     st.subheader(key.replace('_', ' ').title())  # section header
                                     details['value'] = st.checkbox(details['verbose'], value=details['value'], key=f"model_{card[0]}_{details}_{key}")
                                 st.divider()
-                        st.divider()
+                        # st.divider()
                 # st.write("Updated Data:", model_cc)
             
                 model_cc_yaml_data = yaml.dump(model_cc, sort_keys=False)
