@@ -12,9 +12,9 @@ def set_operator_role_and_location(dispositive_variables, project_cc_yaml):
             operators += 1 
         
     if ai_system and gpai_model:
-        dispositive_variables['msg'].append("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
+        dispositive_variables['project_msg'].append("Your project cannot be both an AI system and a GPAI model. Please revise your Project CC accordingly.")
     if operators != 1:
-        dispositive_variables['msg'].append("Please specify exactly one operator role.")
+        dispositive_variables['project_msg'].append("Please specify exactly one operator role.")
     
     return dispositive_variables
 
@@ -63,7 +63,7 @@ def check_excepted(dispositive_variables, project_cc_yaml):
          project_cc_yaml['excepted']['open_source_gpai_model']['value']  == True and
          dispositive_variables['ai_project_type']['gpai_model_systemic_risk'] == False)
     ):
-        dispositive_variables['msg'].append("Your project falls into one of the exemptions from the Act.")   
+        dispositive_variables['project_msg'].append("Your project falls into one of the exemptions from the Act.")   
         return True
     else:
         return False
