@@ -1,9 +1,6 @@
 import yaml
 from utils import set_operator_role_and_location, set_eu_market_status, check_within_scope_act, check_prohibited
 
-# TODO tells the user where the compliance analysis failed
-# TODO cite article from yaml file as explanation
-
 def check_overall_compliance_ui(cards):
    
     project_cc = cards['project_file']
@@ -248,24 +245,6 @@ def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):
 
 def check_intended_purpose(dispositive_variables, project_cc, other_cc):
     
-    # We want to run this function for everything classified as a high_risk_ai_system
-    # We also need to run it for all 
-    # Add any of the intended purposes of the overall project to a set of intended purposes
-    
-    # intended_purpose = ['safety_component',
-    #                     "product_regulated_machinery",
-    #                     "product_regulated_toy",
-    #                     "product_regulated_watercraft",
-    #                     "biometric_categorization",
-    #                     "emotion_recognition",
-    #                     "critical_infrastructure",
-    #                     "admission",
-    #                     "recruitment",
-    #                     "public_assistance",
-    #                     "victim_assessment",
-    #                     "polygraph",
-    #                     "judicial"]
-    
     project_intended_purposes = []
     dataset_intended_purposes = []
     model_intended_purposes = []
@@ -279,7 +258,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
             if project_cc['high_risk_ai_system'][f'{key}']['value']:
                 project_intended_purposes.append(key) 
         
-        # For each Data CC, put the intended uses in a set and then make sure the Project's intended use is in the set
+        # data intended purposes 
     
         if other_cc['card_details']['card_type'] == 'data':
             data_cc = other_cc
@@ -291,7 +270,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
                 if purpose not in dataset_intended_purposes:
                     dispositive_variables['msg'].append(f"You are not compliant because {purpose} is not a valid purpose for {data_cc['card_details']['card_label']}")
 
-        # Now do the exact same thing for all models
+        # model intended purposes
 
         if other_cc['card_details']['card_type'] == 'model':
             model_cc = other_cc        
