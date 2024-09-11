@@ -151,6 +151,7 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
         dispositive_variables['msg'].append("Project is within the scope of the Compliance Cards system. Let's continue...") 
     else: 
         dispositive_variables['msg'].append("Project is not within the scope of the initial version of the Compliance Cards system.")
+        dispositive_variables['project_cc_pass'] = True
         return dispositive_variables
     
     # Check if the project is within scope of the Act. If it's not, the analysis is over.
@@ -158,6 +159,7 @@ def run_compliance_analysis_on_project(dispositive_variables, project_cc_yaml):
         dispositive_variables['msg'].append("Project is within the scope of Act. Let's continue...") 
     else: 
         dispositive_variables['msg'].append("Project is not within the scope of what is regulated by the Act.")
+        dispositive_variables['project_cc_pass'] = True
         return dispositive_variables
 
     # Check for prohibited practices. If any exist, the analysis is over.
@@ -281,7 +283,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
                         dispositive_variables['data_cc_non-compliant'][card_label] = {
                                                                                         "intended_purpose": []
                                                                                     }
-                        dispositive_variables['data_cc_non-compliant'][card_label]['intended_purpose'].append((f"{purpose}"))
+                        # dispositive_variables['data_cc_non-compliant'][card_label]['intended_purpose'].append((f"{purpose}"))
                 else:
                     dispositive_variables['data_cc_compliant'].append(data_cc['card_details']['card_label'])
                     
@@ -301,8 +303,7 @@ def check_intended_purpose(dispositive_variables, project_cc, other_cc):
                         dispositive_variables['model_cc_non-compliant'][card_label] = {
                                                                                         "intended_purpose": []
                                                                                     }
-                        dispositive_variables['model_cc_non-compliant'][card_label]['intended_purpose'].append((f"{purpose}"))
-                    dispositive_variables['model_cc_non-compliant'].append(f"{model_cc['card_details']['card_label']}, intended_purpose: {purpose}")
+                        # dispositive_variables['model_cc_non-compliant'][card_label]['intended_purpose'].append((f"{purpose}"))
                 else:
                     dispositive_variables['model_cc_compliant'].append(model_cc['card_details']['card_label'])
 
