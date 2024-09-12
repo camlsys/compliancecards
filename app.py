@@ -163,7 +163,7 @@ with data_col:
                 data_cc_yaml_data = yaml.dump(data_cc, sort_keys=False)
 
             st.download_button(
-                label=f"Download pdated {card[0]} CC as YAML",
+                label=f"Download updated {card[0]} CC as YAML",
                 data=data_cc_yaml_data,
                 file_name=f"updated_{card[0]}.yaml",
                 mime="text/yaml",
