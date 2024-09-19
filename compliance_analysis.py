@@ -221,12 +221,12 @@ def run_compliance_analysis_on_data(dispositive_variables, data_cc_yaml):
     
     if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
         for key in data_cc_yaml['high_risk_ai_system_requirements']:
-            if data_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['value'] == True:
+            if data_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['value'] == False:
                 dispositive_variables['data_cc_non-compliant'][card_label]['msg'].append(f"This high-risk AI system fails the {key} requirements under {data_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['article']}.")
                 dispositive_variables['project_cc_pass'] = False
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
         for value in data_cc_yaml['gpai_model_requirements']:
-            if data_cc_yaml['gpai_model_requirements'][f'{value}'] == True:
+            if data_cc_yaml['gpai_model_requirements'][f'{value}'] == False:
                 dispositive_variables['data_cc_non-compliant'][card_label]['msg'].append(f"")
 
     return dispositive_variables
@@ -241,7 +241,7 @@ def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):
 
     if dispositive_variables['ai_project_type']["high_risk_ai_system"] == True:
         for value in model_cc_yaml['high_risk_ai_system_requirements']:
-            if model_cc_yaml['high_risk_ai_system_requirements'][f'{value}'] == True:
+            if model_cc_yaml['high_risk_ai_system_requirements'][f'{value}'] == False:
                 dispositive_variables['data_cc_non-compliant'][card_label]['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['high_risk_ai_system_requirements'][f'{key}']['article']}.")
                 dispositive_variables['project_cc_pass'] = False
 
@@ -249,7 +249,7 @@ def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):
     
     if dispositive_variables['ai_project_type']["gpai_model"] == True:
         for key in model_cc_yaml['gpai_model_requirements']:
-            if model_cc_yaml['gpai_model_requirements'][f'{key}']['value'] == True:
+            if model_cc_yaml['gpai_model_requirements'][f'{key}']['value'] == False:
                 dispositive_variables['data_cc_non-compliant'][card_label]['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['gpai_model_requirements'][f'{key}']['article']}.")
                 dispositive_variables['project_cc_pass'] = False
 
@@ -257,7 +257,7 @@ def run_compliance_analysis_on_model(dispositive_variables, model_cc_yaml):
         
         if dispositive_variables['ai_project_type']["gpai_model_systemic_risk"] == True:          
             for key in model_cc_yaml['gpai_model_with_systemic_risk_requirements']:
-                if model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['value'] == True:
+                if model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['value'] == False:
                     dispositive_variables['data_cc_non-compliant'][card_label]['msg'].append(f"This high-risk AI system fails the {key} requirements under {model_cc_yaml['gpai_model_with_systemic_risk_requirements'][f'{key}']['article']}.")
                     dispositive_variables['project_cc_pass'] = False
    
